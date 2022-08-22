@@ -3,11 +3,22 @@ import VueRouter from "vue-router";
 
 import store from "@/store/index";
 
+import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import RestorePassword from "../views/RestorePassword.vue";
 import RestorePasswordStep1 from "../views/RestorePasswordStep1.vue";
 import RestorePasswordStep2 from "../views/RestorePasswordStep2.vue";
-import Home from "../views/Home.vue";
+
+import Courses from "../views/studies/courses/Courses.vue";
+import Modules from "../views/studies/modules/Modules.vue";
+import Lessons from "../views/studies/lessons/Lessons.vue";
+
+import PushNotifications from "../views/marketing/push-notifications/PushNotifications.vue";
+import SpecialOffers from "../views/marketing/special-offers/SpecialOffers.vue";
+
+import Users from "../views/users/Users.vue";
+import Students from "../views/students/Students.vue";
+import Calendar from "../views/calendar/Calendar.vue";
 
 import Config from "@/config";
 

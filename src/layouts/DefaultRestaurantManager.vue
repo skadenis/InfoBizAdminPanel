@@ -102,14 +102,14 @@ export default {
     };
   },
   watch: {
-    getUserAuthStatus: {
-      handler(val) {
-        if (val === false) {
-          this.$router.push({ path: "/login" });
-        }
-      },
-      immediate: true,
-    },
+    // getUserAuthStatus: {
+    //   handler(val) {
+    //     if (val === false) {
+    //       this.$router.push({ path: "/login" });
+    //     }
+    //   },
+    //   immediate: true,
+    // },
   },
   methods: {
     ...mapActions({
@@ -138,7 +138,7 @@ export default {
 
   computed: {
     ...mapGetters({
-      getUserAuthStatus: "User/getUserAuthStatus",
+      // getUserAuthStatus: "User/getUserAuthStatus",
       getUserInfo: "User/getUserInfo",
     }),
     // Sets layout's element's class based on route's meta data.

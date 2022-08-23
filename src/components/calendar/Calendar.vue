@@ -1,5 +1,7 @@
-<template></template>
+<template> </template>
 <script>
-import CalendarAPI from "../../../api/CalendarAPI";
-import axios from "axios";
+// import CalendarAPI from "../../../api/CalendarAPI";
+// import axios from "axios";
 </script>
+
+<style scoped lang="scss"></style>

@@ -15,12 +15,12 @@
       ]"
     >
       <!-- Main Sidebar -->
-      <!-- <DashboardSidebar
-          :sidebarCollapsed="sidebarCollapsed"
-          :sidebarColor="sidebarColor"
-          :sidebarTheme="sidebarTheme"
-          @toggleSidebar="toggleSidebar"
-      ></DashboardSidebar> -->
+      <DashboardSidebar
+        :sidebarCollapsed="sidebarCollapsed"
+        :sidebarColor="sidebarColor"
+        :sidebarTheme="sidebarTheme"
+        @toggleSidebar="toggleSidebar"
+      ></DashboardSidebar>
       <!-- / Main Sidebar -->
 
       <!-- Layout Content -->
@@ -58,7 +58,7 @@
 </template>
 
 <script>
-// import DashboardSidebar from '../components/Sidebars/DashboardSidebar' ;
+import DashboardSidebar from "../components/Sidebars/DashboardSidebar";
 import DashboardHeader from "../components/Headers/DashboardHeader";
 import DashboardFooter from "../components/Footers/Footer";
 import { mapActions, mapGetters } from "vuex";
@@ -67,7 +67,7 @@ import Cookie from "js-cookie";
 
 export default {
   components: {
-    // DashboardSidebar,
+    DashboardSidebar,
     DashboardHeader,
     DashboardFooter,
     operation,
@@ -92,14 +92,14 @@ export default {
     };
   },
   watch: {
-    getUserAuthStatus: {
-      handler(val) {
-        if (val === false) {
-          this.$router.push({ path: "/login" });
-        }
-      },
-      immediate: true,
-    },
+    // getUserAuthStatus: {
+    //   handler(val) {
+    //     if (val === false) {
+    //       this.$router.push({ path: "/login" });
+    //     }
+    //   },
+    //   immediate: true,
+    // },
   },
   methods: {
     ...mapActions({
@@ -126,7 +126,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getUserAuthStatus: "User/getUserAuthStatus",
+      // getUserAuthStatus: "User/getUserAuthStatus",
       getUserInfo: "User/getUserInfo",
     }),
     // Sets layout's element's class based on route's meta data.

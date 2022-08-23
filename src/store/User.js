@@ -15,9 +15,9 @@ const getters = {
     return state.id;
   },
 
-  getUserAuthStatus(state) {
-    return state.authStatus;
-  },
+  // getUserAuthStatus(state) {
+  //   return state.authStatus;
+  // },
 
   getUserLanguage(state) {
     return state.language === "" ? "RU" : state.language;

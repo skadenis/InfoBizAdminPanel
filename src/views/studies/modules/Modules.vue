@@ -4,6 +4,7 @@
 <script>
 import Modules from "../../../components/studies/modules/Modules.vue";
 export default {
+  name: "Modules",
   components: {
     Modules,
   },

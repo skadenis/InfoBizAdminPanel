@@ -106,13 +106,13 @@ export default {
       this.$store.commit("User/EXIT_USER");
     }
   },
-  created() {
-    this.Auth = this.$store.getters["User/getUserAuthStatus"];
-    if (this.Auth === false) {
-      this.exit();
-    }
-    this.partner_id = this.$store.getters["User/getUserInfo"].partner_id;
-  },
+  // created() {
+  //   this.Auth = this.$store.getters["User/getUserAuthStatus"];
+  //   if (this.Auth === false) {
+  //     this.exit();
+  //   }
+  //   this.partner_id = this.$store.getters["User/getUserInfo"].partner_id;
+  // },
   methods: {
     ...mapActions({
       exit: "User/exit",
@@ -125,19 +125,19 @@ export default {
     },
   },
   watch: {
-    getUserAuthStatus: {
-      handler: function(val) {
-        if (val === false) {
-          this.$router.push({ path: "/login" });
-        }
-      },
-      immediate: true,
-    },
+    // getUserAuthStatus: {
+    //   handler: function(val) {
+    //     if (val === false) {
+    //       this.$router.push({ path: "/login" });
+    //     }
+    //   },
+    //   immediate: true,
+    // },
   },
   computed: {
     // Sets layout's element's class based on route's meta data.
     ...mapGetters({
-      getUserAuthStatus: "User/getUserAuthStatus",
+      // getUserAuthStatus: "User/getUserAuthStatus",
     }),
     layoutClass() {
       return this.$route.meta.layoutClass;

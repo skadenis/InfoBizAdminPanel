@@ -122,18 +122,18 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getUserAuthStatus: "User/getUserAuthStatus",
+      // getUserAuthStatus: "User/getUserAuthStatus",
     }),
   },
   watch: {
-    getUserAuthStatus: {
-      handler(val) {
-        if (val === true) {
-          this.$router.push({ name: "Главная" });
-        }
-      },
-      immediate: true,
-    },
+    // getUserAuthStatus: {
+    //   handler(val) {
+    //     if (val === true) {
+    //       this.$router.push({ name: "Главная" });
+    //     }
+    //   },
+    //   immediate: true,
+    // },
   },
 
   methods: {

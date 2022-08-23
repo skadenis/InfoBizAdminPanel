@@ -42,7 +42,7 @@ let routes = [
     layout: "login",
     meta: {
       layoutClass: "login",
-      // name: Config.TextLocalization.Login[Language],
+      name: "Login",
     },
   },
   {
@@ -81,7 +81,77 @@ let routes = [
     component: Home,
     meta: {
       layoutClass: "home",
-      // name: Config.TextLocalization.Home[Language],
+      name: "Главная",
+    },
+  },
+  {
+    path: "/students",
+    name: "Students",
+    component: Students,
+    // layout: "administrator",
+    meta: {
+      layoutClass: "Students",
+      name: "Ученики",
+    },
+  },
+  {
+    path: "/calendar",
+    name: "Calendar",
+    component: Calendar,
+    // layout: "administrator",
+    meta: {
+      layoutClass: "Calendar",
+      name: "Календарь",
+    },
+  },
+  {
+    path: "/marketing/push",
+    name: "PushNotifications",
+    component: PushNotifications,
+    // layout: "administrator",
+    meta: {
+      layoutClass: "PushNotifications",
+      name: "Push - уведомления",
+    },
+  },
+  {
+    path: "/marketing/offers",
+    name: "SpecialOffers",
+    component: SpecialOffers,
+    // layout: "administrator",
+    meta: {
+      layoutClass: "SpecialOffers",
+      name: "Специальные предложения",
+    },
+  },
+  {
+    path: "/courses",
+    name: "Courses",
+    component: Courses,
+    // layout: "administrator",
+    meta: {
+      layoutClass: "Courses",
+      name: "Курсы",
+    },
+  },
+  {
+    path: "/courses/modules",
+    name: "Modules",
+    component: Modules,
+    // layout: "administrator",
+    meta: {
+      layoutClass: "Modules",
+      name: "Модули",
+    },
+  },
+  {
+    path: "/courses/modules/lessons",
+    name: "Lessons",
+    component: Lessons,
+    // layout: "administrator",
+    meta: {
+      layoutClass: "Lessons",
+      name: "Lessons",
     },
   },
 ];

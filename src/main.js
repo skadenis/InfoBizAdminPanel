@@ -59,7 +59,7 @@ Vue.component("layout-no-auth-pages", noAuthPages);
 Vue.component("layout-login", LoginLayout);
 
 router.beforeEach((to, from, next) => {
-  document.title = to.meta.name + " - GastroSoft";
+  document.title = to.meta.name + " - AdminPanel";
   next();
 });
 

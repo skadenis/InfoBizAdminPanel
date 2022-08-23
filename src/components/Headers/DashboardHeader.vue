@@ -10,7 +10,7 @@
             <a-button
               style="margin-right: 15px; margin-bottom: 10px"
               @click="goBack()"
-              v-if="this.$route.name !== TextLocalization.Home[language]"
+              v-if="this.$route.name !== 'Главная'"
               >Назад</a-button
             >
             <div>

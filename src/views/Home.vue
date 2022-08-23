@@ -1,8 +1,8 @@
 <template>
   <div>
-    <!-- <p>
-      {{ TextLocalization.HomePageText[language] }}
-    </p> -->
+    <p>
+      123
+    </p>
   </div>
 </template>
 

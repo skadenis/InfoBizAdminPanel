@@ -23,7 +23,7 @@
           <router-view />
         </a-layout-content>
         <!-- / Page Content -->
-        <operation></operation>
+        <!-- <operation></operation> -->
 
         <!-- Layout Footer -->
         <DashboardFooter></DashboardFooter>
@@ -48,14 +48,14 @@
 import DashboardHeader from "../components/Headers/DashboardHeader";
 import DashboardFooter from "../components/Footers/Footer";
 import { mapActions } from "vuex";
-import operation from "@/components/elements/success_operation";
+// import operation from "@/components/elements/success_operation";
 
 export default {
   components: {
     // DashboardSidebar,
     DashboardHeader,
     DashboardFooter,
-    operation,
+    // operation,
   },
   data() {
     return {
@@ -69,7 +69,6 @@ export default {
       navbarFixed: false,
       // Settings drawer visiblility status.
       showSettingsDrawer: false,
-      partner_id: null,
     };
   },
   methods: {

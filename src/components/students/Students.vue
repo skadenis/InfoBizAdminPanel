@@ -1,5 +1,2 @@
-<template></template>
-<script>
-// import StudentsAPI from "../../../api/StudentsAPI";
-// import axios from "axios";
-</script>
+<template><div>students comp</div></template>
+<script></script>

@@ -4,24 +4,22 @@
 
 <template>
   <div>
-
     <!-- Dashboard Layout -->
     <a-layout
       class="layout-dashboard"
       id="layout-dashboard"
       :class="[
         navbarFixed ? 'navbar-fixed' : '',
-        partner_id === 1 ? 'marginTop50' : '',
         !sidebarCollapsed ? 'has-sidebar' : '',
         layoutClass,
       ]"
     >
       <!-- Main Sidebar -->
       <DashboardSidebar
-          :sidebarCollapsed="sidebarCollapsed"
-          :sidebarColor="sidebarColor"
-          :sidebarTheme="sidebarTheme"
-          @toggleSidebar="toggleSidebar"
+        :sidebarCollapsed="sidebarCollapsed"
+        :sidebarColor="sidebarColor"
+        :sidebarTheme="sidebarTheme"
+        @toggleSidebar="toggleSidebar"
       ></DashboardSidebar>
       <!-- / Main Sidebar -->
 
@@ -40,7 +38,7 @@
           <router-view />
         </a-layout-content>
         <!-- / Page Content -->
-        <operation></operation>
+        <!-- <operation></operation> -->
 
         <!-- Layout Footer -->
         <DashboardFooter></DashboardFooter>
@@ -65,15 +63,15 @@ import DashboardSidebar from "../components/Sidebars/DashboardSidebar";
 import DashboardHeader from "../components/Headers/DashboardHeader";
 import DashboardFooter from "../components/Footers/Footer";
 import { mapActions, mapGetters } from "vuex";
-import operation from "../components/elements/success_operation";
-import Cookie from "js-cookie";
+// import operation from "../components/elements/success_operation";
+// import Cookie from "js-cookie";
 
 export default {
   components: {
     DashboardSidebar,
     DashboardHeader,
     DashboardFooter,
-    operation,
+    // operation,
   },
   data() {
     return {
@@ -91,19 +89,18 @@ export default {
 
       // Settings drawer visiblility status.
       showSettingsDrawer: false,
-      partner_id: null,
     };
   },
   beforeCreate() {
-    let Cookies = Cookie.get();
-    if (Cookies.token === undefined) {
-      this.$store.commit("User/EXIT_USER");
-    }
+    // let Cookies = Cookie.get();
+    // if (Cookies.token === undefined) {
+    //   this.$store.commit("User/EXIT_USER");
+    // }
   },
   methods: {
-    ...mapActions({
-      exit: "User/exit",
-    }),
+    // ...mapActions({
+    //   exit: "User/exit",
+    // }),
     toggleSidebar(value) {
       this.sidebarCollapsed = value;
     },
@@ -111,14 +108,12 @@ export default {
       this.sidebarTheme = value;
     },
   },
-  watch: {
-
-  },
+  watch: {},
   computed: {
     // Sets layout's element's class based on route's meta data.
-    ...mapGetters({
-      // getUserAuthStatus: "User/getUserAuthStatus",
-    }),
+    // ...mapGetters({
+    //   // getUserAuthStatus: "User/getUserAuthStatus",
+    // }),
     layoutClass() {
       return this.$route.meta.layoutClass;
     },
@@ -126,6 +121,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

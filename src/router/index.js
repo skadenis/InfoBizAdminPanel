@@ -13,6 +13,7 @@ import Courses from "../views/studies/courses/Courses.vue";
 import Modules from "../views/studies/modules/Modules.vue";
 import Lessons from "../views/studies/lessons/Lessons.vue";
 
+import Marketing from "../views/marketing/Marketing.vue";
 import PushNotifications from "../views/marketing/push-notifications/PushNotifications.vue";
 import SpecialOffers from "../views/marketing/special-offers/SpecialOffers.vue";
 
@@ -88,7 +89,6 @@ let routes = [
     path: "/students",
     name: "Students",
     component: Students,
-    // layout: "administrator",
     meta: {
       layoutClass: "Students",
       name: "Студенты",
@@ -98,17 +98,24 @@ let routes = [
     path: "/calendar",
     name: "Calendar",
     component: Calendar,
-    // layout: "administrator",
     meta: {
       layoutClass: "Calendar",
       name: "Календарь",
     },
   },
   {
+    path: "/marketing",
+    name: "Marketing",
+    component: Marketing,
+    meta: {
+      layoutClass: "Marketing",
+      name: "Маркетинг",
+    },
+  },
+  {
     path: "/marketing/push",
     name: "PushNotifications",
     component: PushNotifications,
-    // layout: "administrator",
     meta: {
       layoutClass: "PushNotifications",
       name: "Push - уведомления",
@@ -118,7 +125,6 @@ let routes = [
     path: "/marketing/offers",
     name: "SpecialOffers",
     component: SpecialOffers,
-    // layout: "administrator",
     meta: {
       layoutClass: "SpecialOffers",
       name: "Специальные предложения",
@@ -128,7 +134,6 @@ let routes = [
     path: "/courses",
     name: "Courses",
     component: Courses,
-    // layout: "administrator",
     meta: {
       layoutClass: "Courses",
       name: "Курсы",
@@ -138,7 +143,6 @@ let routes = [
     path: "/courses/modules",
     name: "Modules",
     component: Modules,
-    // layout: "administrator",
     meta: {
       layoutClass: "Modules",
       name: "Модули",
@@ -148,7 +152,6 @@ let routes = [
     path: "/courses/modules/lessons",
     name: "Lessons",
     component: Lessons,
-    // layout: "administrator",
     meta: {
       layoutClass: "Lessons",
       name: "Lessons",

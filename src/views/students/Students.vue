@@ -1,5 +1,6 @@
 <template>
-  <Students></Students>
+  <!-- <Students></Students> -->
+  <div>Students</div>
 </template>
 <script>
 import Students from "../../components/students/Students.vue";

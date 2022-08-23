@@ -1,5 +1,6 @@
 <template>
-  <Courses></Courses>
+  <!-- <Courses></Courses> -->
+  <div>Courses</div>
 </template>
 <script>
 import Courses from "../../../components/studies/courses/Courses.vue";

@@ -1,5 +1,6 @@
 <template>
-  <Calendar></Calendar>
+  <!-- <Calendar></Calendar> -->
+  <div>Calendar</div>
 </template>
 <script>
 import Calendar from "../../components/calendar/Calendar.vue";

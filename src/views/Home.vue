@@ -1,9 +1,5 @@
 <template>
-  <div>
-    <p>
-      123
-    </p>
-  </div>
+  <div></div>
 </template>
 
 <script>

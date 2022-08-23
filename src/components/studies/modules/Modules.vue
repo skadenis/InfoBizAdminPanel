@@ -1,5 +1,5 @@
-<template></template>
-<script>
-// import ModulesAPI from "../../../../api/ModulesAPI";
-// import axios from "axios";
-</script>
+<template> </template>
+
+<script></script>
+
+<style scoped lang="scss"></style>

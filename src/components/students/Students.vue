@@ -1,2 +1,5 @@
-<template><div>students comp</div></template>
+<template> </template>
+
 <script></script>
+
+<style scoped lang="scss"></style>

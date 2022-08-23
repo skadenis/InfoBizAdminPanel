@@ -122,67 +122,63 @@ export default {
   },
   computed: {
     ...mapGetters({
-      // getUserAuthStatus: "User/getUserAuthStatus",
+      getUserAuthStatus: "User/getUserAuthStatus",
     }),
   },
   watch: {
-    // getUserAuthStatus: {
-    //   handler(val) {
-    //     if (val === true) {
-    //       this.$router.push({ name: "Главная" });
-    //     }
-    //   },
-    //   immediate: true,
-    // },
+    getUserAuthStatus: {
+      handler(val) {
+        if (val === true) {
+          this.$router.push({ name: "Главная" });
+        }
+      },
+      immediate: true,
+    },
   },
 
   methods: {
     ...mapActions({
       setAuthToken: "User/setAuthToken",
     }),
-    // enterLikeGuest() {
-    //   this.login = "skadenis@mail.ru";
-    //   this.password = "123";
 
-    //   setTimeout(
-    //     function() {
-    //       this.makeAuth();
-    //     }.bind(this),
-    //     750
-    //   );
-    // },
     makeAuth() {
-      UserApi.authUser({
-        login: this.login,
-        password: this.password,
-      })
-        .then((response) => {
-          response.status === 401 ? this.$store.commit("User/EXIT_USER") : null;
-          switch (response.data.status) {
-            case 404:
-              this.authStatus = 404;
-              this.authErrorText =
-                "Возможно вы ввели не верный логин или пароль";
-              break;
-            case 200:
-              this.setAuthToken(response.data.token);
-              this.authStatus = null;
-              this.authErrorText = null;
-              break;
-            default:
-              this.authStatus = 404;
-              this.authErrorText =
-                "Возможно вы ввели не верный логин или пароль";
-              break;
-          }
-        })
-        .catch(() => {})
-        .finally(() => {
-          if (this.authStatus === null) {
-            this.$router.push({ name: "home" });
-            UserApi.refreshData();
-          }
-        });
+      // UserApi.authUser({
+      //   login: this.login,
+      //   password: this.password,
+      // })
+      //   .then((response) => {
+      //     response.status === 401 ? this.$store.commit("User/EXIT_USER") : null;
+      //     switch (response.data.status) {
+      //       case 404:
+      //         this.authStatus = 404;
+      //         this.authErrorText =
+      //           "Возможно вы ввели не верный логин или пароль";
+      //         break;
+      //       case 200:
+      //
+      //         break;
+      //       default:
+      //         this.authStatus = 404;
+      //         this.authErrorText =
+      //           "Возможно вы ввели не верный логин или пароль";
+      //         break;
+      //     }
+      //   })
+      //   .catch(() => {})
+      //   .finally(() => {
+      //     if (this.authStatus === null) {
+      //       UserApi.refreshData();
+      //     }
+      //   });
+
+
+      console.log(123321);
+
+      this.setAuthToken('csduhovhcsemcpsjpcouirhgseycmse');
+      this.authStatus = null;
+      this.authErrorText = null;
+      this.$router.push({ name: "home" });
+
     },
     auth(e) {
       e.preventDefault();

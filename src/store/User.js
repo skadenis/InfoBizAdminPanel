@@ -11,20 +11,9 @@ const state = () => ({
 });
 
 const getters = {
-  getUserId(state) {
-    return state.id;
-  },
 
-  // getUserAuthStatus(state) {
-  //   return state.authStatus;
-  // },
-
-  getUserLanguage(state) {
-    return state.language === "" ? "RU" : state.language;
-  },
-
-  getUserAuthToken(state) {
-    return state.authToken;
+  getUserAuthStatus(state) {
+    return state.authStatus;
   },
 
   getUserInfo(state) {
@@ -44,9 +33,6 @@ const mutations = {
     state.surname = payload.surname;
     state.lastname = payload.lastname;
   },
-  SET_USER_LANGUAGE(state, payload) {
-    state.language = payload;
-  },
   SET_USER_AUTH_TOKEN(state, payload) {
     state.authStatus = true;
     state.authToken = payload;
@@ -65,17 +51,15 @@ const actions = {
   changeTakeOrdersStatus({ commit }, status) {
     commit("SET_USER_TAKE_ORDERS_STATUS", status);
   },
-  changeLanguage({ commit }, lang) {
-    commit("SET_USER_LANGUAGE", lang);
-  },
   async setAuthToken({ commit }, token) {
     await Cookie.set("token", token);
-    let decoded_token = jwt_decode(token);
+    // let decoded_token = jwt_decode(token);
 
     commit("SET_USER_AUTH_TOKEN", token);
-    commit("SET_USER_DATA", decoded_token);
+    // commit("SET_USER_DATA", decoded_token);
   },
   exit({ commit }, status) {
+    console.log('exit');
     commit("EXIT_USER", status);
     Cookie.set("token", null);
   },

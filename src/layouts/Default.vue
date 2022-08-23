@@ -64,7 +64,7 @@ import DashboardHeader from "../components/Headers/DashboardHeader";
 import DashboardFooter from "../components/Footers/Footer";
 import { mapActions, mapGetters } from "vuex";
 // import operation from "../components/elements/success_operation";
-// import Cookie from "js-cookie";
+import Cookie from "js-cookie";
 
 export default {
   components: {
@@ -92,15 +92,16 @@ export default {
     };
   },
   beforeCreate() {
-    // let Cookies = Cookie.get();
-    // if (Cookies.token === undefined) {
-    //   this.$store.commit("User/EXIT_USER");
-    // }
+    let Cookies = Cookie.get();
+    console.log(Cookies.token);
+    if (Cookies.token === undefined) {
+      this.$store.commit("User/EXIT_USER");
+    }
   },
   methods: {
-    // ...mapActions({
-    //   exit: "User/exit",
-    // }),
+    ...mapActions({
+      exit: "User/exit",
+    }),
     toggleSidebar(value) {
       this.sidebarCollapsed = value;
     },
@@ -108,12 +109,21 @@ export default {
       this.sidebarTheme = value;
     },
   },
-  watch: {},
+  watch: {
+    getUserAuthStatus: {
+      handler(val) {
+        if(val === false){
+          this.$router.push({path: '/login'});
+        }
+      },
+      immediate: true,
+    }
+  },
   computed: {
     // Sets layout's element's class based on route's meta data.
-    // ...mapGetters({
-    //   // getUserAuthStatus: "User/getUserAuthStatus",
-    // }),
+    ...mapGetters({
+      getUserAuthStatus: "User/getUserAuthStatus",
+    }),
     layoutClass() {
       return this.$route.meta.layoutClass;
     },

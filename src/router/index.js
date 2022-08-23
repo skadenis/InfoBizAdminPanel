@@ -113,6 +113,16 @@ let routes = [
     },
   },
   {
+    path: "/marketing",
+    name: "Marketing",
+    component: Calendar,
+    // layout: "administrator",
+    meta: {
+      layoutClass: "Marketing",
+      name: "Маркетинг",
+    },
+  },
+  {
     path: "/marketing/push",
     name: "PushNotifications",
     component: PushNotifications,

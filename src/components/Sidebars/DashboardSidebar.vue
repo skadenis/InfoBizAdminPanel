@@ -77,7 +77,7 @@
 						<span class="icon">
 							<a-icon type="close-circle" />
 						</span>
-            <span class="label">{{ TextLocalization.Exit[language] }}</span>
+            <span class="label">Выйти</span>
           </a>
         </a-menu-item>
       </a-menu>
@@ -98,13 +98,6 @@
 
 
 <!--			 / Sidebar Footer -->
-
-<!--    <div>-->
-<!--      <a-menu mode="vertical" style="border: 0px;">-->
-<!--        <a-menu-item @click="openPage('/legal')">Юридическая информация</a-menu-item>-->
-
-<!--      </a-menu>-->
-<!--    </div>-->
 
 	</a-layout-sider>
 	<!-- / Main Sidebar -->

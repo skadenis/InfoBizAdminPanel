@@ -16,9 +16,7 @@ import router from "./router";
 import store from "./store/index";
 import vuetify from "./plugins/vuetify";
 
-import TextLocalizationMixin from "@/mixins/textLocalization";
 import FormatterMixin from "@/mixins/formatter";
-import UserInfoMixin from "@/mixins/UserInfo";
 
 import "./scss/app.scss";
 
@@ -36,8 +34,6 @@ Vue.use(VueGtm, {
   trackOnNextTick: gtm.trackOnNextTick, // Whether or not call trackView in Vue.nextTick
 });
 
-Vue.mixin(UserInfoMixin);
-Vue.mixin(TextLocalizationMixin);
 Vue.mixin(FormatterMixin);
 
 // Vue.filter("formatDate", formatDate);

@@ -4,12 +4,6 @@
 
 <template>
   <div>
-    <div class="testAccountInfo" v-if="partner_id === 1">
-      <div class="container">
-        Это тестовый личный кабинет все изменения автоматически отменяются
-        каждые 15 минут
-      </div>
-    </div>
 
     <!-- Dashboard Layout -->
     <a-layout
@@ -23,12 +17,12 @@
       ]"
     >
       <!-- Main Sidebar -->
-      <!-- <DashboardSidebar
+      <DashboardSidebar
           :sidebarCollapsed="sidebarCollapsed"
           :sidebarColor="sidebarColor"
           :sidebarTheme="sidebarTheme"
           @toggleSidebar="toggleSidebar"
-      ></DashboardSidebar> -->
+      ></DashboardSidebar>
       <!-- / Main Sidebar -->
 
       <!-- Layout Content -->
@@ -67,16 +61,16 @@
 </template>
 
 <script>
-// import DashboardSidebar from "../components/Sidebars/DashboardSidebar";
+import DashboardSidebar from "../components/Sidebars/DashboardSidebar";
 import DashboardHeader from "../components/Headers/DashboardHeader";
 import DashboardFooter from "../components/Footers/Footer";
 import { mapActions, mapGetters } from "vuex";
-import operation from "@/components/elements/success_operation";
+import operation from "../components/elements/success_operation";
 import Cookie from "js-cookie";
 
 export default {
   components: {
-    // DashboardSidebar,
+    DashboardSidebar,
     DashboardHeader,
     DashboardFooter,
     operation,
@@ -106,13 +100,6 @@ export default {
       this.$store.commit("User/EXIT_USER");
     }
   },
-  // created() {
-  //   this.Auth = this.$store.getters["User/getUserAuthStatus"];
-  //   if (this.Auth === false) {
-  //     this.exit();
-  //   }
-  //   this.partner_id = this.$store.getters["User/getUserInfo"].partner_id;
-  // },
   methods: {
     ...mapActions({
       exit: "User/exit",
@@ -125,14 +112,7 @@ export default {
     },
   },
   watch: {
-    // getUserAuthStatus: {
-    //   handler: function(val) {
-    //     if (val === false) {
-    //       this.$router.push({ path: "/login" });
-    //     }
-    //   },
-    //   immediate: true,
-    // },
+
   },
   computed: {
     // Sets layout's element's class based on route's meta data.
@@ -147,40 +127,5 @@ export default {
 </script>
 
 <style lang="scss">
-.testAccountInfo {
-  background: rgb(5, 165, 69);
-  color: #fff;
-  padding: 5px;
-  font-weight: bold;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  left: 0;
-  right: 0;
-  z-index: 9999;
-  & .container {
-    width: 100%;
-    padding: 12px;
-    margin-right: auto;
-    margin-left: auto;
-  }
-  @media (min-width: 960px) {
-    & .container {
-      max-width: 900px;
-    }
-  }
-  @media (min-width: 1264px) {
-    & .container {
-      max-width: 1185px;
-    }
-  }
-  @media (min-width: 1904px) {
-    & .container {
-      max-width: 1785px;
-    }
-  }
-}
-.marginTop50 {
-  margin-top: 50px;
-}
+
 </style>

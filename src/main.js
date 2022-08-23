@@ -8,8 +8,6 @@ import App from "./App.vue";
 
 import LoginLayout from "./layouts/Login";
 import DefaultLayout from "./layouts/Default";
-import DefaultAdministrator from "./layouts/DefaultAdministrator";
-import DefaultRestaurantManager from "./layouts/DefaultRestaurantManager";
 import noAuthPages from "./layouts/noAuthPages";
 
 import "./registerServiceWorker";
@@ -53,8 +51,6 @@ Vue.mixin(FormatterMixin);
 
 // Adding template layouts to the vue components.
 Vue.component("layout-default", DefaultLayout);
-Vue.component("layout-administrator", DefaultAdministrator);
-Vue.component("layout-manager", DefaultRestaurantManager);
 Vue.component("layout-no-auth-pages", noAuthPages);
 Vue.component("layout-login", LoginLayout);
 

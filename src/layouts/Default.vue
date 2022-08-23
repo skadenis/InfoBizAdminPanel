@@ -67,7 +67,7 @@
 </template>
 
 <script>
-// import DashboardSidebar from "../components/Sidebars/DashboardSidebar";
+import DashboardSidebar from "../components/Sidebars/DashboardSidebar";
 import DashboardHeader from "../components/Headers/DashboardHeader";
 import DashboardFooter from "../components/Footers/Footer";
 import { mapActions, mapGetters } from "vuex";

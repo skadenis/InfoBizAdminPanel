@@ -26,7 +26,7 @@
     <!-- Sidebar Navigation Menu -->
     <a-menu theme="light" mode="inline">
       <a-menu-item>
-        <router-link to="/applications">
+        <router-link to="/courses">
           <span class="icon">
             <svg
               width="20"
@@ -81,7 +81,7 @@
         </router-link>
       </a-menu-item>
       <a-menu-item>
-        <router-link to="/applications">
+        <router-link to="/calendar">
           <span class="icon">
             <svg
               width="20"
@@ -108,7 +108,7 @@
         </router-link>
       </a-menu-item>
       <a-menu-item>
-        <router-link to="/applications">
+        <router-link to="/marketing">
           <span class="icon">
             <svg
               width="20"

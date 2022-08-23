@@ -91,7 +91,7 @@ let routes = [
     // layout: "administrator",
     meta: {
       layoutClass: "Students",
-      name: "Ученики",
+      name: "Студенты",
     },
   },
   {

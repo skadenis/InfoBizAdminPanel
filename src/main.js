@@ -51,6 +51,7 @@ Vue.mixin(FormatterMixin);
 
 // Adding template layouts to the vue components.
 Vue.component("layout-default", DefaultLayout);
+
 Vue.component("layout-no-auth-pages", noAuthPages);
 Vue.component("layout-login", LoginLayout);
 

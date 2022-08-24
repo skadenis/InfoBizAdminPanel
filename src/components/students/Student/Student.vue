@@ -1,8 +1,21 @@
 <template>
   <div>
     <div class="student" @click="open_student(data.id)">
-      <p>{{ data.name }}</p>
-      <p>{{ data.lastName }}</p>
+      <div>
+        <p>{{ data.name }}</p>
+      </div>
+      <div>
+        <p>{{ data.lastName }}</p>
+      </div>
+      <div>
+        <p>{{ data.courseId }}</p>
+      </div>
+      <div>
+        <p></p>
+      </div>
+      <div>
+        <p></p>
+      </div>
     </div>
   </div>
 </template>
@@ -25,24 +38,30 @@ export default {
 <style scoped lang="scss">
 .student {
   display: flex;
-
-  margin: 15px 0;
-  padding: 10px;
-
-  background-color: #fafafa;
-  border: 1px dashed #d9d9d9;
-
-  color: #000;
   cursor: pointer;
+  box-sizing: border-box;
+  border: 1px solid rgb(221, 221, 221);
+  margin: -1px 0;
 
   &:hover {
     background-color: rgb(223, 239, 255);
-    border: 1px dashed rgb(37, 147, 252);
   }
 
-  p {
-    margin-right: 15px;
-    font-size: 1.2em;
+  &:hover p {
+    color: #000;
+  }
+
+  div {
+    width: 20%;
+    border-right: 1px solid rgb(221, 221, 221);
+
+    &:last-child {
+      border-right: none;
+    }
+
+    p {
+      padding: 10px;
+    }
   }
 }
 </style>

@@ -1,5 +1,30 @@
 <template>
   <div>
+    <div class="table__head">
+      <div>
+        <p>Имя</p>
+      </div>
+      <div>
+        <p>Фамилия</p>
+      </div>
+      <div>
+        <p>Курс</p>
+      </div>
+      <div>
+        <p></p>
+      </div>
+      <div>
+        <p></p>
+      </div>
+    </div>
+    <div class="table__inputs">
+      <input type="text" placeholder="Введите имя" />
+      <input type="text" placeholder="Введите фамилию" />
+      <input type="text" placeholder="Введите курс" />
+      <input type="text" />
+      <input type="text" />
+    </div>
+    <button class="add__students-btn">Добавить студента</button>
     <Student
       v-for="(student, sIndex) in students"
       v-bind:data="student"
@@ -11,7 +36,7 @@
 <script>
 import state from "../../store/state";
 
-import Student from "./Student/Student.vue";
+import Student from "./Student/Student";
 
 export default {
   components: {
@@ -35,4 +60,53 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.table__head {
+  display: flex;
+  background-color: rgb(221, 221, 221);
+
+  div {
+    width: 20%;
+    border-right: 1px solid #fff;
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  p {
+    padding: 10px;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #000;
+    text-align: center;
+  }
+}
+
+.add__students-btn {
+  width: 20%;
+  margin: 20px 0;
+  background-color: #1890ff;
+  color: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.table__inputs {
+  border: 1px solid rgb(221, 221, 221);
+
+  input {
+    height: 34px;
+    width: 20%;
+    border-right: 1px solid rgb(221, 221, 221);
+    padding-left: 10px;
+    &:last-child {
+      border-right: none;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+}
+</style>

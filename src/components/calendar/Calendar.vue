@@ -1,4 +1,6 @@
-<template> </template>
+<template>
+  <div>Calendar</div>
+</template>
 
 <script></script>
 

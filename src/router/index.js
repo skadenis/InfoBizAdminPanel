@@ -10,6 +10,7 @@ import RestorePasswordStep1 from "../views/RestorePasswordStep1.vue";
 import RestorePasswordStep2 from "../views/RestorePasswordStep2.vue";
 
 import Courses from "../views/studies/courses/Courses.vue";
+import Course from "../views/studies/courses/Course/Course.vue";
 import Modules from "../views/studies/modules/Modules.vue";
 import Lessons from "../views/studies/lessons/Lessons.vue";
 
@@ -19,6 +20,7 @@ import SpecialOffers from "../views/marketing/special-offers/SpecialOffers.vue";
 
 import Users from "../views/users/Users.vue";
 import Students from "../views/students/Students.vue";
+import Student from "../views/students/Student/Student.vue";
 import Calendar from "../views/calendar/Calendar.vue";
 
 import Config from "@/config";
@@ -95,6 +97,15 @@ let routes = [
     },
   },
   {
+    path: "/students/:id",
+    name: "Student",
+    component: Student,
+    meta: {
+      layoutClass: "Student",
+      name: "Студент",
+    },
+  },
+  {
     path: "/calendar",
     name: "Calendar",
     component: Calendar,
@@ -107,16 +118,6 @@ let routes = [
     path: "/marketing",
     name: "Marketing",
     component: Marketing,
-    meta: {
-      layoutClass: "Marketing",
-      name: "Маркетинг",
-    },
-  },
-  {
-    path: "/marketing",
-    name: "Marketing",
-    component: Calendar,
-    // layout: "administrator",
     meta: {
       layoutClass: "Marketing",
       name: "Маркетинг",
@@ -150,7 +151,16 @@ let routes = [
     },
   },
   {
-    path: "/courses/modules",
+    path: "/courses/:id",
+    name: "Course",
+    component: Course,
+    meta: {
+      layoutClass: "Course",
+      name: "Курс",
+    },
+  },
+  {
+    path: "/courses/:id/modules",
     name: "Modules",
     component: Modules,
     meta: {
@@ -159,7 +169,7 @@ let routes = [
     },
   },
   {
-    path: "/courses/modules/lessons",
+    path: "/courses/:id/modules/:id/lessons",
     name: "Lessons",
     component: Lessons,
     meta: {

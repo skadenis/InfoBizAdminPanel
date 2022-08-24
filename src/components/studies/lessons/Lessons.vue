@@ -1,4 +1,6 @@
-<template> </template>
+<template>
+  <div>Lessons</div>
+</template>
 
 <script></script>
 

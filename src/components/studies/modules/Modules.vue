@@ -1,4 +1,6 @@
-<template> </template>
+<template>
+  <div>Modules</div>
+</template>
 
 <script></script>
 

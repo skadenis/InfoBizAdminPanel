@@ -1,4 +1,6 @@
-<template> </template>
+<template>
+  <div>SpecialOffers</div>
+</template>
 
 <script></script>
 

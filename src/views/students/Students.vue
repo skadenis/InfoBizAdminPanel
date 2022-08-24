@@ -1,11 +1,9 @@
 <template>
-  <!-- <Students></Students> -->
-  <div>Students</div>
+  <Students></Students>
 </template>
 <script>
 import Students from "../../components/students/Students.vue";
 export default {
-  name: "Students",
   components: {
     Students,
   },

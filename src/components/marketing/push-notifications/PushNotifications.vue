@@ -1,4 +1,6 @@
-<template> </template>
+<template>
+  <div>PushNotifications</div>
+</template>
 
 <script></script>
 

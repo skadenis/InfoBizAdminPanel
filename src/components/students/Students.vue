@@ -1,5 +1,6 @@
 <template>
   <div>
+    <button class="add__students-btn">Добавить студента</button>
     <div class="table__head">
       <div>
         <p>Имя</p>
@@ -17,14 +18,6 @@
         <p></p>
       </div>
     </div>
-    <div class="table__inputs">
-      <input type="text" placeholder="Введите имя" />
-      <input type="text" placeholder="Введите фамилию" />
-      <input type="text" placeholder="Введите курс" />
-      <input type="text" />
-      <input type="text" />
-    </div>
-    <button class="add__students-btn">Добавить студента</button>
     <Student
       v-for="(student, sIndex) in students"
       v-bind:data="student"

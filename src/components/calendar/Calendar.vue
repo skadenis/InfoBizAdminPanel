@@ -1,5 +1,6 @@
 <template>
   <div>
+    <button class="add__ivent-btn">Добавить событие</button>
     <div class="table__head">
       <div>
         <p>Название</p>
@@ -17,14 +18,6 @@
         <p></p>
       </div>
     </div>
-    <div class="table__inputs">
-      <input type="text" placeholder="Введите название" />
-      <input type="date" placeholder="Введите дату" />
-      <input type="time" placeholder="Введите время" />
-      <input type="text" />
-      <input type="text" />
-    </div>
-    <button class="add__students-btn">Добавить событие</button>
   </div>
 </template>
 
@@ -53,7 +46,7 @@
   }
 }
 
-.add__students-btn {
+.add__ivent-btn {
   width: 20%;
   margin: 20px 0;
   background-color: #1890ff;

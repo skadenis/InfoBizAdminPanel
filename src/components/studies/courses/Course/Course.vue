@@ -2,6 +2,7 @@
   <div>
     <div class="course" @click="open_course(data.id)">
       <p>{{ data.name }}</p>
+      <p>{{ data.id }}</p>
     </div>
   </div>
 </template>
@@ -15,7 +16,7 @@ export default {
       this.$router.push(data);
     },
     open_course: function(id) {
-      this.goTo("/course/" + id);
+      this.goTo("/courses/" + id);
     },
   },
 };

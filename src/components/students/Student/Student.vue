@@ -29,7 +29,7 @@ export default {
       this.$router.push(data);
     },
     open_student: function(id) {
-      this.goTo("/students/" + id);
+      this.goTo("/students/" + id + "/edit");
     },
   },
 };

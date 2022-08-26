@@ -21,7 +21,7 @@ import SpecialOffers from "../views/marketing/special-offers/SpecialOffers.vue";
 import Users from "../views/users/Users.vue";
 
 import Students from "../views/students/Students.vue";
-import Student from "../views/students/Student/Student.vue";
+import AddEditStudent from "../views/students/Student/AddEditStudent.vue";
 
 import Calendar from "../views/calendar/Calendar.vue";
 
@@ -99,9 +99,9 @@ let routes = [
     },
   },
   {
-    path: "/students/:id",
+    path: "/students/:id/edit",
     name: "Student",
-    component: Student,
+    component: AddEditStudent,
     meta: {
       layoutClass: "Student",
       name: "Студент",

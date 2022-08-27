@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="course" @click="open_course(data.id)">
+    <div class="module" @click="open_module(data.id)">
       <div>
-        <p>{{ data.name }}</p>
+        <p>{{ data[courseId].modules[0].name }}</p>
       </div>
       <div>
         <p></p>
@@ -22,14 +22,14 @@
 
 <script>
 export default {
-  name: "course",
-  props: ["data"],
+  name: "module",
+  props: ["data", "courseId"],
   methods: {
     goTo: function(data) {
       this.$router.push(data);
     },
-    open_course: function(id) {
-      this.goTo("/courses/" + id + "/edit");
+    open_module: function(id) {
+      this.goTo("/courses/" + id + "/edit/" + "modules/" + id);
     },
   },
 };

@@ -10,7 +10,8 @@ import RestorePasswordStep1 from "../views/RestorePasswordStep1.vue";
 import RestorePasswordStep2 from "../views/RestorePasswordStep2.vue";
 
 import Courses from "../views/studies/courses/Courses.vue";
-import Course from "../views/studies/courses/Course/Course.vue";
+import AddEditCourse from "../views/studies/courses/Course/AddEditCourse.vue";
+
 import Modules from "../views/studies/modules/Modules.vue";
 import Lessons from "../views/studies/lessons/Lessons.vue";
 
@@ -153,16 +154,16 @@ let routes = [
     },
   },
   {
-    path: "/courses/:id",
+    path: "/courses/:id/edit",
     name: "Course",
-    component: Course,
+    component: AddEditCourse,
     meta: {
       layoutClass: "Course",
       name: "Курс",
     },
   },
   {
-    path: "/courses/:id/modules",
+    path: "/courses/:id/edit/modules",
     name: "Modules",
     component: Modules,
     meta: {

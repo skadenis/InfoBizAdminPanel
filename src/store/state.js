@@ -52,11 +52,11 @@ const students = [
 const courses = [
   {
     id: 1,
-    name: "english",
+    name: "React",
     modules: [
       {
         id: 1,
-        name: "module 1",
+        name: "Module React-1",
         lessons: [
           {
             id: 1,
@@ -74,7 +74,7 @@ const courses = [
       },
       {
         id: 2,
-        name: "module 2",
+        name: "Module React-2",
         lessons: [
           {
             id: 1,
@@ -92,7 +92,127 @@ const courses = [
       },
       {
         id: 3,
-        name: "module 3",
+        name: "Module React-3",
+        lessons: [
+          {
+            id: 1,
+            name: "lesson 3-1",
+          },
+          {
+            id: 2,
+            name: "lesson 3-2",
+          },
+          {
+            id: 3,
+            name: "lessons 3-3",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 2,
+    name: "Angular",
+    modules: [
+      {
+        id: 1,
+        name: "Module Angular-1",
+        lessons: [
+          {
+            id: 1,
+            name: "lesson 1-1",
+          },
+          {
+            id: 2,
+            name: "lesson 1-2",
+          },
+          {
+            id: 3,
+            name: "lessons 1-3",
+          },
+        ],
+      },
+      {
+        id: 2,
+        name: "Module Angular-2",
+        lessons: [
+          {
+            id: 1,
+            name: "lesson 2-1",
+          },
+          {
+            id: 2,
+            name: "lesson 2-2",
+          },
+          {
+            id: 3,
+            name: "lessons 2-3",
+          },
+        ],
+      },
+      {
+        id: 3,
+        name: "Module Angular-3",
+        lessons: [
+          {
+            id: 1,
+            name: "lesson 3-1",
+          },
+          {
+            id: 2,
+            name: "lesson 3-2",
+          },
+          {
+            id: 3,
+            name: "lessons 3-3",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 3,
+    name: "Vue",
+    modules: [
+      {
+        id: 1,
+        name: "Module Vue-1",
+        lessons: [
+          {
+            id: 1,
+            name: "lesson 1-1",
+          },
+          {
+            id: 2,
+            name: "lesson 1-2",
+          },
+          {
+            id: 3,
+            name: "lessons 1-3",
+          },
+        ],
+      },
+      {
+        id: 2,
+        name: "Module Vue-2",
+        lessons: [
+          {
+            id: 1,
+            name: "lesson 2-1",
+          },
+          {
+            id: 2,
+            name: "lesson 2-2",
+          },
+          {
+            id: 3,
+            name: "lessons 2-3",
+          },
+        ],
+      },
+      {
+        id: 3,
+        name: "Module Vue-3",
         lessons: [
           {
             id: 1,

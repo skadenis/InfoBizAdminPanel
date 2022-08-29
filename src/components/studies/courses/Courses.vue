@@ -1,23 +1,6 @@
 <template>
   <div>
     <button class="add__courses-btn">Добавить курс</button>
-    <!-- <div class="table__head">
-      <div>
-        <p>Название курса</p>
-      </div>
-      <div>
-        <p></p>
-      </div>
-      <div>
-        <p></p>
-      </div>
-      <div>
-        <p></p>
-      </div>
-      <div>
-        <p></p>
-      </div>
-    </div> -->
     <Course
       v-for="(course, cIndex) in courses"
       v-bind:data="course"
@@ -27,9 +10,8 @@
 </template>
 
 <script>
-import state from "../../../store/state";
-
 import Course from "./Course/Course.vue";
+import CoursesAPI from "../../../../api/CoursesAPI";
 
 export default {
   components: {
@@ -46,7 +28,13 @@ export default {
 
   methods: {
     getCourses: function() {
-      this.courses = state.courses;
+      CoursesAPI.get_all()
+          .then(response => {
+            this.courses = response.data;
+          })
+          .catch((e) => {
+            console.log(e);
+          })
     },
   },
 };

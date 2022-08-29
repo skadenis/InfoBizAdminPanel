@@ -1,16 +1,6 @@
 <template>
   <div class="module">
-    <div class="module-item" @click="open_module(courseId + 1, data.id)">
-      <div>
-        <p class="module-name">{{ data.name }}</p>
-      </div>
-      <div>
-        <p>{{ data.description }}</p>
-      </div>
-      <div>
-        <p>{{ data.icon_src }}</p>
-      </div>
-    </div>
+    123
   </div>
 </template>
 
@@ -24,6 +14,7 @@ export default {
     },
     open_module: function(courseId, id) {
       this.goTo("/courses/" + courseId + "/modules/" + id);
+      console.log(courseId);
     },
   },
 };

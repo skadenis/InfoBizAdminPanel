@@ -38,7 +38,7 @@ export default {
     cursor: pointer;
     border: 1px solid rgb(221, 221, 221);
     border-radius: 10px;
-    height: 100px;
+    min-height: 100px;
 
     &:hover {
       background-color: rgb(223, 239, 255);
@@ -49,8 +49,6 @@ export default {
     }
 
     div {
-      width: 20%;
-
       p {
         padding: 10px;
       }

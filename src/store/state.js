@@ -53,75 +53,88 @@ const courses = [
   {
     id: 1,
     name: "React",
-    description: "Description",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
     icon_src: "icon",
     modules: [
       {
         id: 1,
         name: "Module React-1",
-        description: "Description",
+        description:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
         icon_src: "icon",
         lessons: [
           {
             id: 1,
             name: "lesson 1-1",
-            description: "Description",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
           {
             id: 2,
             name: "lesson 1-2",
-            description: "Description",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
           {
             id: 3,
             name: "lessons 1-3",
-            description: "Description",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
         ],
       },
       {
         id: 2,
         name: "Module React-2",
-        description: "Description",
+        description:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
         icon_src: "icon",
         lessons: [
           {
             id: 1,
             name: "lesson 2-1",
-            description: "Description",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
           {
             id: 2,
             name: "lesson 2-2",
-            description: "Description",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
           {
             id: 3,
             name: "lessons 2-3",
-            description: "Description",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
         ],
       },
       {
         id: 3,
         name: "Module React-3",
-        description: "Description",
+        description:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
         icon_src: "icon",
         lessons: [
           {
             id: 1,
             name: "lesson 3-1",
-            description: "Description",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
           {
             id: 2,
             name: "lesson 3-2",
-            description: "Description",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
           {
             id: 3,
             name: "lessons 3-3",
-            description: "Description",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
         ],
       },
@@ -130,66 +143,88 @@ const courses = [
   {
     id: 2,
     name: "Angular",
-    description: "Description",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
     icon_src: "icon",
     modules: [
       {
         id: 1,
         name: "Module Angular-1",
-        description: "Description",
+        description:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
         icon_src: "icon",
         lessons: [
           {
             id: 1,
             name: "lesson 1-1",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
           {
             id: 2,
             name: "lesson 1-2",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
           {
             id: 3,
             name: "lessons 1-3",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
         ],
       },
       {
         id: 2,
         name: "Module Angular-2",
-        description: "Description",
+        description:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
         icon_src: "icon",
         lessons: [
           {
             id: 1,
             name: "lesson 2-1",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
           {
             id: 2,
             name: "lesson 2-2",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
           {
             id: 3,
             name: "lessons 2-3",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
         ],
       },
       {
         id: 3,
         name: "Module Angular-3",
-        description: "Description",
+        description:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
         icon_src: "icon",
         lessons: [
           {
             id: 1,
             name: "lesson 3-1",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
           {
             id: 2,
             name: "lesson 3-2",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
           {
             id: 3,
             name: "lessons 3-3",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
         ],
       },
@@ -198,66 +233,88 @@ const courses = [
   {
     id: 3,
     name: "Vue",
-    description: "Description",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
     icon_src: "icon",
     modules: [
       {
         id: 1,
         name: "Module Vue-1",
-        description: "Description",
+        description:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
         icon_src: "icon",
         lessons: [
           {
             id: 1,
             name: "lesson 1-1",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
           {
             id: 2,
             name: "lesson 1-2",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
           {
             id: 3,
             name: "lessons 1-3",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
         ],
       },
       {
         id: 2,
         name: "Module Vue-2",
-        description: "Description",
+        description:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
         icon_src: "icon",
         lessons: [
           {
             id: 1,
             name: "lesson 2-1",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
           {
             id: 2,
             name: "lesson 2-2",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
           {
             id: 3,
             name: "lessons 2-3",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
         ],
       },
       {
         id: 3,
         name: "Module Vue-3",
-        description: "Description",
+        description:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
         icon_src: "icon",
         lessons: [
           {
             id: 1,
             name: "lesson 3-1",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
           {
             id: 2,
             name: "lesson 3-2",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
           {
             id: 3,
             name: "lessons 3-3",
+            description:
+              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ex, vel ipsam recusandae odio sequi dolores fugit dicta tempore laudantium repellendus voluptatibus laboriosam facilis autem magnam est impedit in tenetur.",
           },
         ],
       },

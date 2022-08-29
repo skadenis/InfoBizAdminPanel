@@ -1,15 +1,27 @@
 <template>
   <div>
-    <div class="lesson-info">
-      <p class="name">{{ lesson[lessonId - 1].name }}</p>
-      <p class="description">{{ lesson[lessonId - 1].description }}</p>
-    </div>
-    <a-row type="flex" :gutter="24" class="bottom-buttons">
-      <a-col :span="24" :lg="12" :md="24">
-        <a-button class="button" type="primary">Сохранить</a-button>
-      </a-col>
-      <a-col :span="24" :lg="12" :md="24">
-        <a-button class="button" type="danger">Удалить</a-button>
+    <a-row>
+      <a-col>
+        <a-form-model-item label="Название">
+          <a-input v-model="lesson[lessonId - 1].name" />
+        </a-form-model-item>
+        <a-form-model-item label="Описание">
+          <a-textarea rows="4" v-model="lesson[lessonId - 1].description" />
+        </a-form-model-item>
+        <a-form-model-item label="Основная картинка">
+          <input type="file" id="file" ref="file" />
+          <p>Рекомендуемый размер картинки ширина: 656px, высота: 388px</p>
+        </a-form-model-item>
+        <a-form-model-item>
+          <a-row type="flex" :gutter="24" class="bottom-buttons">
+            <a-col :span="24" :lg="12" :md="24">
+              <a-button class="button" type="primary">Сохранить</a-button>
+            </a-col>
+            <a-col :span="24" :lg="12" :md="24">
+              <a-button class="button" type="danger">Удалить</a-button>
+            </a-col>
+          </a-row>
+        </a-form-model-item>
       </a-col>
     </a-row>
   </div>

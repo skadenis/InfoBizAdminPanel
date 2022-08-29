@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="student-info">
-      <span class="name">{{ student[this.studentId - 1].name }}</span>
-      <span class="lastName">{{ student[this.studentId - 1].lastName }}</span>
+      <span class="name">{{ student[studentId - 1].name }}</span>
+      <span class="lastName">{{ student[studentId - 1].lastName }}</span>
     </div>
   </div>
 </template>
@@ -11,19 +11,15 @@
 import state from "../../../store/state";
 
 export default {
+  props: ["studentId"],
   data() {
     return {
       student: null,
-      studentId: null,
     };
   },
 
   mounted() {
     this.getStudent();
-    this.studentId = window.location.pathname
-      .split("students/")
-      .pop()
-      .replace(/[^0-9]/g, "");
   },
 
   methods: {

@@ -1,19 +1,31 @@
 <template>
   <div>
-    <div class="course-info">
-      <p class="name">{{ course[courseId - 1].name }}</p>
-      <p class="description">{{ course[courseId - 1].description }}</p>
-    </div>
-    <p>Вложенные модули:</p>
-    <Modules v-bind:courseId="courseId" v-bind:data="course"></Modules>
-    <a-row type="flex" :gutter="24" class="bottom-buttons">
-      <a-col :span="24" :lg="12" :md="24">
-        <a-button class="button" type="primary">Сохранить</a-button>
-      </a-col>
-      <a-col :span="24" :lg="12" :md="24">
-        <a-button class="button" type="danger">Удалить</a-button>
+    <a-row>
+      <a-col>
+        <a-form-model-item label="Название">
+          <a-input v-model="course[courseId - 1].name" />
+        </a-form-model-item>
+        <a-form-model-item label="Описание">
+          <a-textarea rows="4" v-model="course[courseId - 1].description" />
+        </a-form-model-item>
+        <a-form-model-item label="Основная картинка">
+          <input type="file" id="file" ref="file" />
+          <p>Рекомендуемый размер картинки ширина: 656px, высота: 388px</p>
+        </a-form-model-item>
+        <a-form-model-item>
+          <a-row type="flex" :gutter="24" class="bottom-buttons">
+            <a-col :span="24" :lg="12" :md="24">
+              <a-button class="button" type="primary">Сохранить</a-button>
+            </a-col>
+            <a-col :span="24" :lg="12" :md="24">
+              <a-button class="button" type="danger">Удалить</a-button>
+            </a-col>
+          </a-row>
+        </a-form-model-item>
       </a-col>
     </a-row>
+    <p>Вложенные модули:</p>
+    <Modules v-bind:courseId="courseId" v-bind:data="course"></Modules>
   </div>
 </template>
 

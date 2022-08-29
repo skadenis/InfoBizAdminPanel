@@ -15,8 +15,11 @@ import EditCourse from "../views/studies/courses/Course/EditCourse.vue";
 
 import AddModule from "../views/studies/module/AddModule.vue";
 import EditModule from "../views/studies/module/EditModule.vue";
+
 import AddLesson from "../views/studies/lesson/AddLesson.vue";
 import EditLesson from "../views/studies/lesson/EditLesson.vue";
+
+import Homework from "../views/homework/Homework.vue";
 
 import Marketing from "../views/marketing/Marketing.vue";
 import PushNotifications from "../views/marketing/push-notifications/PushNotifications.vue";
@@ -25,7 +28,7 @@ import SpecialOffers from "../views/marketing/special-offers/SpecialOffers.vue";
 import Users from "../views/users/Users.vue";
 
 import Students from "../views/students/Students.vue";
-import AddEditStudent from "../views/students/Student/AddEditStudent.vue";
+import EditStudent from "../views/students/Student/EditStudent.vue";
 
 import Calendar from "../views/calendar/Calendar.vue";
 
@@ -103,12 +106,21 @@ let routes = [
     },
   },
   {
-    path: "/students/:id/edit",
+    path: "/students/:StudentId",
     name: "Student",
-    component: AddEditStudent,
+    component: EditStudent,
     meta: {
       layoutClass: "Student",
       name: "Студент",
+    },
+  },
+  {
+    path: "/homework",
+    name: "Homework",
+    component: Homework,
+    meta: {
+      layoutClass: "Homework",
+      name: "Домашнее задание",
     },
   },
   {

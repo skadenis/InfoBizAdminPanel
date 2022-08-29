@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="course-info">
-      <span class="name">{{ course[courseId - 1].name }}</span>
+      <span class="name">{{ course[courseId].name }}</span>
     </div>
-    <Modules v-bind:data="course" v-bind:courseId="courseId"></Modules>
+    <Modules v-bind:courseId="courseId" v-bind:data="course"></Modules>
   </div>
 </template>
 
@@ -24,13 +24,17 @@ export default {
 
   mounted() {
     this.getCourse();
-    this.courseId = window.location.pathname
-      .split("courses/")
-      .pop()
-      .replace(/[^0-9]/g, "");
+    this.getCourseId();
   },
 
   methods: {
+    getCourseId: function() {
+      this.courseId =
+        window.location.pathname
+          .split("courses/")
+          .pop()
+          .replace(/[^0-9]/g, "") - 1;
+    },
     getCourse: function() {
       this.course = state.courses;
     },

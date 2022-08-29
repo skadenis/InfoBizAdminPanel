@@ -11,9 +11,8 @@ import RestorePasswordStep2 from "../views/RestorePasswordStep2.vue";
 
 import Courses from "../views/studies/courses/Courses.vue";
 import AddEditCourse from "../views/studies/courses/Course/AddEditCourse.vue";
-
-import Modules from "../views/studies/modules/Modules.vue";
-import Lessons from "../views/studies/lessons/Lessons.vue";
+import AddEditModule from "../views/studies/module/AddEditModule.vue";
+import AddEditLesson from "../views/studies/lesson/AddEditLesson.vue";
 
 import Marketing from "../views/marketing/Marketing.vue";
 import PushNotifications from "../views/marketing/push-notifications/PushNotifications.vue";
@@ -154,7 +153,7 @@ let routes = [
     },
   },
   {
-    path: "/courses/:id/edit",
+    path: "/courses/:id/",
     name: "Course",
     component: AddEditCourse,
     meta: {
@@ -163,21 +162,21 @@ let routes = [
     },
   },
   {
-    path: "/courses/:id/edit/modules",
-    name: "Modules",
-    component: Modules,
+    path: "/courses/:id/modules/:id",
+    name: "Module",
+    component: AddEditModule,
     meta: {
-      layoutClass: "Modules",
-      name: "Модули",
+      layoutClass: "Module",
+      name: "Модуль",
     },
   },
   {
-    path: "/courses/:id/modules/:id/lessons",
-    name: "Lessons",
-    component: Lessons,
+    path: "/courses/:id/modules/:id/lessons/:id",
+    name: "Lesson",
+    component: AddEditLesson,
     meta: {
-      layoutClass: "Lessons",
-      name: "Lessons",
+      layoutClass: "Lesson",
+      name: "Lesson",
     },
   },
 ];

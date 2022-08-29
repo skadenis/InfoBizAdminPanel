@@ -53,10 +53,14 @@ const courses = [
   {
     id: 1,
     name: "React",
+    description: "Description",
+    icon_src: "icon",
     modules: [
       {
         id: 1,
         name: "Module React-1",
+        description: "Description",
+        icon_src: "icon",
         lessons: [
           {
             id: 1,
@@ -75,6 +79,8 @@ const courses = [
       {
         id: 2,
         name: "Module React-2",
+        description: "Description",
+        icon_src: "icon",
         lessons: [
           {
             id: 1,
@@ -93,6 +99,8 @@ const courses = [
       {
         id: 3,
         name: "Module React-3",
+        description: "Description",
+        icon_src: "icon",
         lessons: [
           {
             id: 1,
@@ -113,10 +121,14 @@ const courses = [
   {
     id: 2,
     name: "Angular",
+    description: "Description",
+    icon_src: "icon",
     modules: [
       {
         id: 1,
         name: "Module Angular-1",
+        description: "Description",
+        icon_src: "icon",
         lessons: [
           {
             id: 1,
@@ -135,6 +147,8 @@ const courses = [
       {
         id: 2,
         name: "Module Angular-2",
+        description: "Description",
+        icon_src: "icon",
         lessons: [
           {
             id: 1,
@@ -153,6 +167,8 @@ const courses = [
       {
         id: 3,
         name: "Module Angular-3",
+        description: "Description",
+        icon_src: "icon",
         lessons: [
           {
             id: 1,
@@ -173,10 +189,14 @@ const courses = [
   {
     id: 3,
     name: "Vue",
+    description: "Description",
+    icon_src: "icon",
     modules: [
       {
         id: 1,
         name: "Module Vue-1",
+        description: "Description",
+        icon_src: "icon",
         lessons: [
           {
             id: 1,
@@ -195,6 +215,8 @@ const courses = [
       {
         id: 2,
         name: "Module Vue-2",
+        description: "Description",
+        icon_src: "icon",
         lessons: [
           {
             id: 1,
@@ -213,6 +235,8 @@ const courses = [
       {
         id: 3,
         name: "Module Vue-3",
+        description: "Description",
+        icon_src: "icon",
         lessons: [
           {
             id: 1,

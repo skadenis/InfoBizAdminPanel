@@ -1,20 +1,14 @@
 <template>
-  <div>
-    <div class="course" @click="open_course(data.id)">
+  <div class="course">
+    <div class="course-item" @click="open_course(data.id)">
       <div>
-        <p>{{ data.name }}</p>
+        <p class="course-name">{{ data.name }}</p>
       </div>
       <div>
-        <p></p>
+        <p>{{ data.description }}</p>
       </div>
       <div>
-        <p></p>
-      </div>
-      <div>
-        <p></p>
-      </div>
-      <div>
-        <p></p>
+        <p>{{ data.icon_src }}</p>
       </div>
     </div>
   </div>
@@ -29,7 +23,7 @@ export default {
       this.$router.push(data);
     },
     open_course: function(id) {
-      this.goTo("/courses/" + id + "/edit");
+      this.goTo("/courses/" + id);
     },
   },
 };
@@ -37,30 +31,36 @@ export default {
 
 <style scoped lang="scss">
 .course {
-  display: flex;
-  cursor: pointer;
-  box-sizing: border-box;
-  border: 1px solid rgb(221, 221, 221);
-  margin: -1px 0;
+  margin: 20px 0;
 
-  &:hover {
-    background-color: rgb(223, 239, 255);
-  }
+  .course-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 20px;
+    height: 100px;
 
-  &:hover p {
-    color: #000;
-  }
-
-  div {
-    width: 20%;
-    border-right: 1px solid rgb(221, 221, 221);
-
-    &:last-child {
-      border-right: none;
+    &:hover {
+      background-color: rgb(223, 239, 255);
     }
 
-    p {
-      padding: 10px;
+    &:hover p {
+      color: #000;
+    }
+
+    div {
+      width: 20%;
+
+      p {
+        padding: 10px;
+      }
+    }
+
+    .course-name {
+      color: #000;
+      font-size: 1.2em;
+      font-weight: 600;
     }
   }
 }

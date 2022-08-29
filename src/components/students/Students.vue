@@ -69,7 +69,6 @@ export default {
 
   p {
     padding: 10px;
-    font-size: 1.2em;
     font-weight: 600;
     color: #000;
     text-align: center;
@@ -84,6 +83,7 @@ export default {
   padding: 16px;
   border-radius: 8px;
   font-weight: 600;
+  font-size: 0.8em;
 }
 
 .table__inputs {

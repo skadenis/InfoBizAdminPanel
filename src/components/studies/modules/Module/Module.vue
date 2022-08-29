@@ -1,20 +1,14 @@
 <template>
-  <div>
-    <div class="module" @click="open_module(data.id)">
+  <div class="module">
+    <div class="module-item" @click="open_module(courseId + 1, data.id)">
       <div>
-        <p>{{ data[courseId].modules[0].name }}</p>
+        <p class="module-name">{{ data.name }}</p>
       </div>
       <div>
-        <p></p>
+        <p>{{ data.description }}</p>
       </div>
       <div>
-        <p></p>
-      </div>
-      <div>
-        <p></p>
-      </div>
-      <div>
-        <p></p>
+        <p>{{ data.icon_src }}</p>
       </div>
     </div>
   </div>
@@ -28,39 +22,45 @@ export default {
     goTo: function(data) {
       this.$router.push(data);
     },
-    open_module: function(id) {
-      this.goTo("/courses/" + id + "/edit/" + "modules/" + id);
+    open_module: function(courseId, id) {
+      this.goTo("/courses/" + courseId + "/modules/" + id);
+      console.log(courseId);
     },
   },
 };
 </script>
 
 <style scoped lang="scss">
-.course {
-  display: flex;
-  cursor: pointer;
-  box-sizing: border-box;
-  border: 1px solid rgb(221, 221, 221);
-  margin: -1px 0;
+.module {
+  margin: 20px 0;
+  .module-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 20px;
+    height: 100px;
 
-  &:hover {
-    background-color: rgb(223, 239, 255);
-  }
-
-  &:hover p {
-    color: #000;
-  }
-
-  div {
-    width: 20%;
-    border-right: 1px solid rgb(221, 221, 221);
-
-    &:last-child {
-      border-right: none;
+    &:hover {
+      background-color: rgb(223, 239, 255);
     }
 
-    p {
-      padding: 10px;
+    &:hover p {
+      color: #000;
+    }
+
+    div {
+      width: 20%;
+
+      p {
+        padding: 10px;
+      }
+    }
+
+    .module-name {
+      color: #000;
+      font-size: 1.2em;
+      font-weight: 600;
     }
   }
 }

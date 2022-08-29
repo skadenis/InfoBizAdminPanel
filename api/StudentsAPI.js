@@ -6,7 +6,6 @@ class StudentsAPI extends BaseAPI {
   }
 
   edit(data) {
-    delete data.token;
     return this.axios.post("/students/edit", data);
   }
 

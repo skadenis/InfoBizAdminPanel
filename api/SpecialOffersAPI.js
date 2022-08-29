@@ -6,7 +6,6 @@ class SpecialOffersAPI extends BaseAPI {
   }
 
   edit(data) {
-    delete data.token;
     return this.axios.post("/marketing/offers/edit", data);
   }
 

@@ -6,7 +6,6 @@ class PushNotificationsAPI extends BaseAPI {
   }
 
   edit(data) {
-    delete data.token;
     return this.axios.post("/marketing/push/edit", data);
   }
 

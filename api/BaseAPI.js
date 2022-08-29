@@ -6,8 +6,8 @@ export default class BaseApi {
     let Cookies = Cookie.get();
 
     this.axios = axios.create({
-      baseURL: "//localhost:3000",
-      headers: { Authorization: `Bearer ${Cookies.token}` },
+      baseURL: "//http://176.113.83.169",
+      headers: { Authorization: `Token ${Cookies.token}` },
     });
   }
 

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <button class="add__lessons-btn">Добавить урок</button>
     <Lesson
       v-for="(lesson, lIndex) in lessons"
       v-bind:data="lesson"
@@ -8,6 +7,9 @@
       v-bind:courseId="courseId"
       :key="lIndex"
     ></Lesson>
+    <button class="add__lessons-btn" @click="add_lesson()">
+      Добавить урок
+    </button>
   </div>
 </template>
 
@@ -31,6 +33,18 @@ export default {
   methods: {
     getLessons: function() {
       this.lessons = this.data[this.moduleId - 1].lessons;
+    },
+    goTo: function(data) {
+      this.$router.push(data);
+    },
+    add_lesson: function() {
+      this.goTo(
+        "/courses/" +
+          this.courseId +
+          "/modules/" +
+          this.moduleId +
+          "/lessons/add"
+      );
     },
   },
 };

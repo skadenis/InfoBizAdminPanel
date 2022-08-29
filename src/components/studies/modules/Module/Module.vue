@@ -37,7 +37,7 @@ export default {
     align-items: center;
     cursor: pointer;
     border: 1px solid rgb(221, 221, 221);
-    border-radius: 20px;
+    border-radius: 10px;
     height: 100px;
 
     &:hover {

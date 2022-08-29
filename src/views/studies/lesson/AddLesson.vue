@@ -1,8 +1,8 @@
 <template>
-  <AddEditModules :courseId="courseId" :moduleId="moduleId"></AddEditModules>
+  <AddLesson :courseId="courseId" :moduleId="moduleId"></AddLesson>
 </template>
 <script>
-import AddEditModules from "../../../components/studies/modules/Module/AddEditModule.vue";
+import AddLesson from "../../../components/studies/lessons/Lesson/AddLesson.vue";
 export default {
   data() {
     return {
@@ -11,7 +11,7 @@ export default {
     };
   },
   components: {
-    AddEditModules,
+    AddLesson,
   },
 };
 </script>

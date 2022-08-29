@@ -65,14 +65,17 @@ const courses = [
           {
             id: 1,
             name: "lesson 1-1",
+            description: "Description",
           },
           {
             id: 2,
             name: "lesson 1-2",
+            description: "Description",
           },
           {
             id: 3,
             name: "lessons 1-3",
+            description: "Description",
           },
         ],
       },
@@ -85,14 +88,17 @@ const courses = [
           {
             id: 1,
             name: "lesson 2-1",
+            description: "Description",
           },
           {
             id: 2,
             name: "lesson 2-2",
+            description: "Description",
           },
           {
             id: 3,
             name: "lessons 2-3",
+            description: "Description",
           },
         ],
       },
@@ -105,14 +111,17 @@ const courses = [
           {
             id: 1,
             name: "lesson 3-1",
+            description: "Description",
           },
           {
             id: 2,
             name: "lesson 3-2",
+            description: "Description",
           },
           {
             id: 3,
             name: "lessons 3-3",
+            description: "Description",
           },
         ],
       },

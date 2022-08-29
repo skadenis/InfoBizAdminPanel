@@ -2,7 +2,7 @@
   <div class="lesson">
     <div class="lesson-item" @click="open_lesson(courseId, moduleId, data.id)">
       <div>
-        <p class="module-name">{{ data.name }}</p>
+        <p class="lesson-name">{{ data.name }}</p>
       </div>
       <div>
         <p>{{ data.description }}</p>
@@ -32,14 +32,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.module {
+.lesson {
   margin: 20px 0;
-  .module-item {
+  .lesson-item {
     display: flex;
     align-items: center;
     cursor: pointer;
     border: 1px solid rgb(221, 221, 221);
-    border-radius: 20px;
+    border-radius: 10px;
     height: 100px;
 
     &:hover {
@@ -58,7 +58,7 @@ export default {
       }
     }
 
-    .module-name {
+    .lesson-name {
       color: #000;
       font-size: 1.2em;
       font-weight: 600;

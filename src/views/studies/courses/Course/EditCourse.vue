@@ -1,8 +1,8 @@
 <template>
-  <AddEditCourse :courseId="courseId"></AddEditCourse>
+  <EditCourse :courseId="courseId"></EditCourse>
 </template>
 <script>
-import AddEditCourse from "../../../../components/studies/courses/Course/AddEditCourse.vue";
+import EditCourse from "../../../../components/studies/courses/Course/EditCourse.vue";
 export default {
   data() {
     return {
@@ -10,7 +10,7 @@ export default {
     };
   },
   components: {
-    AddEditCourse,
+    EditCourse,
   },
 };
 </script>

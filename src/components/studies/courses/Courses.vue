@@ -1,28 +1,13 @@
 <template>
   <div>
-    <button class="add__courses-btn">Добавить курс</button>
-    <!-- <div class="table__head">
-      <div>
-        <p>Название курса</p>
-      </div>
-      <div>
-        <p></p>
-      </div>
-      <div>
-        <p></p>
-      </div>
-      <div>
-        <p></p>
-      </div>
-      <div>
-        <p></p>
-      </div>
-    </div> -->
     <Course
       v-for="(course, cIndex) in courses"
       v-bind:data="course"
       :key="cIndex"
     ></Course>
+    <button class="add__courses-btn" @click="add_course()">
+      Добавить курс
+    </button>
   </div>
 </template>
 
@@ -47,6 +32,12 @@ export default {
   methods: {
     getCourses: function() {
       this.courses = state.courses;
+    },
+    goTo: function(data) {
+      this.$router.push(data);
+    },
+    add_course: function() {
+      this.goTo("/courses/add");
     },
   },
 };

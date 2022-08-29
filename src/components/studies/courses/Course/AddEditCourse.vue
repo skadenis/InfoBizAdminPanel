@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="course-info">
-      <span class="name">{{ course[courseId].name }}</span>
+      <span class="name">{{ course[courseId - 1].name }}</span>
     </div>
     <Modules v-bind:courseId="courseId" v-bind:data="course"></Modules>
   </div>
@@ -12,7 +12,7 @@ import state from "../../../../store/state";
 import Modules from "../../modules/Modules.vue";
 
 export default {
-  props: ['courseId'],
+  props: ["courseId"],
   components: {
     Modules,
   },

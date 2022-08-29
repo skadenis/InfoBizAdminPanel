@@ -4,10 +4,10 @@
 <script>
 import AddEditCourse from "../../../../components/studies/courses/Course/AddEditCourse.vue";
 export default {
-  data(){
-    return{
-      courseId: Number(this.$route.params.id),
-    }
+  data() {
+    return {
+      courseId: Number(this.$route.params.CourseId),
+    };
   },
   components: {
     AddEditCourse,

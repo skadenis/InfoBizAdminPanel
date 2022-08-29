@@ -1,6 +1,6 @@
 <template>
   <div class="module">
-    <div class="module-item" @click="open_module(courseId + 1, data.id)">
+    <div class="module-item" @click="open_module(courseId, data.id)">
       <div>
         <p class="module-name">{{ data.name }}</p>
       </div>

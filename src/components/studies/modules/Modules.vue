@@ -46,7 +46,7 @@ export default {
 
   methods: {
     getModules: function() {
-      this.modules = this.data[this.courseId].modules;
+      this.modules = this.data[this.courseId - 1].modules;
     },
   },
 };

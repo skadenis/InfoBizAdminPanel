@@ -1,14 +1,13 @@
 <template>
   <div>
-    123
     <div class="module-info">
-      <span class="name">{{ module[Number(moduleId) - 1].name }}</span>
+      <span class="name">{{ module[moduleId - 1].name }}</span>
     </div>
-    <!-- <Lessons
+    <Lessons
       v-bind:courseId="courseId"
       v-bind:moduleId="moduleId"
       v-bind:data="module"
-    ></Lessons> -->
+    ></Lessons>
   </div>
 </template>
 
@@ -17,22 +16,25 @@ import state from "../../../../store/state";
 import Lessons from "../../lessons/Lessons.vue";
 
 export default {
+  props: ["courseId", "moduleId"],
   components: {
     Lessons,
   },
   data() {
     return {
-      module: this.$router.params.id,
-      moduleId: this.$router.params.ModuleId,
-      courseId: this.$router.params.CourseId,
+      module: null,
     };
   },
 
   mounted() {
-    console.log(this.data);
+    this.getModule();
   },
 
-  methods: {},
+  methods: {
+    getModule: function() {
+      this.module = state.courses[this.courseId - 1].modules;
+    },
+  },
 };
 </script>
 

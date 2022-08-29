@@ -153,7 +153,7 @@ let routes = [
     },
   },
   {
-    path: "/courses/:id/",
+    path: "/courses/:CourseId/",
     name: "Course",
     component: AddEditCourse,
     meta: {
@@ -162,7 +162,7 @@ let routes = [
     },
   },
   {
-    path: "/courses/:id/modules/:ModuleId",
+    path: "/courses/:CourseId/modules/:ModuleId",
     name: "Module",
     component: AddEditModule,
     meta: {
@@ -171,12 +171,12 @@ let routes = [
     },
   },
   {
-    path: "/courses/:id/modules/:ModuleId/lessons/:LessonId",
+    path: "/courses/:CourseId/modules/:ModuleId/lessons/:LessonId",
     name: "Lesson",
     component: AddEditLesson,
     meta: {
       layoutClass: "Lesson",
-      name: "Lesson",
+      name: "Урок",
     },
   },
 ];

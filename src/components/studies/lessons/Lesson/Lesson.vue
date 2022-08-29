@@ -1,20 +1,31 @@
 <template>
-  <div class="module">
-    123
+  <div class="lesson">
+    <div class="lesson-item" @click="open_lesson(courseId, moduleId, data.id)">
+      <div>
+        <p class="module-name">{{ data.name }}</p>
+      </div>
+      <div>
+        <p>{{ data.description }}</p>
+      </div>
+      <div>
+        <p>{{ data.icon_src }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "module",
-  props: ["data", "courseId"],
+  name: "lesson",
+  props: ["data", "courseId", "moduleId"],
   methods: {
     goTo: function(data) {
       this.$router.push(data);
     },
-    open_module: function(courseId, id) {
-      this.goTo("/courses/" + courseId + "/modules/" + id);
-      console.log(courseId);
+    open_lesson: function(courseId, moduleId, id) {
+      this.goTo(
+        "/courses/" + courseId + "/modules/" + moduleId + "/lessons/" + id
+      );
     },
   },
 };

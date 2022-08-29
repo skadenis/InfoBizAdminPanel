@@ -4,6 +4,8 @@
     <Lesson
       v-for="(lesson, lIndex) in lessons"
       v-bind:data="lesson"
+      v-bind:moduleId="moduleId"
+      v-bind:courseId="courseId"
       :key="lIndex"
     ></Lesson>
   </div>
@@ -13,7 +15,7 @@
 import Lesson from "./Lesson/Lesson.vue";
 
 export default {
-  props: ["data", "courseId"],
+  props: ["data", "courseId", "moduleId"],
   components: {
     Lesson,
   },
@@ -28,7 +30,7 @@ export default {
 
   methods: {
     getLessons: function() {
-      this.modules = this.data[this.courseId].modules[this.moduleId];
+      this.lessons = this.data[this.moduleId - 1].lessons;
     },
   },
 };

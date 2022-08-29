@@ -10,9 +10,16 @@ import RestorePasswordStep1 from "../views/RestorePasswordStep1.vue";
 import RestorePasswordStep2 from "../views/RestorePasswordStep2.vue";
 
 import Courses from "../views/studies/courses/Courses.vue";
-import AddEditCourse from "../views/studies/courses/Course/AddEditCourse.vue";
-import AddEditModule from "../views/studies/module/AddEditModule.vue";
-import AddEditLesson from "../views/studies/lesson/AddEditLesson.vue";
+import AddCourse from "../views/studies/courses/Course/AddCourse.vue";
+import EditCourse from "../views/studies/courses/Course/EditCourse.vue";
+
+import AddModule from "../views/studies/module/AddModule.vue";
+import EditModule from "../views/studies/module/EditModule.vue";
+
+import AddLesson from "../views/studies/lesson/AddLesson.vue";
+import EditLesson from "../views/studies/lesson/EditLesson.vue";
+
+import Homework from "../views/homework/Homework.vue";
 
 import Marketing from "../views/marketing/Marketing.vue";
 import PushNotifications from "../views/marketing/push-notifications/PushNotifications.vue";
@@ -21,7 +28,7 @@ import SpecialOffers from "../views/marketing/special-offers/SpecialOffers.vue";
 import Users from "../views/users/Users.vue";
 
 import Students from "../views/students/Students.vue";
-import AddEditStudent from "../views/students/Student/AddEditStudent.vue";
+import EditStudent from "../views/students/Student/EditStudent.vue";
 
 import Calendar from "../views/calendar/Calendar.vue";
 
@@ -99,12 +106,21 @@ let routes = [
     },
   },
   {
-    path: "/students/:id/edit",
+    path: "/students/:StudentId",
     name: "Student",
-    component: AddEditStudent,
+    component: EditStudent,
     meta: {
       layoutClass: "Student",
       name: "Студент",
+    },
+  },
+  {
+    path: "/homework",
+    name: "Homework",
+    component: Homework,
+    meta: {
+      layoutClass: "Homework",
+      name: "Домашнее задание",
     },
   },
   {
@@ -153,30 +169,57 @@ let routes = [
     },
   },
   {
-    path: "/courses/:id/",
+    path: "/courses/add",
+    name: "AddCourse",
+    component: AddCourse,
+    meta: {
+      layoutClass: "AddCourse",
+      name: "Добавить курс",
+    },
+  },
+  {
+    path: "/courses/:CourseId/",
     name: "Course",
-    component: AddEditCourse,
+    component: EditCourse,
     meta: {
       layoutClass: "Course",
       name: "Курс",
     },
   },
   {
-    path: "/courses/:id/modules/:ModuleId",
+    path: "/courses/:CourseId/modules/add",
+    name: "AddModule",
+    component: AddModule,
+    meta: {
+      layoutClass: "AddModule",
+      name: "Добавить модуль",
+    },
+  },
+  {
+    path: "/courses/:CourseId/modules/:ModuleId",
     name: "Module",
-    component: AddEditModule,
+    component: EditModule,
     meta: {
       layoutClass: "Module",
       name: "Модуль",
     },
   },
   {
-    path: "/courses/:id/modules/:ModuleId/lessons/:LessonId",
+    path: "/courses/:CourseId/modules/:ModuleId/lessons/add",
+    name: "AddLesson",
+    component: AddLesson,
+    meta: {
+      layoutClass: "AddLesson",
+      name: "Добавить урок",
+    },
+  },
+  {
+    path: "/courses/:CourseId/modules/:ModuleId/lessons/:LessonId",
     name: "Lesson",
-    component: AddEditLesson,
+    component: EditLesson,
     meta: {
       layoutClass: "Lesson",
-      name: "Lesson",
+      name: "Урок",
     },
   },
 ];

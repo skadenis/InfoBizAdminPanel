@@ -1,11 +1,13 @@
 <template>
   <div>
-    <button class="add__courses-btn">Добавить курс</button>
     <Course
       v-for="(course, cIndex) in courses"
       v-bind:data="course"
       :key="cIndex"
     ></Course>
+    <button class="add__courses-btn" @click="add_course()">
+      Добавить курс
+    </button>
   </div>
 </template>
 
@@ -36,6 +38,9 @@ export default {
             console.log(e);
           })
     },
+    add_course: function() {
+      this.goTo("/courses/add");
+    }
   },
 };
 </script>

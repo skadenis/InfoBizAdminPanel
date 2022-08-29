@@ -38,8 +38,8 @@ export default {
     align-items: center;
     cursor: pointer;
     border: 1px solid rgb(221, 221, 221);
-    border-radius: 20px;
-    height: 100px;
+    border-radius: 10px;
+    min-height: 100px;
 
     &:hover {
       background-color: rgb(223, 239, 255);
@@ -50,8 +50,6 @@ export default {
     }
 
     div {
-      width: 20%;
-
       p {
         padding: 10px;
       }

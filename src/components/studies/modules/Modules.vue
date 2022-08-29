@@ -1,29 +1,14 @@
 <template>
   <div>
-    <button class="add__modules-btn">Добавить модуль</button>
-    <!-- <div class="table__head">
-      <div>
-        <p>Название модуля</p>
-      </div>
-      <div>
-        <p></p>
-      </div>
-      <div>
-        <p></p>
-      </div>
-      <div>
-        <p></p>
-      </div>
-      <div>
-        <p></p>
-      </div>
-    </div> -->
     <Module
       v-for="(module, mIndex) in modules"
       v-bind:data="module"
       v-bind:courseId="courseId"
       :key="mIndex"
     ></Module>
+    <button class="add__modules-btn" @click="add_module()">
+      Добавить модуль
+    </button>
   </div>
 </template>
 
@@ -46,33 +31,19 @@ export default {
 
   methods: {
     getModules: function() {
-      this.modules = this.data[this.courseId].modules;
+      this.modules = this.data[this.courseId - 1].modules;
+    },
+    goTo: function(data) {
+      this.$router.push(data);
+    },
+    add_module: function() {
+      this.goTo("/courses/" + this.courseId + "/modules/add");
     },
   },
 };
 </script>
 
 <style scoped lang="scss">
-// .table__head {
-//   display: flex;
-//   background-color: rgb(221, 221, 221);
-
-//   div {
-//     width: 20%;
-//     border-right: 1px solid #fff;
-
-//     &:last-child {
-//       border-right: none;
-//     }
-//   }
-
-//   p {
-//     padding: 10px;
-//     font-weight: 600;
-//     color: #000;
-//     text-align: center;
-//   }
-// }
 .add__modules-btn {
   width: 20%;
   margin: 20px 0;

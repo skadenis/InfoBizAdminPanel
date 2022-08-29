@@ -12,29 +12,21 @@ import state from "../../../../store/state";
 import Modules from "../../modules/Modules.vue";
 
 export default {
+  props: ['courseId'],
   components: {
     Modules,
   },
   data() {
     return {
       course: null,
-      courseId: null,
     };
   },
 
   mounted() {
     this.getCourse();
-    this.getCourseId();
   },
 
   methods: {
-    getCourseId: function() {
-      this.courseId =
-        window.location.pathname
-          .split("courses/")
-          .pop()
-          .replace(/[^0-9]/g, "") - 1;
-    },
     getCourse: function() {
       this.course = state.courses;
     },

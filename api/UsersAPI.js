@@ -16,6 +16,10 @@ class UsersAPI extends BaseAPI {
   delete(data) {
     return this.axios.post("/users/delete", data);
   }
+
+  auth(data) {
+    return this.axios.post("/users/edit", data);
+  }
 }
 
 export default new UsersAPI();

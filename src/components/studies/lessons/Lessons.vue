@@ -28,7 +28,7 @@ export default {
 
   methods: {
     getLessons: function() {
-      this.modules = this.data[this.courseId].modules;
+      this.modules = this.data[this.courseId].modules[this.moduleId];
     },
   },
 };

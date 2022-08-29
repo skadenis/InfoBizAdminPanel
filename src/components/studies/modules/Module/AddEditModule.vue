@@ -22,37 +22,17 @@ export default {
   },
   data() {
     return {
-      module: null,
-      moduleId: null,
-      courseId: null,
+      module: this.$router.params.id,
+      moduleId: this.$router.params.ModuleId,
+      courseId: this.$router.params.CourseId,
     };
   },
 
   mounted() {
-    this.getModule();
-    this.getModuleId();
-    this.getCourseId();
+    console.log(this.data);
   },
 
-  methods: {
-    getCourseId: function() {
-      this.courseId = window.location.pathname
-        .split("courses/")
-        .pop()
-        .replace(/[^0-9]/g, "");
-      console.log(this.courseId);
-    },
-    getModuleId: function() {
-      this.moduleId = window.location.pathname
-        .split("modules/")
-        .pop()
-        .replace(/[^0-9]/g, "");
-      console.log(this.moduleId);
-    },
-    getModule: function() {
-      this.module = state.courses[Number(this.courseId)].modules;
-    },
-  },
+  methods: {},
 };
 </script>
 

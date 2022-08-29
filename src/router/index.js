@@ -162,7 +162,7 @@ let routes = [
     },
   },
   {
-    path: "/courses/:id/modules/:id",
+    path: "/courses/:id/modules/:ModuleId",
     name: "Module",
     component: AddEditModule,
     meta: {
@@ -171,7 +171,7 @@ let routes = [
     },
   },
   {
-    path: "/courses/:id/modules/:id/lessons/:id",
+    path: "/courses/:id/modules/:ModuleId/lessons/:LessonId",
     name: "Lesson",
     component: AddEditLesson,
     meta: {

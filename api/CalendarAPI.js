@@ -6,7 +6,6 @@ class CalendarAPI extends BaseAPI {
   }
 
   edit(data) {
-    delete data.token;
     return this.axios.post("/calendar/edit", data);
   }
 

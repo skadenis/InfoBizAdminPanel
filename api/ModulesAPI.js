@@ -6,7 +6,6 @@ class ModulesAPI extends BaseAPI {
   }
 
   edit(data) {
-    delete data.token;
     return this.axios.post("/courses/modules/edit", data);
   }
 

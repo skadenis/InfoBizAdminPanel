@@ -1,6 +1,5 @@
 <template>
   <div>
-    <button class="add__students-btn">Добавить студента</button>
     <div class="table__head">
       <div>
         <p>Имя</p>
@@ -27,9 +26,9 @@
 </template>
 
 <script>
-import state from "../../store/state";
 
 import Student from "./Student/Student";
+import StudentsAPI from "../../../api/StudentsAPI";
 
 export default {
   components: {
@@ -47,7 +46,13 @@ export default {
 
   methods: {
     getStudents: function() {
-      this.students = state.students;
+      StudentsAPI.get_all()
+          .then(response => {
+            this.students = response.data;
+          })
+          .catch((e) => {
+            console.log(e);
+          })
     },
   },
 };

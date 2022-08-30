@@ -78,6 +78,8 @@ export default {
       formData.append("course", this.courseId);
       formData.append('module', this.moduleId)
       formData.append("name", this.module.name);
+      formData.append("description", this.module.description);
+
       if(this.file){
         formData.append("image", this.file);
       }

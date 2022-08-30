@@ -1,17 +1,14 @@
 <template>
   <div>
-    <div class="student" @click="open_student(data.id)">
+    <div class="student" @click="">
       <div>
-        <p>{{ data.firstname }}</p>
+        <a-input v-model="data.time"></a-input>
       </div>
       <div>
-        <p>{{ data.lastname }}</p>
+        <a-textarea v-model="data.text"></a-textarea>
       </div>
       <div>
-        <p>{{ data.email }}</p>
-      </div>
-      <div>
-        <p></p>
+        <p><a-button class="button" type="danger">Удалить</a-button></p>
       </div>
     </div>
   </div>
@@ -19,15 +16,9 @@
 
 <script>
 export default {
-  name: "student",
   props: ["data"],
   methods: {
-    goTo: function(data) {
-      this.$router.push(data);
-    },
-    open_student: function(id) {
-      this.goTo("/students/" + id);
-    },
+
   },
 };
 </script>
@@ -49,8 +40,9 @@ export default {
   }
 
   div {
-    width: 20%;
+    width: calc(100%/3);
     border-right: 1px solid rgb(221, 221, 221);
+    line-height: 1.2;
 
     &:last-child {
       border-right: none;

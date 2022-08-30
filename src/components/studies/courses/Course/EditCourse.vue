@@ -77,6 +77,8 @@ export default {
       let formData = new FormData();
       formData.append("course_id", this.courseId);
       formData.append("name", this.course.name);
+      formData.append("description", this.course.description);
+
       if(this.file){
         formData.append("image", this.file);
       }

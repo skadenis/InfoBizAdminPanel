@@ -9,7 +9,15 @@ export default class BaseApi {
       baseURL: "//176.113.83.169",
       // headers: { Authorization: `Token ${Cookies.token}` },
       headers: {
-        Authorization: `Token 31d61856cb6a7a513648a604a95841bc6f9c032a`,
+        Authorization: `Token 227e0cf17204b43171c5ae54abcb54e7a3bdb330`,
+      },
+    });
+
+    this.axiosMultyPart = axios.create({
+      baseURL: "//176.113.83.169",
+      headers: {
+        'Authorization': 'Token 227e0cf17204b43171c5ae54abcb54e7a3bdb330',
+        "Content-Type": "multipart/form-data"
       },
     });
   }

@@ -17,6 +17,7 @@ import store from "./store/index";
 import vuetify from "./plugins/vuetify";
 
 import FormatterMixin from "@/mixins/formatter";
+import DefaultMixin from "@/mixins/default";
 
 import "./scss/app.scss";
 
@@ -34,6 +35,7 @@ Vue.use(VueGtm, {
   trackOnNextTick: gtm.trackOnNextTick, // Whether or not call trackView in Vue.nextTick
 });
 
+Vue.mixin(DefaultMixin);
 Vue.mixin(FormatterMixin);
 
 // Vue.filter("formatDate", formatDate);

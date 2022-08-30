@@ -3,13 +3,17 @@
     <a-row>
       <a-col>
         <a-form-model-item label="Название">
-          <a-input v-model="lesson[lessonId - 1].name" />
+          <a-input v-model="lesson.name" />
         </a-form-model-item>
         <a-form-model-item label="Описание">
-          <a-textarea rows="4" v-model="lesson[lessonId - 1].description" />
+          <a-textarea rows="4" v-model="lesson.description" />
         </a-form-model-item>
         <a-form-model-item label="Основная картинка">
-          <input type="file" id="file" ref="file" />
+          <input type="file"
+                 id="file"
+                 ref="file"
+                 v-on:change="handleFileUpload()"/>
+          <img :src="config.basicImageURL+lesson.image" alt="" width="100">
           <p>Рекомендуемый размер картинки ширина: 656px, высота: 388px</p>
         </a-form-model-item>
         <a-form-model-item>
@@ -28,13 +32,15 @@
 </template>
 
 <script>
-import state from "../../../../store/state";
+import LessonsAPI from "../../../../../api/LessonsAPI";
+import config from "@/config";
 
 export default {
   props: ["courseId", "moduleId", "lessonId"],
   data() {
     return {
       lesson: null,
+      config: config
     };
   },
 
@@ -44,8 +50,13 @@ export default {
 
   methods: {
     getLesson: function() {
-      this.lesson =
-        state.courses[this.courseId - 1].modules[this.moduleId - 1].lessons;
+      LessonsAPI.get(this.lessonId)
+          .then(response => {
+            this.lesson = response.data;
+          })
+          .catch((e) => {
+            console.log(e);
+          })
     },
   },
 };

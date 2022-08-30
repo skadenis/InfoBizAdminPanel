@@ -3,22 +3,27 @@
     <a-row>
       <a-col>
         <a-form-model-item label="Название">
-          <a-input v-model="module[moduleId - 1].name" />
+          <a-input v-model="module.name" />
         </a-form-model-item>
         <a-form-model-item label="Описание">
-          <a-textarea rows="4" v-model="module[moduleId - 1].description" />
+          <a-textarea rows="4" v-model="module.description" />
         </a-form-model-item>
         <a-form-model-item label="Основная картинка">
-          <input type="file" id="file" ref="file" />
+          <input type="file"
+                 id="file"
+                 ref="file"
+                 v-on:change="handleFileUpload()" />
+          <img :src="config.basicImageURL+module.image" alt="" width="100">
+
           <p>Рекомендуемый размер картинки ширина: 656px, высота: 388px</p>
         </a-form-model-item>
         <a-form-model-item>
           <a-row type="flex" :gutter="24" class="bottom-buttons">
             <a-col :span="24" :lg="12" :md="24">
-              <a-button class="button" type="primary">Сохранить</a-button>
+              <a-button class="button" type="primary" @click="edit">Сохранить</a-button>
             </a-col>
             <a-col :span="24" :lg="12" :md="24">
-              <a-button class="button" type="danger">Удалить</a-button>
+              <a-button class="button" type="danger" @click="deleteModule">Удалить</a-button>
             </a-col>
           </a-row>
         </a-form-model-item>
@@ -34,8 +39,9 @@
 </template>
 
 <script>
-import state from "../../../../store/state";
+import config from "../../../../config";
 import Lessons from "../../lessons/Lessons.vue";
+import ModulesAPI from "../../../../../api/ModulesAPI";
 
 export default {
   props: ["courseId", "moduleId"],
@@ -44,7 +50,12 @@ export default {
   },
   data() {
     return {
-      module: null,
+      module: {
+        name: null,
+        description: null
+      },
+      file: undefined,
+      config: config
     };
   },
 
@@ -54,7 +65,49 @@ export default {
 
   methods: {
     getModule: function() {
-      this.module = state.courses[this.courseId - 1].modules;
+      ModulesAPI.get(this.moduleId)
+          .then(response => {
+            this.module = response.data;
+          })
+          .catch((e) => {
+            console.log(e);
+          })
+    },
+    async edit(){
+      let formData = new FormData();
+      formData.append("course", this.courseId);
+      formData.append('module', this.moduleId)
+      formData.append("name", this.module.name);
+      if(this.file){
+        formData.append("image", this.file);
+      }
+
+      await ModulesAPI.edit(formData)
+          .then(response => {
+            this.module = response.data;
+            this.file = null
+          })
+          .catch((e) => {
+            console.log(e);
+          })
+    },
+    async deleteModule(){
+      let axiosRes = null
+
+      await ModulesAPI.delete(this.moduleId)
+          .then(response => {
+             axiosRes = response
+          })
+          .catch((e) => {
+            console.log(e);
+          })
+      console.log(axiosRes);
+      if(axiosRes.status === 204){
+        this.goTo('/courses/'+this.courseId);
+      }
+    },
+    handleFileUpload() {
+      this.file = this.$refs.file.files[0];
     },
   },
 };

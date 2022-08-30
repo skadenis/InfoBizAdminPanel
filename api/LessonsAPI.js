@@ -2,7 +2,7 @@ import BaseAPI from "./BaseAPI";
 
 class LessonsAPI extends BaseAPI {
   get(id) {
-    return this.axios.get("/courses/modules/lessons/" + id);
+    return this.axios.get("/course/lesson/" + id + "/");
   }
 
   edit(data) {
@@ -10,7 +10,7 @@ class LessonsAPI extends BaseAPI {
   }
 
   add(data) {
-    return this.axios.post("/courses/modules/lessons/add", data);
+    return this.axiosMultyPart.post("/course/lesson/", data);
   }
 
   delete(data) {

@@ -1,24 +1,28 @@
 import BaseAPI from "./BaseAPI";
 
 class CoursesAPI extends BaseAPI {
-  // get(id) {
-  //   return this.axios.get("courses/course/get_courses/" + id);
-  // }
-
-  get_all() {
-    return this.axios.get("courses/course/get_courses/");
+  get(id) {
+    return this.axios.get("/course/course/"+id+"/");
   }
 
-  edit(data) {
-    return this.axios.put("/courses/course/course/", data);
+  get_all() {
+    return this.axios.get("/course/get_courses/");
+  }
+
+  get_course_modules(id){
+    return this.axios.get("/course/get_modules/"+id+"/");
   }
 
   add(data) {
-    return this.axios.post("courses/course/course/", data);
+    return this.axiosMultyPart.post("/course/course/", data);
   }
 
-  delete(data) {
-    return this.axios.delete("/courses/course/course/", data);
+  edit(data) {
+    return this.axiosMultyPart.put("/course/course/", data);
+  }
+
+  delete(id) {
+    return this.axios.delete("/course/course/"+id+"/");
   }
 }
 

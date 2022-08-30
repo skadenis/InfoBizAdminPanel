@@ -24,7 +24,7 @@ export default {
       courses: null,
     };
   },
-  mounted() {
+  created: function () {
     this.getCourses();
   },
 
@@ -46,26 +46,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// .table__head {
-//   display: flex;
-//   background-color: rgb(221, 221, 221);
 
-//   div {
-//     width: 20%;
-//     border-right: 1px solid #fff;
-
-//     &:last-child {
-//       border-right: none;
-//     }
-//   }
-
-//   p {
-//     padding: 10px;
-//     font-weight: 600;
-//     color: #000;
-//     text-align: center;
-//   }
-// }
 
 .add__courses-btn {
   width: 20%;

@@ -14,9 +14,10 @@
 
 <script>
 import Module from "./Module/Module.vue";
+import CoursesAPI from "../../../../api/CoursesAPI";
 
 export default {
-  props: ["data", "courseId"],
+  props: [ "courseId"],
   components: {
     Module,
   },
@@ -31,7 +32,13 @@ export default {
 
   methods: {
     getModules: function() {
-      this.modules = this.data[this.courseId - 1].modules;
+      CoursesAPI.get_course_modules(this.courseId)
+          .then(response => {
+            this.modules = response.data;
+          })
+          .catch((e) => {
+            console.log(e);
+          })
     },
     goTo: function(data) {
       this.$router.push(data);

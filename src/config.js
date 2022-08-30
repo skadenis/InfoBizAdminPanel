@@ -11,6 +11,7 @@ module.exports = {
             27.607427
         ]
     },
+    basicImageURL: 'http://176.113.83.169',
     currency: {
         locales: 'BY',
         style: 'currency',

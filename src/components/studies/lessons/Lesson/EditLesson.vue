@@ -3,27 +3,35 @@
     <a-row>
       <a-col>
         <a-form-model-item label="Название">
-          <a-input v-model="lesson.name"/>
+          <a-input v-model="lesson.name" />
         </a-form-model-item>
         <a-form-model-item label="Тема урока">
-          <a-input v-model="lesson.question"/>
+          <a-input v-model="lesson.question" />
         </a-form-model-item>
         <a-form-model-item label="Описание">
-          <a-textarea rows="4" v-model="lesson.description"/>
+          <a-textarea rows="4" v-model="lesson.description" />
         </a-form-model-item>
-        <a-form-model-item label="Основная картинка" >
-          <input type="file" id="file" ref="file"
-                 v-on:change="handleImageUpload()"  />
-          <p>Рекомендуемый размер картинки ширина: 656px, высота: 388px</p>
+        <a-form-model-item label="Основная картинка">
+          <input
+            type="file"
+            id="file"
+            ref="file"
+            v-on:change="handleImageUpload()"
+          />
+          <p class="file-info">
+            Рекомендуемый размер картинки ширина: 656px, высота: 388px
+          </p>
         </a-form-model-item>
 
         <a-form-model-item label="Видео">
-          <input type="file" id="video" ref="video"
-                 v-on:change="handleVideoUpload()" />
-          <p>Рекомендуемый размер</p>
+          <input
+            type="file"
+            id="video"
+            ref="video"
+            v-on:change="handleVideoUpload()"
+          />
+          <p class="file-info">Рекомендуемый размер</p>
         </a-form-model-item>
-
-
 
         <a-form-model-item label="Тайминг">
           <div class="table__head">
@@ -38,26 +46,33 @@
             </div>
           </div>
           <TimingRow
-              v-for="(timing, index) in lesson.timer_set"
-              :data="timing"
-              :key="index"
+            v-for="(timing, index) in lesson.timer_set"
+            :data="timing"
+            :key="index"
           />
-          <a-button class="button" type="primary" @click="addTiming">Добавить тайминг</a-button>
-          <p>Рекомендуемый размер</p>
+          <a-button class="button" type="primary" @click="addTiming"
+            >Добавить тайминг</a-button
+          >
+          <p class="file-info">Рекомендуемый размер</p>
         </a-form-model-item>
 
         <a-form-model-item label="Дополнительные материалы">
-          <input type="file" id="homework" ref="homework" multiple
-                 v-on:change="handleFilesUpload()" />
-          <p>Формат PDF</p>
+          <input
+            type="file"
+            id="homework"
+            ref="homework"
+            multiple
+            v-on:change="handleFilesUpload()"
+          />
+          <p class="file-info">Формат PDF</p>
         </a-form-model-item>
-
-
 
         <a-form-model-item>
           <a-row type="flex" :gutter="24" class="bottom-buttons">
             <a-col :span="24" :lg="24" :md="24">
-              <a-button class="button" type="primary" @click="add">Добавить урок</a-button>
+              <a-button class="button" type="primary" @click="add"
+                >Добавить урок</a-button
+              >
             </a-col>
           </a-row>
         </a-form-model-item>
@@ -73,13 +88,13 @@ import TimingRow from "@/components/studies/lessons/Lesson/TimingRow";
 
 export default {
   props: ["courseId", "moduleId", "lessonId"],
-  components:{
-    TimingRow
+  components: {
+    TimingRow,
   },
   data() {
     return {
       lesson: null,
-      config: config
+      config: config,
     };
   },
 
@@ -97,17 +112,15 @@ export default {
     handleFilesUpload() {
       this.files.files = this.$refs.homework.files;
     },
-    addTiming(){
-
-    },
+    addTiming() {},
     getLesson: function() {
       LessonsAPI.get(this.lessonId)
-          .then(response => {
-            this.lesson = response.data;
-          })
-          .catch((e) => {
-            console.log(e);
-          })
+        .then((response) => {
+          this.lesson = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
   },
 };
@@ -155,7 +168,7 @@ export default {
   background-color: rgb(221, 221, 221);
 
   div {
-    width: calc(100%/3);
+    width: calc(100% / 3);
     border-right: 1px solid #fff;
 
     &:last-child {
@@ -169,5 +182,9 @@ export default {
     color: #000;
     text-align: center;
   }
+}
+
+.file-info {
+  font-size: 0.8em;
 }
 </style>

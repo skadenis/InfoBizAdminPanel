@@ -1,26 +1,22 @@
 <template>
   <div>
-    <h2>Студенты курса</h2>
-      <div class="table__head">
-        <div>
-          <p>Фамилия</p>
-        </div>
-        <div>
-          <p>Имя</p>
-        </div>
-        <div>
-          <p>Email</p>
-        </div>
-        <div>
-          <p></p>
-        </div>
-
+    <p class="students">Студенты курса:</p>
+    <div class="table__head">
+      <div>
+        <p>Фамилия</p>
       </div>
-      <StudentRow
-          v-for="(student, index) in students"
-          :data="student"
-          :key="index"
-      />
+      <div>
+        <p>Имя</p>
+      </div>
+      <div>
+        <p>Email</p>
+      </div>
+    </div>
+    <StudentRow
+      v-for="(student, index) in students"
+      :data="student"
+      :key="index"
+    />
   </div>
 </template>
 
@@ -33,11 +29,11 @@ export default {
   props: ["courseId"],
   components: {
     Modules,
-    StudentRow
+    StudentRow,
   },
   data() {
     return {
-      students: []
+      students: [],
     };
   },
 
@@ -46,43 +42,30 @@ export default {
   },
 
   methods: {
-    getStudents(){
+    getStudents() {
       StudentsAPI.getCourseStudents(this.courseId)
-          .then(response => {
-            this.students = response.data;
-          })
-          .catch((e) => {
-            console.log(e);
-          })
-      }
-    }
+        .then((response) => {
+          this.students = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+  },
 };
 </script>
 
 <style scoped lang="scss">
-.table__inputs {
-  border: 1px solid rgb(221, 221, 221);
-
-  input {
-    height: 34px;
-    width: 20%;
-    border-right: 1px solid rgb(221, 221, 221);
-    padding-left: 10px;
-    &:last-child {
-      border-right: none;
-    }
-    &:focus {
-      outline: none;
-    }
-  }
+.students {
+  font-size: 1.2em;
+  margin-bottom: 20px;
 }
-
 .table__head {
   display: flex;
   background-color: rgb(221, 221, 221);
 
   div {
-    width: calc(100%/3);
+    width: calc(100% / 3);
     border-right: 1px solid #fff;
 
     &:last-child {

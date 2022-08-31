@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="edit__course">
     <a-row>
       <a-col>
         <a-form-model-item label="Название">
@@ -9,26 +9,34 @@
           <a-textarea rows="4" v-model="course.description" />
         </a-form-model-item>
         <a-form-model-item label="Основная картинка">
-          <input type="file"
-                 id="file"
-                 ref="file"
-                 v-on:change="handleFileUpload()" />
-          <img :src="config.basicImageURL+course.image" alt="" width="100">
-          <p>Рекомендуемый размер картинки ширина: 656px, высота: 388px</p>
+          <input
+            type="file"
+            id="file"
+            ref="file"
+            v-on:change="handleFileUpload()"
+          />
+          <img :src="config.basicImageURL + course.image" alt="" width="100" />
+          <p class="image-info">
+            Рекомендуемый размер картинки ширина: 656px, высота: 388px
+          </p>
         </a-form-model-item>
         <a-form-model-item>
           <a-row type="flex" :gutter="24" class="bottom-buttons">
             <a-col :span="24" :lg="12" :md="24">
-              <a-button class="button" type="primary" @click="edit">Сохранить</a-button>
+              <a-button class="button" type="primary" @click="edit"
+                >Сохранить</a-button
+              >
             </a-col>
             <a-col :span="24" :lg="12" :md="24">
-              <a-button class="button" type="danger" @click="deleteCourse">Удалить</a-button>
+              <a-button class="button" type="danger" @click="deleteCourse"
+                >Удалить</a-button
+              >
             </a-col>
           </a-row>
         </a-form-model-item>
       </a-col>
     </a-row>
-    <p>Вложенные модули:</p>
+    <p class="modules-inc">Вложенные модули:</p>
     <Modules :courseId="courseId" :data="modules"></Modules>
   </div>
 </template>
@@ -48,11 +56,11 @@ export default {
     return {
       course: {
         name: null,
-        description: null
+        description: null,
       },
       config: config,
       modules: [],
-      file: null
+      file: null,
     };
   },
 
@@ -63,51 +71,49 @@ export default {
   methods: {
     getCourse: function() {
       CoursesAPI.get(this.courseId)
-          .then(response => {
-            console.log(response);
-            this.course = response.data;
-          })
-          .catch((e) => {
-            console.log(e);
-          })
+        .then((response) => {
+          console.log(response);
+          this.course = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
 
     async edit() {
-
       let formData = new FormData();
       formData.append("course_id", this.courseId);
       formData.append("name", this.course.name);
       formData.append("description", this.course.description);
 
-      if(this.file){
+      if (this.file) {
         formData.append("image", this.file);
       }
 
       await CoursesAPI.edit(formData)
-          .then(response => {
-            this.goTo('/courses/'+response.data.id);
-          })
-          .catch((e) => {
-            console.log(e);
-          })
-
+        .then((response) => {
+          this.goTo("/courses/" + response.data.id);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
-    async deleteCourse(){
-      let axiosRes = null
+    async deleteCourse() {
+      let axiosRes = null;
 
       await CoursesAPI.delete(this.courseId)
-          .then(response => {
-            axiosRes = response;
-          })
-          .catch((e) => {
-            console.log(e);
-          })
+        .then((response) => {
+          axiosRes = response;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
 
       console.log(axiosRes);
 
-      if(axiosRes.status === 204){
-        console.log(123321321)
-        this.goTo('/courses/');
+      if (axiosRes.status === 204) {
+        console.log(123321321);
+        this.goTo("/courses/");
       }
     },
     handleFileUpload() {
@@ -118,9 +124,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.course-info {
-  margin: 10px 0;
-
+.edit__course {
   .name {
     margin-bottom: 20px;
     color: black;
@@ -129,11 +133,20 @@ export default {
   }
 }
 
+.image-info {
+  font-size: 0.8em;
+}
+
 .bottom-buttons {
   width: 100%;
 
   .button {
     width: 100%;
+    color: #fff;
   }
+}
+
+.modules-inc {
+  font-size: 1.2em;
 }
 </style>

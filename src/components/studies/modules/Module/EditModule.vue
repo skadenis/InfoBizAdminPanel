@@ -9,27 +9,35 @@
           <a-textarea rows="4" v-model="module.description" />
         </a-form-model-item>
         <a-form-model-item label="Основная картинка">
-          <input type="file"
-                 id="file"
-                 ref="file"
-                 v-on:change="handleFileUpload()" />
-          <img :src="config.basicImageURL+module.image" alt="" width="100">
+          <input
+            type="file"
+            id="file"
+            ref="file"
+            v-on:change="handleFileUpload()"
+          />
+          <img :src="config.basicImageURL + module.image" alt="" width="100" />
 
-          <p>Рекомендуемый размер картинки ширина: 656px, высота: 388px</p>
+          <p class="file-info">
+            Рекомендуемый размер картинки ширина: 656px, высота: 388px
+          </p>
         </a-form-model-item>
         <a-form-model-item>
           <a-row type="flex" :gutter="24" class="bottom-buttons">
             <a-col :span="24" :lg="12" :md="24">
-              <a-button class="button" type="primary" @click="edit">Сохранить</a-button>
+              <a-button class="button" type="primary" @click="edit"
+                >Сохранить</a-button
+              >
             </a-col>
             <a-col :span="24" :lg="12" :md="24">
-              <a-button class="button" type="danger" @click="deleteModule">Удалить</a-button>
+              <a-button class="button" type="danger" @click="deleteModule"
+                >Удалить</a-button
+              >
             </a-col>
           </a-row>
         </a-form-model-item>
       </a-col>
     </a-row>
-    <p>Вложенные уроки:</p>
+    <p class="lessons-inc">Вложенные уроки:</p>
     <Lessons
       v-bind:courseId="courseId"
       v-bind:moduleId="moduleId"
@@ -52,10 +60,10 @@ export default {
     return {
       module: {
         name: null,
-        description: null
+        description: null,
       },
       file: undefined,
-      config: config
+      config: config,
     };
   },
 
@@ -66,46 +74,46 @@ export default {
   methods: {
     getModule: function() {
       ModulesAPI.get(this.moduleId)
-          .then(response => {
-            this.module = response.data;
-          })
-          .catch((e) => {
-            console.log(e);
-          })
+        .then((response) => {
+          this.module = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
-    async edit(){
+    async edit() {
       let formData = new FormData();
       formData.append("course", this.courseId);
-      formData.append('module', this.moduleId)
+      formData.append("module", this.moduleId);
       formData.append("name", this.module.name);
       formData.append("description", this.module.description);
 
-      if(this.file){
+      if (this.file) {
         formData.append("image", this.file);
       }
 
       await ModulesAPI.edit(formData)
-          .then(response => {
-            this.module = response.data;
-            this.file = null
-          })
-          .catch((e) => {
-            console.log(e);
-          })
+        .then((response) => {
+          this.module = response.data;
+          this.file = null;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
-    async deleteModule(){
-      let axiosRes = null
+    async deleteModule() {
+      let axiosRes = null;
 
       await ModulesAPI.delete(this.moduleId)
-          .then(response => {
-             axiosRes = response
-          })
-          .catch((e) => {
-            console.log(e);
-          })
+        .then((response) => {
+          axiosRes = response;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
       console.log(axiosRes);
-      if(axiosRes.status === 204){
-        this.goTo('/courses/'+this.courseId);
+      if (axiosRes.status === 204) {
+        this.goTo("/courses/" + this.courseId);
       }
     },
     handleFileUpload() {
@@ -132,6 +140,14 @@ export default {
 
   .button {
     width: 100%;
+    color: #fff;
   }
+}
+.lessons-inc {
+  font-size: 1.2em;
+}
+
+.file-info {
+  font-size: 0.8em;
 }
 </style>

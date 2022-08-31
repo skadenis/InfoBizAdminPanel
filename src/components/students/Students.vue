@@ -10,12 +10,6 @@
       <div>
         <p>Курс</p>
       </div>
-      <div>
-        <p></p>
-      </div>
-      <div>
-        <p></p>
-      </div>
     </div>
     <Student
       v-for="(student, sIndex) in students"
@@ -26,7 +20,6 @@
 </template>
 
 <script>
-
 import Student from "./Student/Student";
 import StudentsAPI from "../../../api/StudentsAPI";
 
@@ -47,12 +40,12 @@ export default {
   methods: {
     getStudents: function() {
       StudentsAPI.get_all()
-          .then(response => {
-            this.students = response.data;
-          })
-          .catch((e) => {
-            console.log(e);
-          })
+        .then((response) => {
+          this.students = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
   },
 };
@@ -64,7 +57,7 @@ export default {
   background-color: rgb(221, 221, 221);
 
   div {
-    width: 20%;
+    width: calc(100% / 3);
     border-right: 1px solid #fff;
 
     &:last-child {

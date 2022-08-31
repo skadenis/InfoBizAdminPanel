@@ -10,9 +10,6 @@
       <div>
         <p>{{ data.email }}</p>
       </div>
-      <div>
-        <p></p>
-      </div>
     </div>
   </div>
 </template>
@@ -49,7 +46,7 @@ export default {
   }
 
   div {
-    width: 20%;
+    width: calc(100% / 3);
     border-right: 1px solid rgb(221, 221, 221);
 
     &:last-child {

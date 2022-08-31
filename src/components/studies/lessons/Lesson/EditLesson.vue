@@ -2,6 +2,7 @@
   <div>
     <a-row>
       <a-col>
+        Статус загрузки {{ uploadPercentage }} из 100
         <a-form-model-item label="Название">
           <a-input v-model="lesson.name" />
         </a-form-model-item>
@@ -125,6 +126,7 @@ import LessonsAPI from "../../../../../api/LessonsAPI";
 import config from "@/config";
 import TimingRow from "@/components/studies/lessons/Lesson/TimingRow";
 import FileRow from "@/components/studies/lessons/Lesson/FileRow";
+import axios from "axios";
 
 export default {
   props: ["courseId", "moduleId", "lessonId"],
@@ -147,7 +149,8 @@ export default {
         video: null,
         files: []
       },
-      config: config
+      config: config,
+      uploadPercentage: 0
     };
   },
 
@@ -214,14 +217,38 @@ export default {
       let resultAxios = {};
 
 
-      await LessonsAPI.edit(formData)
-          .then(response => {
-            this.$root.$emit("createAlertGood");
-            resultAxios = response
-          })
-          .catch((e) => {
-            console.log(e);
-          })
+     // await axios.put("", formData, {
+     //   headers: { Authorization: `Token ${Cookies.token}`, "Content-Type": "multipart/form-data" },
+     //   onUploadProgress: function(progressEvent) {
+     //    console.log(progressEvent);
+     //   }.bind(this)
+     // });
+
+     axios.post( 'https://blogersbackend.gastrosoft.by/course/lesson/',
+         formData,
+         {
+           headers: {
+             'Content-Type': 'multipart/form-data'
+           },
+           onUploadProgress: function( progressEvent ) {
+             this.$root.$emit("createAlertGood");
+             this.uploadPercentage = parseInt( Math.round( ( progressEvent.loaded / progressEvent.total ) * 100 ) );
+           }.bind(this)
+         }
+     ).then(function(){
+       console.log('SUCCESS!!');
+     })
+         .catch(function(){
+           console.log('FAILURE!!');
+         });
+
+      // await LessonsAPI.edit(formData)
+      //     .then(response => {
+      //       resultAxios = response
+      //     })
+      //     .catch((e) => {
+      //       console.log(e);
+      //     })
     },
     deleteLesson(){
 

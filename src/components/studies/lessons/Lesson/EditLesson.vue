@@ -127,6 +127,7 @@ import config from "@/config";
 import TimingRow from "@/components/studies/lessons/Lesson/TimingRow";
 import FileRow from "@/components/studies/lessons/Lesson/FileRow";
 import axios from "axios";
+import Cookie from "js-cookie";
 
 export default {
   props: ["courseId", "moduleId", "lessonId"],
@@ -224,12 +225,12 @@ export default {
      //   }.bind(this)
      // });
 
+     let Cookies = Cookie.get();
+
      axios.put( 'https://blogersbackend.gastrosoft.by/course/lesson/',
          formData,
          {
-           headers: {
-             'Content-Type': 'multipart/form-data'
-           },
+           headers: { Authorization: `Token ${Cookies.token}`, "Content-Type": "multipart/form-data" },
            onUploadProgress: function( progressEvent ) {
              this.uploadPercentage = parseInt( Math.round( ( progressEvent.loaded / progressEvent.total ) * 1000 ) );
            }.bind(this)

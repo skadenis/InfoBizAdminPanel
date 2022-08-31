@@ -24,32 +24,31 @@ export default {
       courses: null,
     };
   },
-  created: function () {
+  created: function() {
     this.getCourses();
   },
 
   methods: {
     getCourses: function() {
       CoursesAPI.get_all()
-          .then(response => {
-            this.courses = response.data;
-          })
-          .catch((e) => {
-            console.log(e);
-          })
+        .then((response) => {
+          this.courses = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
     add_course: function() {
       this.goTo("/courses/add");
-    }
+    },
   },
 };
 </script>
 
 <style scoped lang="scss">
-
-
 .add__courses-btn {
   width: 20%;
+  min-width: 105px;
   margin: 20px 0;
   background-color: #1890ff;
   color: #fff;

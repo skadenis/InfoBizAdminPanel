@@ -75,6 +75,7 @@ export default {
 
 .add__students-btn {
   width: 20%;
+  min-width: 105px;
   margin: 20px 0;
   background-color: #1890ff;
   color: #fff;

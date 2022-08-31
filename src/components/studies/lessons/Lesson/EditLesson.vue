@@ -8,7 +8,7 @@
         </a-form-model-item>
 
         <a-form-model-item label="Краткое описание">
-          <a-textarea rows="4" v-model="lesson.text" />
+          <a-textarea rows="4" v-model="lesson.shortText" />
         </a-form-model-item>
         <a-form-model-item label="Текст">
           <a-textarea rows="4" v-model="lesson.text" />

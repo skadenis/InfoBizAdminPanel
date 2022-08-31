@@ -39,7 +39,7 @@
           <br>
 
 
-          <video autoplay="autoplay" controls="controls" :src="config.basicVideoURL+this.lesson.video" type="video/mp4;" width="400" height="300" >
+          <video autoplay="autoplay" controls="controls" :src="config.basicVideoURL+this.lesson.video"  width="400" height="300" >
           </video>
 
           <p class="file-info">Рекомендуемый размер</p>

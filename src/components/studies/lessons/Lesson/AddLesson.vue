@@ -195,7 +195,10 @@ export default {
 
     },
     addTiming(){
-      this.lesson.timer_set.push(1);
+      this.lesson.timer_set.push({
+        time: "00:00:00",
+        text: ""
+      });
     }
   }
 }

@@ -34,12 +34,12 @@ export default {
   methods: {
     getLessons: function() {
       ModulesAPI.getModuleLesson(this.moduleId)
-          .then(response => {
-            this.lessons = response.data;
-          })
-          .catch((e) => {
-            console.log(e);
-          })
+        .then((response) => {
+          this.lessons = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
     goTo: function(data) {
       this.$router.push(data);
@@ -60,7 +60,6 @@ export default {
 <style scoped lang="scss">
 .add__lessons-btn {
   width: 20%;
-  margin: 20px 0;
   background-color: #1890ff;
   color: #fff;
   padding: 16px;

@@ -137,6 +137,7 @@ export default {
 
 .bottom-buttons {
   width: 100%;
+  margin-bottom: 20px;
 
   .button {
     width: 100%;
@@ -144,7 +145,8 @@ export default {
   }
 }
 .lessons-inc {
-  font-size: 1.2em;
+  color: #000;
+  font-weight: 700;
 }
 
 .file-info {

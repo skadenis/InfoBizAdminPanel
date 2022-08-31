@@ -12,7 +12,7 @@
     </a-form-model-item>
 
     <br /><br />
-    <p class="course-inc">Курсы студента</p>
+    <p class="course-inc">Курсы студента:</p>
 
     <div>
       Какая то таблица
@@ -100,7 +100,8 @@ export default {
 }
 
 .course-inc {
-  font-size: 1.2em;
+  font-weight: 700;
+  color: black;
   margin-bottom: 15px;
 }
 

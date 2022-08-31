@@ -17,7 +17,7 @@ import Module from "./Module/Module.vue";
 import CoursesAPI from "../../../../api/CoursesAPI";
 
 export default {
-  props: [ "courseId"],
+  props: ["courseId"],
   components: {
     Module,
   },
@@ -33,12 +33,12 @@ export default {
   methods: {
     getModules: function() {
       CoursesAPI.get_course_modules(this.courseId)
-          .then(response => {
-            this.modules = response.data;
-          })
-          .catch((e) => {
-            console.log(e);
-          })
+        .then((response) => {
+          this.modules = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
     goTo: function(data) {
       this.$router.push(data);
@@ -53,7 +53,6 @@ export default {
 <style scoped lang="scss">
 .add__modules-btn {
   width: 20%;
-  margin: 20px 0;
   background-color: #1890ff;
   color: #fff;
   padding: 16px;

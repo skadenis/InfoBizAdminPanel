@@ -16,7 +16,7 @@
             v-on:change="handleFileUpload()"
           />
           <img :src="config.basicImageURL + course.image" alt="" width="100" />
-          <p class="image-info">
+          <p class="file-info">
             Рекомендуемый размер картинки ширина: 656px, высота: 388px
           </p>
         </a-form-model-item>
@@ -133,12 +133,13 @@ export default {
   }
 }
 
-.image-info {
+.file-info {
   font-size: 0.8em;
 }
 
 .bottom-buttons {
   width: 100%;
+  margin-bottom: 20px;
 
   .button {
     width: 100%;
@@ -147,6 +148,7 @@ export default {
 }
 
 .modules-inc {
-  font-size: 1.2em;
+  color: #000;
+  font-weight: 700;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="students">Студенты курса:</p>
+    <p class="students-inc">Студенты курса:</p>
     <div class="table__head">
       <div>
         <p>Фамилия</p>
@@ -56,8 +56,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.students {
-  font-size: 1.2em;
+.students-inc {
+  color: #000;
+  font-weight: 700;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 .table__head {

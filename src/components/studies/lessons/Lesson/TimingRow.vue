@@ -1,11 +1,15 @@
 <template>
   <div>
-    <div class="timing" @click="">
+    <div class="timing">
       <div>
         <a-input class="timing-input" v-model="data.time"></a-input>
       </div>
       <div>
-        <a-textarea class="timing-input" v-model="data.text"></a-textarea>
+        <a-textarea
+          rows="4"
+          class="timing-input"
+          v-model="data.text"
+        ></a-textarea>
       </div>
       <div>
         <a-button class="button" type="danger">Удалить</a-button>

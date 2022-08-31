@@ -224,7 +224,7 @@ export default {
      //   }.bind(this)
      // });
 
-     axios.post( 'https://blogersbackend.gastrosoft.by/course/lesson/',
+     axios.put( 'https://blogersbackend.gastrosoft.by/course/lesson/',
          formData,
          {
            headers: {

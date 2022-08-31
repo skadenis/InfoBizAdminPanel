@@ -2,7 +2,7 @@
   <div>
     <a-row>
       <a-col>
-        Статус загрузки {{ uploadPercentage }} из 100
+        Статус загрузки {{ uploadPercentage }} из 1000
         <a-form-model-item label="Название">
           <a-input v-model="lesson.name" />
         </a-form-model-item>
@@ -232,7 +232,7 @@ export default {
            },
            onUploadProgress: function( progressEvent ) {
              this.$root.$emit("createAlertGood");
-             this.uploadPercentage = parseInt( Math.round( ( progressEvent.loaded / progressEvent.total ) * 100 ) );
+             this.uploadPercentage = parseInt( Math.round( ( progressEvent.loaded / progressEvent.total ) * 1000 ) );
            }.bind(this)
          }
      ).then(function(){

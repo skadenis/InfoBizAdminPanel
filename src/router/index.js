@@ -111,7 +111,7 @@ let routes = [
     component: EditStudent,
     meta: {
       layoutClass: "Student",
-      name: "Студент",
+      name: "Редактировать профиль студента",
     },
   },
   {
@@ -183,7 +183,7 @@ let routes = [
     component: EditCourse,
     meta: {
       layoutClass: "Course",
-      name: "Курс",
+      name: "Редактировать курс",
     },
   },
   {
@@ -201,7 +201,7 @@ let routes = [
     component: EditModule,
     meta: {
       layoutClass: "Module",
-      name: "Модуль",
+      name: "Редактировать модуль",
     },
   },
   {
@@ -219,7 +219,7 @@ let routes = [
     component: EditLesson,
     meta: {
       layoutClass: "Lesson",
-      name: "Урок",
+      name: "Редактировать урок",
     },
   },
 ];

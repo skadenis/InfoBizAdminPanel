@@ -147,6 +147,7 @@ export default {
 .lessons-inc {
   color: #000;
   font-weight: 700;
+  margin-bottom: 15px;
 }
 
 .file-info {

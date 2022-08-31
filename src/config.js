@@ -11,8 +11,8 @@ module.exports = {
             27.607427
         ]
     },
-    basicImageURL: '//176.113.83.169:8000',
-    basicVideoURL: '//176.113.83.169:8000',
+    basicImageURL: 'https://blogersbackend.gastrosoft.by',
+    basicVideoURL: 'https://blogersbackend.gastrosoft.by',
     currency: {
         locales: 'BY',
         style: 'currency',

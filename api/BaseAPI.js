@@ -6,7 +6,7 @@ export default class BaseApi {
     let Cookies = Cookie.get();
 
     this.axios = axios.create({
-      baseURL: "//176.113.83.169:8000",
+      baseURL: "https://blogersbackend.gastrosoft.by",
       headers: { Authorization: `Token ${Cookies.token}` },
       // headers: {
         // Authorization: `Token 227e0cf17204b43171c5ae54abcb54e7a3bdb330`,
@@ -14,7 +14,7 @@ export default class BaseApi {
     });
 
     this.axiosNoAUTH = axios.create({
-      baseURL: "//176.113.83.169:8000",
+      baseURL: "https://blogersbackend.gastrosoft.by",
       headers: {},
       // headers: {
       // Authorization: `Token 227e0cf17204b43171c5ae54abcb54e7a3bdb330`,
@@ -22,7 +22,7 @@ export default class BaseApi {
     });
 
     this.axiosMultyPart = axios.create({
-      baseURL: "//176.113.83.169:8000",
+      baseURL: "https://blogersbackend.gastrosoft.by",
       headers: { Authorization: `Token ${Cookies.token}`, "Content-Type": "multipart/form-data" },
       // headers: {
       //   'Authorization': 'Token 227e0cf17204b43171c5ae54abcb54e7a3bdb330',

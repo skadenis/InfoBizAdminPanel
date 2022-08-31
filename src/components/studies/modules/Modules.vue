@@ -53,6 +53,7 @@ export default {
 <style scoped lang="scss">
 .add__modules-btn {
   width: 20%;
+  min-width: 105px;
   background-color: #1890ff;
   color: #fff;
   padding: 16px;

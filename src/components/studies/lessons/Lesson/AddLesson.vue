@@ -132,7 +132,7 @@ export default {
       files:{
         image: null,
         video: null,
-        files: null
+        files: []
       }
     }
   },

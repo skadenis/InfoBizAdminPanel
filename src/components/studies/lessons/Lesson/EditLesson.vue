@@ -5,11 +5,15 @@
         <a-form-model-item label="Название">
           <a-input v-model="lesson.name" />
         </a-form-model-item>
-        <a-form-model-item label="Тема урока">
-          <a-input v-model="lesson.question" />
+
+        <a-form-model-item label="Краткое описание">
+          <a-textarea rows="4" v-model="lesson.text" />
         </a-form-model-item>
-        <a-form-model-item label="Описание">
-          <a-textarea rows="4" v-model="lesson.description" />
+        <a-form-model-item label="Текст">
+          <a-textarea rows="4" v-model="lesson.text" />
+        </a-form-model-item>
+        <a-form-model-item label="Задание">
+          <a-textarea rows="4" v-model="lesson.question" />
         </a-form-model-item>
         <a-form-model-item label="Основная картинка">
           <input
@@ -18,6 +22,7 @@
             ref="file"
             v-on:change="handleImageUpload()"
           />
+          <img :src="config.basicImageURL+this.lesson.image" alt="" width="100">
           <p class="file-info">
             Рекомендуемый размер картинки ширина: 656px, высота: 388px
           </p>
@@ -30,6 +35,12 @@
             ref="video"
             v-on:change="handleVideoUpload()"
           />
+          <br>
+
+
+          <video autoplay="autoplay" controls="controls" :src="config.basicVideoURL+this.lesson.video" type="video/mp4;" width="400" height="300" >
+          </video>
+
           <p class="file-info">Рекомендуемый размер</p>
         </a-form-model-item>
 
@@ -58,6 +69,26 @@
         </a-form-model-item>
 
         <a-form-model-item label="Дополнительные материалы">
+          <div class="table__head">
+            <div>
+              <p>Файл</p>
+            </div>
+            <div>
+              <p>2</p>
+            </div>
+            <div>
+              <p>3</p>
+            </div>
+           </div>
+          <FileRow
+              v-for="(timing, index) in lesson.lessonfiles_set"
+              :data="timing"
+              :index="index"
+              :key="index"
+          />
+          <br>
+
+
           <input
             type="file"
             id="homework"
@@ -68,11 +99,18 @@
           <p class="file-info">Формат PDF</p>
         </a-form-model-item>
 
+
+
         <a-form-model-item>
           <a-row type="flex" :gutter="24" class="bottom-buttons">
-            <a-col :span="24" :lg="24" :md="24">
-              <a-button class="button" type="primary" @click="add"
-                >Добавить урок</a-button
+            <a-col :span="24" :lg="12" :md="24">
+              <a-button class="button" type="primary" @click="edit"
+              >Сохранить</a-button
+              >
+            </a-col>
+            <a-col :span="24" :lg="12" :md="24">
+              <a-button class="button" type="danger" @click="deleteLesson"
+              >Удалить</a-button
               >
             </a-col>
           </a-row>
@@ -86,16 +124,30 @@
 import LessonsAPI from "../../../../../api/LessonsAPI";
 import config from "@/config";
 import TimingRow from "@/components/studies/lessons/Lesson/TimingRow";
+import FileRow from "@/components/studies/lessons/Lesson/FileRow";
 
 export default {
   props: ["courseId", "moduleId", "lessonId"],
-  components: {
+  components:{
     TimingRow,
+    FileRow
   },
   data() {
     return {
-      lesson: null,
-      config: config,
+      lesson: {
+        name: null,
+        text: null,
+        question: null,
+        timer_set: [],
+        lessonfiles_set: []
+      },
+
+      files:{
+        image: null,
+        video: null,
+        files: []
+      },
+      config: config
     };
   },
 
@@ -113,16 +165,67 @@ export default {
     handleFilesUpload() {
       this.files.files = this.$refs.homework.files;
     },
-    addTiming() {},
+    addTiming(){
+      this.lesson.timer_set.push({
+        id: null,
+        time: "00:00:00",
+        text: ""
+      });
+    },
     getLesson: function() {
       LessonsAPI.get(this.lessonId)
-        .then((response) => {
-          this.lesson = response.data;
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+          .then(response => {
+            this.lesson = response.data;
+          })
+          .catch((e) => {
+            console.log(e);
+          })
     },
+   async edit(){
+      let formData = new FormData();
+
+     formData.append("lesson", this.lessonId);
+      formData.append("name", this.lesson.name);
+      formData.append("course", this.courseId);
+      formData.append("module", this.moduleId);
+      formData.append("text", this.lesson.text);
+      formData.append("question", this.lesson.question);
+
+      if(this.files.image !== null){
+        formData.append("image", this.files.image);
+      }
+
+      if(this.files.video !== null){
+        formData.append("video", this.files.video);
+      }
+
+      if(this.files.files.length > 0){
+        this.files.files.forEach( (file) => {
+          formData.append("lesson_file", file);
+        });
+      }
+
+      if(this.lesson.timer_set){
+        this.lesson.timer_set.forEach( (timer) => {
+          formData.append("timer", timer.time + ' '+timer.text);
+        });
+      }
+
+      let resultAxios = {};
+
+
+      await LessonsAPI.edit(formData)
+          .then(response => {
+            this.$root.$emit("createAlertGood");
+            resultAxios = response
+          })
+          .catch((e) => {
+            console.log(e);
+          })
+    },
+    deleteLesson(){
+
+    }
   },
 };
 </script>
@@ -170,6 +273,7 @@ export default {
   height: 34px;
 
   div {
+    width: calc(100%/3);
     border-right: 1px solid #fff;
 
     &:first-child {

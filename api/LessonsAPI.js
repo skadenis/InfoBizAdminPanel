@@ -6,7 +6,7 @@ class LessonsAPI extends BaseAPI {
   }
 
   edit(data) {
-    return this.axios.post("/courses/modules/lessons/edit", data);
+    return this.axiosMultyPart.put("/course/lesson/", data);
   }
 
   add(data) {

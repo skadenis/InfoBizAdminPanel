@@ -38,7 +38,7 @@
           <router-view />
         </a-layout-content>
         <!-- / Page Content -->
-        <!-- <operation></operation> -->
+         <operation></operation>
 
         <!-- Layout Footer -->
         <DashboardFooter></DashboardFooter>
@@ -63,7 +63,7 @@ import DashboardSidebar from "../components/Sidebars/DashboardSidebar";
 import DashboardHeader from "../components/Headers/DashboardHeader";
 import DashboardFooter from "../components/Footers/Footer";
 import { mapActions, mapGetters } from "vuex";
-// import operation from "../components/elements/success_operation";
+import operation from "../components/elements/success_operation";
 import Cookie from "js-cookie";
 
 export default {
@@ -71,7 +71,7 @@ export default {
     DashboardSidebar,
     DashboardHeader,
     DashboardFooter,
-    // operation,
+    operation,
   },
   data() {
     return {
@@ -93,7 +93,6 @@ export default {
   },
   beforeCreate() {
     let Cookies = Cookie.get();
-    console.log(Cookies.token);
     if (Cookies.token === undefined) {
       this.$store.commit("User/EXIT_USER");
     }

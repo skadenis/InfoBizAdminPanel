@@ -95,6 +95,7 @@ export default {
       await ModulesAPI.edit(formData)
         .then((response) => {
           this.module = response.data;
+          this.$root.$emit("createAlertGood");
           this.file = null;
         })
         .catch((e) => {
@@ -107,6 +108,7 @@ export default {
       await ModulesAPI.delete(this.moduleId)
         .then((response) => {
           axiosRes = response;
+          this.$root.$emit("createAlertGood");
         })
         .catch((e) => {
           console.log(e);

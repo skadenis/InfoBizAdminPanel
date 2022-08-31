@@ -18,7 +18,7 @@ class UsersAPI extends BaseAPI {
   }
 
   auth(data) {
-    return this.axios.post("/users/edit", data);
+    return this.axiosNoAUTH.post("/auth/token/login/", data);
   }
 }
 

@@ -72,7 +72,6 @@ export default {
     getCourse: function() {
       CoursesAPI.get(this.courseId)
         .then((response) => {
-          console.log(response);
           this.course = response.data;
         })
         .catch((e) => {
@@ -92,6 +91,7 @@ export default {
 
       await CoursesAPI.edit(formData)
         .then((response) => {
+          this.$root.$emit("createAlertGood");
           this.goTo("/courses/" + response.data.id);
         })
         .catch((e) => {
@@ -112,7 +112,7 @@ export default {
       console.log(axiosRes);
 
       if (axiosRes.status === 204) {
-        console.log(123321321);
+        this.$root.$emit("createAlertGood");
         this.goTo("/courses/");
       }
     },

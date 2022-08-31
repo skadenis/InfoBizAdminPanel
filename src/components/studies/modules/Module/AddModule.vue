@@ -61,6 +61,7 @@ export default {
 
       await ModulesAPI.add(formData)
         .then((response) => {
+          this.$root.$emit("createAlertGood");
           this.goTo(
             "/courses/" + this.courseId + "/modules/" + response.data.id
           );

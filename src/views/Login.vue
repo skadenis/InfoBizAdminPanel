@@ -106,8 +106,7 @@
 </template>
 
 <script>
-// import UserApi from "../../api/UserApi";
-// import BaseAPI from "../../api/BaseApi";
+import UsersApi from "../../api/UsersAPI";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
@@ -142,43 +141,27 @@ export default {
     }),
 
     makeAuth() {
-      // UserApi.authUser({
-      //   login: this.login,
-      //   password: this.password,
-      // })
-      //   .then((response) => {
-      //     response.status === 401 ? this.$store.commit("User/EXIT_USER") : null;
-      //     switch (response.data.status) {
-      //       case 404:
-      //         this.authStatus = 404;
-      //         this.authErrorText =
-      //           "Возможно вы ввели не верный логин или пароль";
-      //         break;
-      //       case 200:
-      //
-      //         break;
-      //       default:
-      //         this.authStatus = 404;
-      //         this.authErrorText =
-      //           "Возможно вы ввели не верный логин или пароль";
-      //         break;
-      //     }
-      //   })
-      //   .catch(() => {})
-      //   .finally(() => {
-      //     if (this.authStatus === null) {
-      //       UserApi.refreshData();
-      //     }
-      //   });
+      UsersApi.auth({
+        email: this.login,
+        password: this.password,
+        src:"teacher"
+      })
+        .then((response) => {
 
+          this.setAuthToken(response.data.auth_token);
+          this.authStatus = null;
+          this.authErrorText = null;
 
-      console.log(123321);
-
-      this.setAuthToken('csduhovhcsemcpsjpcouirhgseycmse');
-      this.authStatus = null;
-      this.authErrorText = null;
-      this.$router.push({ name: "home" });
-
+        })
+        .catch(() => {
+          this.authStatus = 401;
+          this.authErrorText = "Не верный логин или пароль";
+        })
+        .finally(() => {
+          if (this.authStatus === null) {
+            UsersApi.refreshData();
+          }
+        });
     },
     auth(e) {
       e.preventDefault();

@@ -21,12 +21,12 @@
     <div>
       <br /><br />
       <p class="course-inc">Добавить студента к курсу</p>
-      <a-select style="width: 100%" v-model:value="addForm">
+      <a-select style="width: 100%" :value="addForm">
         <a-select-option
           v-for="(course, index) in courses"
+          :key="index"
           :value="course.id"
-          >{{ course.name }}</a-select-option
-        >
+          >{{ course.name }}</a-select-option/>
       </a-select>
       <a-button class="button" type="primary" @click="addSudentToCourse"
         >Добавить в группу</a-button

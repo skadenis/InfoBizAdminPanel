@@ -5,18 +5,22 @@
         <a-form-model-item label="Название">
           <a-input v-model="lesson.name" />
         </a-form-model-item>
-        <a-form-model-item label="Тема урока">
-          <a-input v-model="lesson.question" />
+
+        <a-form-model-item label="Краткое описание">
+          <a-textarea rows="4" v-model="lesson.text" />
         </a-form-model-item>
-        <a-form-model-item label="Описание">
-          <a-textarea rows="4" v-model="lesson.description" />
+        <a-form-model-item label="Текст">
+          <a-textarea rows="4" v-model="lesson.text" />
+        </a-form-model-item>
+        <a-form-model-item label="Задание">
+          <a-textarea rows="4" v-model="lesson.question" />
         </a-form-model-item>
         <a-form-model-item label="Основная картинка">
           <input
-            type="file"
-            id="file"
-            ref="file"
-            v-on:change="handleImageUpload()"
+              type="file"
+              id="file"
+              ref="file"
+              v-on:change="handleImageUpload()"
           />
           <p class="file-info">
             Рекомендуемый размер картинки ширина: 656px, высота: 388px
@@ -25,11 +29,12 @@
 
         <a-form-model-item label="Видео">
           <input
-            type="file"
-            id="video"
-            ref="video"
-            v-on:change="handleVideoUpload()"
+              type="file"
+              id="video"
+              ref="video"
+              v-on:change="handleVideoUpload()"
           />
+
           <p class="file-info">Рекомендуемый размер</p>
         </a-form-model-item>
 
@@ -46,24 +51,44 @@
             </div>
           </div>
           <TimingRow
-            v-for="(timing, index) in lesson.timer_set"
-            :data="timing"
-            :key="index"
+              v-for="(timing, index) in lesson.timer_set"
+              :data="timing"
+              :key="index"
           />
           <br />
           <a-button class="button" type="primary" @click="addTiming"
-            >Добавить тайминг</a-button
+          >Добавить тайминг</a-button
           >
           <p class="file-info">Рекомендуемый размер</p>
         </a-form-model-item>
 
         <a-form-model-item label="Дополнительные материалы">
+          <div class="table__head">
+            <div>
+              <p>Файл</p>
+            </div>
+            <div>
+              <p>2</p>
+            </div>
+            <div>
+              <p>3</p>
+            </div>
+          </div>
+          <FileRow
+              v-for="(timing, index) in lesson.lessonfiles_set"
+              :data="timing"
+              :index="index"
+              :key="index"
+          />
+          <br>
+
+
           <input
-            type="file"
-            id="homework"
-            ref="homework"
-            multiple
-            v-on:change="handleFilesUpload()"
+              type="file"
+              id="homework"
+              ref="homework"
+              multiple
+              v-on:change="handleFilesUpload()"
           />
           <p class="file-info">Формат PDF</p>
         </a-form-model-item>
@@ -83,30 +108,33 @@
 </template>
 
 <script>
+
 import LessonsAPI from "../../../../../api/LessonsAPI";
-import TimingRow from "./TimingRow";
+import TimingRow from "./TimingRow"
+import FileRow from "./FileRow"
 
 export default {
-  props: ["courseId", "moduleId"],
-  components: {
+  props: ['courseId', 'moduleId'],
+  components:{
     TimingRow,
+    FileRow
   },
-  data() {
-    return {
+  data(){
+    return{
       lesson: {
         name: null,
         description: null,
         question: null,
-        timer_set: [1],
-        lessonfiles_set: [1, 2, 3, 4, 5],
+        timer_set: [],
+        lessonfiles_set: []
       },
 
-      files: {
+      files:{
         image: null,
         video: null,
-        files: null,
-      },
-    };
+        files: null
+      }
+    }
   },
   methods: {
     handleImageUpload() {
@@ -119,6 +147,7 @@ export default {
       this.files.files = this.$refs.homework.files;
     },
     async add() {
+
       let formData = new FormData();
 
       formData.append("name", this.lesson.name);
@@ -127,44 +156,49 @@ export default {
       formData.append("text", this.lesson.description);
       formData.append("question", this.lesson.question);
 
-      if (this.files.image) {
+      if(this.files.image !== null){
         formData.append("image", this.files.image);
       }
 
-      if (this.files.video) {
+      if(this.files.video !== null){
         formData.append("video", this.files.video);
       }
 
-      if (this.files.files.length > 0) {
-        alert(this.files.files.length);
+      if(this.files.files.length > 0){
+        this.files.files.forEach( (file) => {
+          formData.append("lesson_file", file);
+        });
+      }
+
+      if(this.lesson.timer_set){
+        this.lesson.timer_set.forEach( (timer) => {
+          formData.append("timer", timer.time + ' '+timer.text);
+        });
       }
 
       let resultAxios = {};
 
-      await LessonsAPI.add(formData)
-        .then((response) => {
-          resultAxios = response;
-        })
-        .catch((e) => {
-          console.log(e);
-        });
 
-      if (resultAxios.status === 200) {
-        this.goTo(
-          "/courses/" +
-            this.courseId +
-            "/modules/" +
-            this.moduleId +
-            "/lessons/" +
-            resultAxios.data.id
-        );
+      await LessonsAPI.add(formData)
+          .then(response => {
+            resultAxios = response
+          })
+          .catch((e) => {
+            console.log(e);
+          })
+
+
+      if(resultAxios.status === 200){
+        this.$root.$emit("createAlertGood");
+        this.goTo('/courses/'+this.courseId+'/modules/'+this.moduleId+'/lessons/'+resultAxios.data.id);
       }
+
     },
-    addTiming() {
+    addTiming(){
       this.lesson.timer_set.push(1);
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -176,12 +210,30 @@ export default {
   }
 }
 
+.table__inputs {
+  border: 1px solid rgb(221, 221, 221);
+
+  input {
+    height: 34px;
+    width: 20%;
+    border-right: 1px solid rgb(221, 221, 221);
+    padding-left: 10px;
+    &:last-child {
+      border-right: none;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
 .table__head {
   display: flex;
   background-color: rgb(221, 221, 221);
   height: 34px;
 
   div {
+    width: calc(100%/3);
     border-right: 1px solid #fff;
 
     &:first-child {
@@ -206,7 +258,6 @@ export default {
     text-align: center;
   }
 }
-
 .file-info {
   font-size: 0.8em;
 }

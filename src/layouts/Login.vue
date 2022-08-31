@@ -27,13 +27,28 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
   components: {},
   data() {
     return {};
   },
+  watch: {
+    getUserAuthStatus: {
+      handler(val) {
+        if(val === true){
+          this.$router.push({path: '/'});
+        }
+      },
+      immediate: true,
+    }
+  },
   computed: {
     // Sets layout's element's class based on route's meta data.
+    ...mapGetters({
+      getUserAuthStatus: "User/getUserAuthStatus",
+    }),
     layoutClass() {
       return this.$route.meta.layoutClass;
     },

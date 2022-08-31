@@ -1,14 +1,14 @@
 <template>
   <div>
-    <div class="student" @click="">
+    <div class="timing" @click="">
       <div>
-        <a-input v-model="data.time"></a-input>
+        <a-input class="timing-input" v-model="data.time"></a-input>
       </div>
       <div>
-        <a-textarea v-model="data.text"></a-textarea>
+        <a-textarea class="timing-input" v-model="data.text"></a-textarea>
       </div>
       <div>
-        <p><a-button class="button" type="danger">Удалить</a-button></p>
+        <a-button class="button" type="danger">Удалить</a-button>
       </div>
     </div>
   </div>
@@ -17,40 +17,45 @@
 <script>
 export default {
   props: ["data"],
-  methods: {
-
-  },
+  methods: {},
 };
 </script>
 
 <style scoped lang="scss">
-.student {
+.timing {
   display: flex;
   cursor: pointer;
   box-sizing: border-box;
   border: 1px solid rgb(221, 221, 221);
   margin: -1px 0;
 
-  &:hover {
-    background-color: rgb(223, 239, 255);
-  }
-
-  &:hover p {
-    color: #000;
-  }
-
   div {
-    width: calc(100%/3);
     border-right: 1px solid rgb(221, 221, 221);
-    line-height: 1.2;
+
+    &:first-child {
+      width: 20%;
+    }
+
+    &:nth-child(2) {
+      width: 60%;
+    }
 
     &:last-child {
+      width: 20%;
       border-right: none;
-    }
-
-    p {
-      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
+
+  &-input {
+    border: none;
+    height: 100%;
+  }
+}
+
+.button {
+  color: #fff;
 }
 </style>

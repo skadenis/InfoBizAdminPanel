@@ -50,6 +50,7 @@
             :data="timing"
             :key="index"
           />
+          <br />
           <a-button class="button" type="primary" @click="addTiming"
             >Добавить тайминг</a-button
           >
@@ -166,18 +167,28 @@ export default {
 .table__head {
   display: flex;
   background-color: rgb(221, 221, 221);
+  height: 34px;
 
   div {
-    width: calc(100% / 3);
     border-right: 1px solid #fff;
 
+    &:first-child {
+      width: 20%;
+    }
+
+    &:nth-child(2) {
+      width: 60%;
+    }
+
     &:last-child {
+      width: 20%;
       border-right: none;
     }
   }
 
   p {
     padding: 10px;
+    line-height: 14px;
     font-weight: 600;
     color: #000;
     text-align: center;

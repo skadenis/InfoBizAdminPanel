@@ -231,11 +231,11 @@ export default {
              'Content-Type': 'multipart/form-data'
            },
            onUploadProgress: function( progressEvent ) {
-             this.$root.$emit("createAlertGood");
              this.uploadPercentage = parseInt( Math.round( ( progressEvent.loaded / progressEvent.total ) * 1000 ) );
            }.bind(this)
          }
      ).then(function(){
+       this.$root.$emit("createAlertGood");
        console.log('SUCCESS!!');
      })
          .catch(function(){

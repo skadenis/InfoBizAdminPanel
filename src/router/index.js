@@ -25,6 +25,8 @@ import EditHomework from "../views/homework/Homework/EditHomework.vue";
 import Marketing from "../views/marketing/Marketing.vue";
 import PushNotifications from "../views/marketing/push-notifications/PushNotifications.vue";
 import SpecialOffers from "../views/marketing/special-offers/SpecialOffers.vue";
+import SpecialOfferAdd from "../views/marketing/special-offers/SpecialOfferAdd.vue"
+import SpecialOfferEdit from "../views/marketing/special-offers/SpecialOfferEdit.vue"
 
 import Users from "../views/users/Users.vue";
 
@@ -167,6 +169,24 @@ let routes = [
     meta: {
       layoutClass: "SpecialOffers",
       name: "Специальные предложения",
+    },
+  },
+  {
+    path: "/marketing/offers/add",
+    name: "SpecialOffer",
+    component: SpecialOfferAdd,
+    meta: {
+      layoutClass: "SpecialOffer",
+      name: "Добавление специального предложения",
+    },
+  },
+  {
+    path: "/marketing/offers/:id",
+    name: "SpecialOffer",
+    component: SpecialOfferEdit,
+    meta: {
+      layoutClass: "SpecialOffer",
+      name: "Редактирование специального предложения",
     },
   },
   {

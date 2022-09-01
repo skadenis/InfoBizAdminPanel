@@ -69,7 +69,7 @@
         </router-link>
       </a-menu-item>
       <a-menu-item>
-        <router-link to="/homework">
+        <router-link to="/homeworks">
           <span class="icon">
             <svg
               viewBox="64 64 896 896"

@@ -23,7 +23,11 @@
             ref="file"
             v-on:change="handleImageUpload()"
           />
-          <img :src="config.basicImageURL+this.lesson.image" alt="" width="100">
+          <img
+            :src="config.basicImageURL + this.lesson.image"
+            alt=""
+            width="100"
+          />
           <p class="file-info">
             Рекомендуемый размер картинки ширина: 656px, высота: 388px
           </p>
@@ -36,11 +40,15 @@
             ref="video"
             v-on:change="handleVideoUpload()"
           />
-          <br>
+          <br />
 
-
-          <video autoplay="autoplay" controls="controls" :src="config.basicVideoURL+this.lesson.video"  width="400" height="300" >
-          </video>
+          <video
+            autoplay="autoplay"
+            controls="controls"
+            :src="config.basicVideoURL + this.lesson.video"
+            width="400"
+            height="300"
+          ></video>
 
           <p class="file-info">Рекомендуемый размер</p>
         </a-form-model-item>
@@ -80,15 +88,14 @@
             <div>
               <p>3</p>
             </div>
-           </div>
+          </div>
           <FileRow
-              v-for="(timing, index) in lesson.lessonfiles_set"
-              :data="timing"
-              :index="index"
-              :key="index"
+            v-for="(timing, index) in lesson.lessonfiles_set"
+            :data="timing"
+            :index="index"
+            :key="index"
           />
-          <br>
-
+          <br />
 
           <input
             type="file"
@@ -100,18 +107,16 @@
           <p class="file-info">Формат PDF</p>
         </a-form-model-item>
 
-
-
         <a-form-model-item>
           <a-row type="flex" :gutter="24" class="bottom-buttons">
             <a-col :span="24" :lg="12" :md="24">
               <a-button class="button" type="primary" @click="edit"
-              >Сохранить</a-button
+                >Сохранить</a-button
               >
             </a-col>
             <a-col :span="24" :lg="12" :md="24">
               <a-button class="button" type="danger" @click="deleteLesson"
-              >Удалить</a-button
+                >Удалить</a-button
               >
             </a-col>
           </a-row>
@@ -131,9 +136,9 @@ import Cookie from "js-cookie";
 
 export default {
   props: ["courseId", "moduleId", "lessonId"],
-  components:{
+  components: {
     TimingRow,
-    FileRow
+    FileRow,
   },
   data() {
     return {
@@ -142,16 +147,16 @@ export default {
         text: null,
         question: null,
         timer_set: [],
-        lessonfiles_set: []
+        lessonfiles_set: [],
       },
 
-      files:{
+      files: {
         image: null,
         video: null,
-        files: []
+        files: [],
       },
       config: config,
-      uploadPercentage: 0
+      uploadPercentage: 0,
     };
   },
 
@@ -169,79 +174,82 @@ export default {
     handleFilesUpload() {
       this.files.files = this.$refs.homework.files;
     },
-    addTiming(){
+    addTiming() {
       this.lesson.timer_set.push({
         id: null,
         time: "00:00:00",
-        text: ""
+        text: "",
       });
     },
     getLesson: function() {
       LessonsAPI.get(this.lessonId)
-          .then(response => {
-            this.lesson = response.data;
-          })
-          .catch((e) => {
-            console.log(e);
-          })
+        .then((response) => {
+          this.lesson = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
-   async edit(){
+    async edit() {
       let formData = new FormData();
 
-     formData.append("lesson", this.lessonId);
+      formData.append("lesson", this.lessonId);
       formData.append("name", this.lesson.name);
       formData.append("course", this.courseId);
       formData.append("module", this.moduleId);
       formData.append("text", this.lesson.text);
       formData.append("question", this.lesson.question);
 
-      if(this.files.image !== null){
+      if (this.files.image !== null) {
         formData.append("image", this.files.image);
       }
 
-      if(this.files.video !== null){
+      if (this.files.video !== null) {
         formData.append("video", this.files.video);
       }
 
-      if(this.files.files.length > 0){
-        this.files.files.forEach( (file) => {
+      if (this.files.files.length > 0) {
+        this.files.files.forEach((file) => {
           formData.append("lesson_file", file);
         });
       }
 
-      if(this.lesson.timer_set){
-        this.lesson.timer_set.forEach( (timer) => {
-          formData.append("timer", timer.time + ' '+timer.text);
+      if (this.lesson.timer_set) {
+        this.lesson.timer_set.forEach((timer) => {
+          formData.append("timer", timer.time + " " + timer.text);
         });
       }
 
       let resultAxios = {};
 
+      // await axios.put("", formData, {
+      //   headers: { Authorization: `Token ${Cookies.token}`, "Content-Type": "multipart/form-data" },
+      //   onUploadProgress: function(progressEvent) {
+      //    console.log(progressEvent);
+      //   }.bind(this)
+      // });
 
-     // await axios.put("", formData, {
-     //   headers: { Authorization: `Token ${Cookies.token}`, "Content-Type": "multipart/form-data" },
-     //   onUploadProgress: function(progressEvent) {
-     //    console.log(progressEvent);
-     //   }.bind(this)
-     // });
+      let Cookies = Cookie.get();
 
-     let Cookies = Cookie.get();
-
-     axios.put( 'https://blogersbackend.gastrosoft.by/course/lesson/',
-         formData,
-         {
-           headers: { Authorization: `Token ${Cookies.token}`, "Content-Type": "multipart/form-data" },
-           onUploadProgress: function( progressEvent ) {
-             this.uploadPercentage = parseInt( Math.round( ( progressEvent.loaded / progressEvent.total ) * 1000 ) );
-           }.bind(this)
-         }
-     ).then(function(){
-       this.$root.$emit("createAlertGood");
-       console.log('SUCCESS!!');
-     })
-         .catch(function(){
-           console.log('FAILURE!!');
-         });
+      axios
+        .put("https://blogersbackend.gastrosoft.by/course/lesson/", formData, {
+          headers: {
+            Authorization: `Token ${Cookies.token}`,
+            "Content-Type": "multipart/form-data",
+          },
+          onUploadProgress: function(progressEvent) {
+            this.uploadPercentage = parseInt(
+              Math.round((progressEvent.loaded / progressEvent.total) * 1000)
+            );
+          }.bind(this),
+        })
+        .then(function() {
+          this.$root.$emit("createAlertGood");
+          console.log("SUCCESS!!");
+        })
+        .catch(function() {
+          console.log("FAILURE!!");
+        });
 
       // await LessonsAPI.edit(formData)
       //     .then(response => {
@@ -251,9 +259,7 @@ export default {
       //       console.log(e);
       //     })
     },
-    deleteLesson(){
-
-    }
+    deleteLesson() {},
   },
 };
 </script>
@@ -275,6 +281,7 @@ export default {
 
   .button {
     width: 100%;
+    color: #fff;
   }
 }
 
@@ -301,7 +308,6 @@ export default {
   height: 34px;
 
   div {
-    width: calc(100%/3);
     border-right: 1px solid #fff;
 
     &:first-child {

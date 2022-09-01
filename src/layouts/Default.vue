@@ -38,7 +38,7 @@
           <router-view />
         </a-layout-content>
         <!-- / Page Content -->
-         <operation></operation>
+        <operation></operation>
 
         <!-- Layout Footer -->
         <DashboardFooter></DashboardFooter>
@@ -111,12 +111,12 @@ export default {
   watch: {
     getUserAuthStatus: {
       handler(val) {
-        if(val === false){
-          this.$router.push({path: '/login'});
+        if (val === false) {
+          this.$router.push({ path: "/login" });
         }
       },
       immediate: true,
-    }
+    },
   },
   computed: {
     // Sets layout's element's class based on route's meta data.

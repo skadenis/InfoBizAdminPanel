@@ -19,7 +19,8 @@ import EditModule from "../views/studies/module/EditModule.vue";
 import AddLesson from "../views/studies/lesson/AddLesson.vue";
 import EditLesson from "../views/studies/lesson/EditLesson.vue";
 
-import Homework from "../views/homework/Homework.vue";
+import Homeworks from "../views/homework/Homeworks.vue";
+import EditHomework from "../views/homework/Homework/EditHomework.vue";
 
 import Marketing from "../views/marketing/Marketing.vue";
 import PushNotifications from "../views/marketing/push-notifications/PushNotifications.vue";
@@ -115,12 +116,21 @@ let routes = [
     },
   },
   {
-    path: "/homework",
+    path: "/homeworks",
+    name: "Homeworks",
+    component: Homeworks,
+    meta: {
+      layoutClass: "Homeworks",
+      name: "Домашние задания",
+    },
+  },
+  {
+    path: "/homeworks/:homeworkId",
     name: "Homework",
-    component: Homework,
+    component: EditHomework,
     meta: {
       layoutClass: "Homework",
-      name: "Домашнее задание",
+      name: "Редактировать домашнее задание",
     },
   },
   {

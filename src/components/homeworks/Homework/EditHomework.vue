@@ -1,16 +1,16 @@
 <template>
   <div>
     <a-form-model-item label="Название">
-      <a-input />
+      <a-input v-model="homework.name" />
     </a-form-model-item>
     <a-form-model-item label="Курс">
-      <a-input />
+      <a-input v-model="homework.course" />
     </a-form-model-item>
     <a-form-model-item label="Урок">
-      <a-input />
+      <a-input v-model="homework.lesson" />
     </a-form-model-item>
     <a-form-model-item label="Студент">
-      <a-input />
+      <a-input v-model="homework.student" />
     </a-form-model-item>
 
     <a-form-model-item label="Дополнительные материалы">
@@ -53,7 +53,9 @@ import HomeworkAPI from "../../../../api/HomeworkAPI";
 export default {
   props: ["homeworkId"],
   data() {
-    return {};
+    return {
+      homework: null,
+    };
   },
 
   mounted() {

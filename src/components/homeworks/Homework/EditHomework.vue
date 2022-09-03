@@ -93,7 +93,7 @@ export default {
         "homework_status": status
       })
           .then((response) => {
-            this.get();
+            this.getHomework();
           })
           .catch((e) => {
             console.log(e);

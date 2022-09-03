@@ -5,6 +5,9 @@
         <p>{{ hIndex+1 }}</p>
       </div>
       <div>
+        <p>{{ data.status | HomeworkStatus }}</p>
+      </div>
+      <div>
         <p>{{ data.study.course_name }}</p>
       </div>
       <div>

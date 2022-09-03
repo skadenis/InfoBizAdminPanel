@@ -18,6 +18,7 @@ import vuetify from "./plugins/vuetify";
 
 import FormatterMixin from "@/mixins/formatter";
 import DefaultMixin from "@/mixins/default";
+import HomeworkStatus from '@/filters/HomeworkStatus';
 
 import "./scss/app.scss";
 
@@ -37,6 +38,8 @@ Vue.use(VueGtm, {
 
 Vue.mixin(DefaultMixin);
 Vue.mixin(FormatterMixin);
+
+Vue.filter('HomeworkStatus', HomeworkStatus);
 
 // Vue.filter("formatDate", formatDate);
 // Vue.filter("trueFalse", trueFalse);

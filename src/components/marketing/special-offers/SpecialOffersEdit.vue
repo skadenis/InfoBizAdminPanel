@@ -10,12 +10,12 @@
 
     <a-form-model-item label="Картинка">
       <input
-          type="file"
-          id="file"
-          ref="file"
-          v-on:change="handleImageUpload()"
+        type="file"
+        id="file"
+        ref="file"
+        v-on:change="handleImageUpload()"
       />
-      <img :src="config.basicImageURL+this.offer.image" alt="" width="100">
+      <img :src="config.basicImageURL + this.offer.image" alt="" width="100" />
       <p class="file-info">
         Рекомендуемый размер картинки ширина: 656px, высота: 388px
       </p>
@@ -25,12 +25,12 @@
       <a-row type="flex" :gutter="24" class="bottom-buttons">
         <a-col :span="24" :lg="12" :md="24">
           <a-button class="button" type="primary" @click="edit"
-          >Сохранить</a-button
+            >Сохранить</a-button
           >
         </a-col>
         <a-col :span="24" :lg="12" :md="24">
           <a-button class="button" type="danger" @click="deleteOffer"
-          >Удалить</a-button
+            >Удалить</a-button
           >
         </a-col>
       </a-row>
@@ -43,19 +43,19 @@ import config from "@/config";
 import SpecialOffersAPI from "../../../../api/SpecialOffersAPI";
 
 export default {
-  data(){
+  data() {
     return {
       offer: {
         id: null,
         header: null,
         description: null,
-        image: null
+        image: null,
       },
       config: config,
       files: {
-        image: null
-      }
-    }
+        image: null,
+      },
+    };
   },
   created() {
     this.get();
@@ -64,49 +64,59 @@ export default {
     handleImageUpload() {
       this.files.image = this.$refs.file.files[0];
     },
-    async edit (){
+    async edit() {
       let formData = new FormData();
 
       formData.append("special_id", this.$route.params.id);
       formData.append("header", this.offer.header);
       formData.append("description", this.offer.description);
 
-      if(this.files.image !== null){
+      if (this.files.image !== null) {
         formData.append("image", this.files.image);
       }
 
       await SpecialOffersAPI.edit(formData)
-          .then(response => {
-            this.$root.$emit("createAlertGood");
-            this.offer = response.data
-          })
-          .catch((e) => {
-            console.log(e);
-          })
+        .then((response) => {
+          this.$root.$emit("createAlertGood");
+          this.offer = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
-    async deleteOffer (){
+    async deleteOffer() {
       await SpecialOffersAPI.delete(this.$route.params.id)
-          .then(response => {
-            this.$root.$emit("createAlertGood");
-            this.goTo('/marketing/offers/')
-          })
-          .catch((e) => {
-            console.log(e);
-          })
+        .then((response) => {
+          this.$root.$emit("createAlertGood");
+          this.goTo("/marketing/offers/");
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
-    get: function (){
+    get: function() {
       SpecialOffersAPI.get(this.$route.params.id)
-          .then(response => {
-            this.offer = response.data;
-          })
-          .catch((e) => {
-            console.log(e);
-          })
-    }
-  }
-}
+        .then((response) => {
+          this.offer = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+  },
+};
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.bottom-buttons {
+  width: 100%;
 
+  .button {
+    width: 100%;
+    color: #fff;
+  }
+}
+.file-info {
+  font-size: 0.8em;
+}
 </style>

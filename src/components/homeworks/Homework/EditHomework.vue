@@ -1,5 +1,10 @@
 <template>
   <div>
+    <a-form-model-item label="Статус">
+      <div v-if="homework.status === 'In_progress'">На проверке</div>
+      <div v-if="homework.status === 'Complete'">Принято</div>
+      <div v-if="homework.status === 'Failed'">Отклонено</div>
+    </a-form-model-item>
     <a-form-model-item label="Студент">
       <div style="cursor: pointer">
         <div @click="goTo('/students/'+homework.user.id)">{{ homework.user.lastname }} {{ homework.user.firstname }}</div>
@@ -44,7 +49,7 @@
 
     </a-form-model-item>
 
-    <a-row type="flex" :gutter="24" class="bottom-buttons">
+    <a-row type="flex" :gutter="24" class="bottom-buttons" v-if="homework.status === 'In_progress'">
       <a-col :span="24" :lg="12" :md="24">
         <a-button class="button" type="primary" @click="changeStatusHomeWork('Complete')">Принять</a-button>
       </a-col>

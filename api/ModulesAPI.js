@@ -2,7 +2,7 @@ import BaseAPI from "./BaseAPI";
 
 class ModulesAPI extends BaseAPI {
   get(id) {
-    return this.axios.get("/course/module/" + id + "/");
+    return this.axios.get("/course/module/" + id + "/?"+(new Date().getTime()));
   }
 
   // get() {

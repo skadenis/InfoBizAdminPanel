@@ -49,7 +49,7 @@
         <a-button class="button" type="primary" @click="changeStatusHomeWork('Complete')">Принять</a-button>
       </a-col>
       <a-col :span="24" :lg="12" :md="24">
-        <a-button class="button" type="danger" @click="changeStatusHomeWork('decline')">Отклонить</a-button>
+        <a-button class="button" type="danger" @click="changeStatusHomeWork('Failed')">Отклонить</a-button>
       </a-col>
     </a-row>
   </div>

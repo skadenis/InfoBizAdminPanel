@@ -8,7 +8,7 @@
         </a-form-model-item>
 
         <a-form-model-item label="Краткое описание">
-          <a-textarea rows="4" v-model="lesson.shortText" />
+          <a-textarea rows="4" v-model="lesson.short_desc" />
         </a-form-model-item>
         <a-form-model-item label="Текст">
           <a-textarea rows="4" v-model="lesson.text" />
@@ -158,6 +158,7 @@ export default {
         question: null,
         timer_set: [],
         lessonfiles_set: [],
+        short_desc: ""
       },
 
       files: {
@@ -176,7 +177,6 @@ export default {
   mounted() {
     this.getLesson();
   },
-
   methods: {
     handleImageUpload() {
       this.files.image = this.$refs.file.files[0];
@@ -187,7 +187,7 @@ export default {
     handleFilesUpload() {
       this.files.files = this.$refs.homework.files;
     },
-    handleBackgroundImageFileUpload(){
+    handleBackgroundImageFileUpload() {
       this.files.background_image = this.$refs.background_image.files;
     },
     addTiming() {
@@ -197,18 +197,19 @@ export default {
         text: "",
       });
     },
-    getLesson: function() {
+    getLesson: function () {
       LessonsAPI.get(this.lessonId)
-        .then((response) => {
-          this.lesson = response.data;
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+          .then((response) => {
+            this.lesson = response.data;
+          })
+          .catch((e) => {
+            console.log(e);
+          });
     },
     async edit() {
       this.uploadPercentage = 0;
       await this.addFiles();
+      await this.editTiming();
 
       let formData = new FormData();
 
@@ -218,6 +219,8 @@ export default {
       formData.append("module", this.moduleId);
       formData.append("text", this.lesson.text);
       formData.append("question", this.lesson.question);
+      formData.append("short_desc", this.lesson.short_desc);
+
 
       if (this.files.image !== null) {
         formData.append("image", this.files.image);
@@ -231,42 +234,35 @@ export default {
         formData.append("video", this.files.video);
       }
 
-      // if (this.lesson.timer_set) {
-      //   this.lesson.timer_set.forEach((timer) => {
-      //     formData.append("timer", timer.time + " " + timer.text);
-      //   });
-      // }
 
-      let resultAxios = {};
 
-      // await axios.put("", formData, {
-      //   headers: { Authorization: `Token ${Cookies.token}`, "Content-Type": "multipart/form-data" },
-      //   onUploadProgress: function(progressEvent) {
-      //    console.log(progressEvent);
-      //   }.bind(this)
-      // });
-
+      let resultAxios = false;
       let Cookies = Cookie.get();
 
-      axios
-        .put("https://blogersbackend.gastrosoft.by/course/lesson/", formData, {
-          headers: {
-            Authorization: `Token ${Cookies.token}`,
-            "Content-Type": "multipart/form-data",
-          },
-          onUploadProgress: function(progressEvent) {
-            this.uploadPercentage = parseInt(
-              Math.round((progressEvent.loaded / progressEvent.total) * 500)
-            );
-          }.bind(this),
-        })
-        .then(function() {
-          this.$root.$emit("createAlertGood");
-          console.log("SUCCESS!!");
-        })
-        .catch(function() {
-          console.log("FAILURE!!");
-        });
+      await axios
+          .put("https://blogersbackend.gastrosoft.by/course/lesson/", formData, {
+            headers: {
+              Authorization: `Token ${Cookies.token}`,
+              "Content-Type": "multipart/form-data",
+            },
+            onUploadProgress: function (progressEvent) {
+              this.uploadPercentage = parseInt(
+                  Math.round((progressEvent.loaded / progressEvent.total) * 500)
+              );
+            }.bind(this),
+          })
+          .then(function () {
+            resultAxios = true;
+            console.log("SUCCESS!!");
+          })
+          .catch(function (e) {
+            console.log(e)
+            console.log("FAILURE!!");
+          });
+
+      if (resultAxios === true) {
+        this.$root.$emit("createAlertGood");
+      }
 
       // await LessonsAPI.edit(formData)
       //     .then(response => {
@@ -277,16 +273,16 @@ export default {
       //     })
     },
     deleteLesson() {
-       LessonsAPI.delete(this.lessonId)
+      LessonsAPI.delete(this.lessonId)
           .then(response => {
             this.$root.$emit("createAlertGood");
-            this.goTo('/courses/'+this.courseId+'/modules/'+this.moduleId);
+            this.goTo('/courses/' + this.courseId + '/modules/' + this.moduleId);
           })
           .catch((e) => {
             console.log(e);
           })
     },
-    async addFiles(){
+    async addFiles() {
 
       if (this.files.files.length > 0) {
         let formData = new FormData();
@@ -297,34 +293,64 @@ export default {
         let Cookies = Cookie.get();
 
         await axios
-            .put("https://blogersbackend.gastrosoft.by/course/file/"+this.lessonId+"/", formData, {
+            .put("https://blogersbackend.gastrosoft.by/course/file/" + this.lessonId + "/", formData, {
               headers: {
                 Authorization: `Token ${Cookies.token}`,
                 "Content-Type": "multipart/form-data",
               },
-              onUploadProgress: function(progressEvent) {
+              onUploadProgress: function (progressEvent) {
                 this.uploadPercentage = parseInt(
                     Math.round((progressEvent.loaded / progressEvent.total) * 500)
                 );
               }.bind(this),
             })
-            .then(function() {
+            .then(function () {
               this.$root.$emit("createAlertGood");
               console.log("SUCCESS!!");
             })
-            .catch(function() {
+            .catch(function () {
               console.log("FAILURE!!");
             });
-      }else {
+      } else {
         this.uploadPercentage = 500;
       }
+    },
+    async editTiming() {
+      if (this.lesson.timer_set.length > 0) {
+        let formData = new FormData();
 
+        this.lesson.timer_set.forEach((timer) => {
+          console.log(timer.id);
+          if(timer.id === null){
+            formData.append("timer", timer.time + " " + timer.text);
 
+          }
+        });
+        let Cookies = Cookie.get();
 
+        await axios
+            .post("https://blogersbackend.gastrosoft.by/course/timer/" + this.lessonId + "/", formData, {
+              headers: {
+                Authorization: `Token ${Cookies.token}`,
+                "Content-Type": "multipart/form-data",
+              },
+              onUploadProgress: function (progressEvent) {
+                this.uploadPercentage = parseInt(
+                    Math.round((progressEvent.loaded / progressEvent.total) * 500)
+                );
+              }.bind(this),
+            })
+            .then(function () {
+              this.$root.$emit("createAlertGood");
+              console.log("SUCCESS!!");
+            })
+            .catch(function () {
+              console.log("FAILURE!!");
+            });
+      }
 
-    }
-
-  },
+    },
+  }
 };
 </script>
 

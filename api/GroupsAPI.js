@@ -21,7 +21,7 @@ class GroupsAPI extends BaseAPI {
         return this.axios.post("/calendar/delete"+ "/?"+(new Date().getTime()), data);
     }
     addToGroup(chat, user) {
-        return this.axios.post("/chat/user/"+ "/?"+(new Date().getTime()), {
+        return this.axios.post("/chat/user"+ "/?"+(new Date().getTime()), {
             "chat" : chat,
             "user": user
         });

@@ -6,7 +6,7 @@ class CoursesAPI extends BaseAPI {
   }
 
   get_all() {
-    return this.axios.get("/course/get_courses/"+ "/?"+(new Date().getTime()));
+    return this.axios.get("/course/get_courses"+ "/?"+(new Date().getTime()));
   }
 
   get_course_modules(id){

@@ -182,17 +182,17 @@ export default {
         formData.append("video", this.files.video);
       }
 
-      if(this.files.files.length > 0){
-        this.files.files.forEach( (file) => {
-          formData.append("lesson_file", file);
-        });
-      }
-
-      if(this.lesson.timer_set){
-        this.lesson.timer_set.forEach( (timer) => {
-          formData.append("timer", timer.time + ' '+timer.text);
-        });
-      }
+      // if(this.files.files.length > 0){
+      //   this.files.files.forEach( (file) => {
+      //     formData.append("lesson_file", file);
+      //   });
+      // }
+      //
+      // if(this.lesson.timer_set){
+      //   this.lesson.timer_set.forEach( (timer) => {
+      //     formData.append("timer", timer.time + ' '+timer.text);
+      //   });
+      // }
 
       let resultAxios = {};
 

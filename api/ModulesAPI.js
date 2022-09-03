@@ -24,6 +24,10 @@ class ModulesAPI extends BaseAPI {
   delete(id) {
     return this.axios.delete("/course/module/" + id + "/");
   }
+
+  changePerm(id, perm){
+
+  }
 }
 
 export default new ModulesAPI();

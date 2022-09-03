@@ -207,6 +207,9 @@ export default {
         });
     },
     async edit() {
+      this.uploadPercentage = 0;
+      await this.addFiles();
+
       let formData = new FormData();
 
       formData.append("lesson", this.lessonId);
@@ -228,17 +231,11 @@ export default {
         formData.append("video", this.files.video);
       }
 
-      if (this.files.files.length > 0) {
-        this.files.files.forEach((file) => {
-          formData.append("lesson_file", file);
-        });
-      }
-
-      if (this.lesson.timer_set) {
-        this.lesson.timer_set.forEach((timer) => {
-          formData.append("timer", timer.time + " " + timer.text);
-        });
-      }
+      // if (this.lesson.timer_set) {
+      //   this.lesson.timer_set.forEach((timer) => {
+      //     formData.append("timer", timer.time + " " + timer.text);
+      //   });
+      // }
 
       let resultAxios = {};
 
@@ -259,7 +256,7 @@ export default {
           },
           onUploadProgress: function(progressEvent) {
             this.uploadPercentage = parseInt(
-              Math.round((progressEvent.loaded / progressEvent.total) * 1000)
+              Math.round((progressEvent.loaded / progressEvent.total) * 500)
             );
           }.bind(this),
         })
@@ -289,6 +286,43 @@ export default {
             console.log(e);
           })
     },
+    async addFiles(){
+
+      if (this.files.files.length > 0) {
+        let formData = new FormData();
+
+        this.files.files.forEach((file) => {
+          formData.append("lesson_file", file);
+        });
+        let Cookies = Cookie.get();
+
+        await axios
+            .put("https://blogersbackend.gastrosoft.by/course/file/"+this.lessonId+"/", formData, {
+              headers: {
+                Authorization: `Token ${Cookies.token}`,
+                "Content-Type": "multipart/form-data",
+              },
+              onUploadProgress: function(progressEvent) {
+                this.uploadPercentage = parseInt(
+                    Math.round((progressEvent.loaded / progressEvent.total) * 500)
+                );
+              }.bind(this),
+            })
+            .then(function() {
+              this.$root.$emit("createAlertGood");
+              console.log("SUCCESS!!");
+            })
+            .catch(function() {
+              console.log("FAILURE!!");
+            });
+      }else {
+        this.uploadPercentage = 500;
+      }
+
+
+
+
+    }
 
   },
 };

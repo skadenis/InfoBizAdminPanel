@@ -8,6 +8,9 @@
         <a-form-model-item label="Описание">
           <a-textarea rows="4" v-model="module.description" />
         </a-form-model-item>
+        <a-form-model-item label="Статус модуля">
+          <a-textarea rows="4" v-model="module.perm" @change="changeModulePerm"/>
+        </a-form-model-item>
         <a-form-model-item label="Основная картинка">
           <input
             type="file"
@@ -61,6 +64,7 @@ export default {
       module: {
         name: null,
         description: null,
+        perm: false
       },
       file: undefined,
       config: config,
@@ -81,11 +85,15 @@ export default {
           console.log(e);
         });
     },
+    changeModulePerm(){
+
+    },
     async edit() {
       let formData = new FormData();
       formData.append("course", this.courseId);
       formData.append("module", this.moduleId);
       formData.append("name", this.module.name);
+      formData.append("perm", this.module.perm);
       formData.append("description", this.module.description);
 
       if (this.file) {

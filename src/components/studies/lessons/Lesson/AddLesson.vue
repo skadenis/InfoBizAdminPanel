@@ -7,7 +7,7 @@
         </a-form-model-item>
 
         <a-form-model-item label="Краткое описание">
-          <a-textarea rows="4" v-model="lesson.text" />
+          <a-textarea rows="4" v-model="lesson.short_desc" />
         </a-form-model-item>
         <a-form-model-item label="Текст">
           <a-textarea rows="4" v-model="lesson.text" />
@@ -167,10 +167,12 @@ export default {
       formData.append("name", this.lesson.name);
       formData.append("course", this.courseId);
       formData.append("module", this.moduleId);
-      formData.append("text", this.lesson.description);
+      formData.append("text", this.lesson.text);
       formData.append("question", this.lesson.question);
+      formData.append("short_desc", this.lesson.short_desc);
 
-      if(this.files.image !== null){
+
+      if (this.files.image !== null) {
         formData.append("image", this.files.image);
       }
 

@@ -14,11 +14,11 @@ class GroupsAPI extends BaseAPI {
     }
 
     add(data) {
-        return this.axios.post("/calendar/add"+ "/?"+(new Date().getTime()), data);
+        return this.axios.post("/chat"+ "/?"+(new Date().getTime()), data);
     }
 
     delete(data) {
-        return this.axios.post("/calendar/delete"+ "/?"+(new Date().getTime()), data);
+        return this.axios.post("/chat"+ "/?"+(new Date().getTime()), data);
     }
     addToGroup(chat, user) {
         return this.axios.post("/chat/user"+ "/?"+(new Date().getTime()), {

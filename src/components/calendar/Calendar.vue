@@ -1,27 +1,58 @@
 <template>
   <div>
-    <button class="add__ivent-btn">Добавить событие</button>
     <div class="table__head">
       <div>
         <p>Название</p>
       </div>
       <div>
-        <p>Дата</p>
+        <p>Курс</p>
       </div>
       <div>
-        <p>Время</p>
+        <p>Урок</p>
       </div>
       <div>
-        <p></p>
-      </div>
-      <div>
-        <p></p>
+        <p>Студент</p>
       </div>
     </div>
+    <Homework
+        v-for="(calendar, hIndex) in calendars"
+        v-bind:data="calendar"
+        :key="hIndex"
+    ></Homework>
   </div>
 </template>
 
-<script></script>
+<script>
+import Homework from "../homeworks/Homework/Homework.vue";
+import CalendarAPI from "../../../api/CalendarAPI";
+
+export default {
+  components: {
+    Homework,
+  },
+  data() {
+    return {
+      calendars: [],
+    };
+  },
+
+  mounted() {
+    this.getCalendar();
+  },
+
+  methods: {
+    getCalendar: function() {
+      CalendarAPI.get_all()
+          .then((response) => {
+            this.calendars = response.data;
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+    },
+  },
+};
+</script>
 
 <style scoped lang="scss">
 .table__head {
@@ -29,7 +60,7 @@
   background-color: rgb(221, 221, 221);
 
   div {
-    width: 20%;
+    width: 25%;
     border-right: 1px solid #fff;
 
     &:last-child {
@@ -42,35 +73,6 @@
     font-weight: 600;
     color: #000;
     text-align: center;
-  }
-}
-
-.add__ivent-btn {
-  width: 20%;
-  min-width: 105px;
-  margin: 20px 0;
-  background-color: #1890ff;
-  color: #fff;
-  padding: 16px;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.8em;
-}
-
-.table__inputs {
-  border: 1px solid rgb(221, 221, 221);
-
-  input {
-    height: 34px;
-    width: 20%;
-    border-right: 1px solid rgb(221, 221, 221);
-    padding-left: 10px;
-    &:last-child {
-      border-right: none;
-    }
-    &:focus {
-      outline: none;
-    }
   }
 }
 </style>

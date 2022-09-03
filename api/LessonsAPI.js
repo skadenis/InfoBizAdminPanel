@@ -14,8 +14,8 @@ class LessonsAPI extends BaseAPI {
     return this.axiosMultyPart.post("/course/lesson/", data);
   }
 
-  delete(data) {
-    return this.axios.post("/courses/modules/lessons/delete", data);
+  delete(id) {
+    return this.axios.delete("/course/lesson/"+id+"/");
   }
 }
 

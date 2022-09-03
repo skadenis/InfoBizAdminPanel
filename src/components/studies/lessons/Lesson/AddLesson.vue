@@ -27,6 +27,16 @@
           </p>
         </a-form-model-item>
 
+        <a-form-model-item label="Картинка для обложки урока">
+          <input
+              type="file"
+              id="background_image"
+              ref="background_image"
+              v-on:change="handleBackgroundImageFileUpload()"
+          />
+          <p>Рекомендуемый размер картинки ширина: 656px, высота: 388px</p>
+        </a-form-model-item>
+
         <a-form-model-item label="Видео">
           <input
               type="file"
@@ -122,9 +132,9 @@ export default {
   data(){
     return{
       lesson: {
-        name: null,
-        description: null,
-        question: null,
+        name: "",
+        description: "",
+        question: "",
         timer_set: [],
         lessonfiles_set: []
       },
@@ -132,7 +142,8 @@ export default {
       files:{
         image: null,
         video: null,
-        files: []
+        files: [],
+        background_image: null
       }
     }
   },
@@ -146,6 +157,9 @@ export default {
     handleFilesUpload() {
       this.files.files = this.$refs.homework.files;
     },
+    handleBackgroundImageFileUpload(){
+      this.files.background_image = this.$refs.background_image.files;
+    },
     async add() {
 
       let formData = new FormData();
@@ -158,6 +172,10 @@ export default {
 
       if(this.files.image !== null){
         formData.append("image", this.files.image);
+      }
+
+      if (this.files.background_image !== null) {
+        formData.append("background_image", this.files.background_image);
       }
 
       if(this.files.video !== null){

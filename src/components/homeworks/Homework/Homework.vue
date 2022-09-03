@@ -2,16 +2,19 @@
   <div>
     <div class="homework" @click="open_homework(data.id)">
       <div>
-        <p>{{ data.name }}</p>
+        <p>{{ hIndex+1 }}</p>
       </div>
       <div>
-        <p>{{ data.course }}</p>
+        <p>{{ data.study.course_name }}</p>
       </div>
       <div>
-        <p>{{ data.lesson }}</p>
+        <p>{{ data.study.module_name }}</p>
       </div>
       <div>
-        <p>{{ data.student }}</p>
+        <p>{{ data.study.lesson_name }}</p>
+      </div>
+      <div>
+        <p>{{ data.user.lastname }} {{ data.user.firstname }}</p>
       </div>
     </div>
   </div>
@@ -20,7 +23,7 @@
 <script>
 export default {
   name: "homework",
-  props: ["data"],
+  props: ["data","hIndex"],
   methods: {
     goTo: function(data) {
       this.$router.push(data);

@@ -9,6 +9,10 @@ import RestorePassword from "../views/RestorePassword.vue";
 import RestorePasswordStep1 from "../views/RestorePasswordStep1.vue";
 import RestorePasswordStep2 from "../views/RestorePasswordStep2.vue";
 
+import Groups from "../views/groups/index.vue";
+import GroupsEdit from "../views/groups/edit.vue";
+import GroupsAdd from "../views/groups/add.vue";
+
 import Courses from "../views/studies/courses/Courses.vue";
 import AddCourse from "../views/studies/courses/Course/AddCourse.vue";
 import EditCourse from "../views/studies/courses/Course/EditCourse.vue";
@@ -152,6 +156,33 @@ let routes = [
       layoutClass: "Marketing",
       name: "Маркетинг",
     },
+  },
+  {
+    path: "/groups",
+    name: "Groups",
+    component: Groups,
+    meta: {
+      layoutClass: "Groups",
+      name: "Группы",
+    },
+  },
+  {
+    path: "/groups/add",
+    name: "Groups",
+    component: GroupsAdd,
+    meta: {
+      layoutClass: "GroupsAdd",
+      name: "Добавление группы",
+    }
+  },
+  {
+    path: "/groups/:id",
+    name: "GroupsEdit",
+    component: GroupsEdit,
+    meta: {
+      layoutClass: "GroupsEdit",
+      name: "Редактирование группы",
+    }
   },
   {
     path: "/marketing/push",

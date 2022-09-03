@@ -1,6 +1,10 @@
 import BaseAPI from "./BaseAPI";
 
 class CalendarAPI extends BaseAPI {
+  get_all() {
+    return this.axios.get("/course/student_calendar/");
+  }
+
   get(id) {
     return this.axios.get("/calendar/" + id);
   }

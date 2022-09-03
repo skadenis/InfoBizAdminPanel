@@ -33,6 +33,16 @@
           </p>
         </a-form-model-item>
 
+        <a-form-model-item label="Картинка для обложки урока">
+          <input
+              type="file"
+              id="background_image"
+              ref="background_image"
+              v-on:change="handleBackgroundImageFileUpload()"
+          />
+          <p>Рекомендуемый размер картинки ширина: 656px, высота: 388px</p>
+        </a-form-model-item>
+
         <a-form-model-item label="Видео">
           <input
             type="file"
@@ -154,6 +164,7 @@ export default {
         image: null,
         video: null,
         files: [],
+        background_image: null
       },
       config: config,
       uploadPercentage: 0,
@@ -173,6 +184,9 @@ export default {
     },
     handleFilesUpload() {
       this.files.files = this.$refs.homework.files;
+    },
+    handleBackgroundImageFileUpload(){
+      this.files.background_image = this.$refs.background_image.files;
     },
     addTiming() {
       this.lesson.timer_set.push({
@@ -202,6 +216,10 @@ export default {
 
       if (this.files.image !== null) {
         formData.append("image", this.files.image);
+      }
+
+      if (this.files.background_image !== null) {
+        formData.append("background_image", this.files.background_image);
       }
 
       if (this.files.video !== null) {
@@ -259,7 +277,16 @@ export default {
       //       console.log(e);
       //     })
     },
-    deleteLesson() {},
+    deleteLesson() {
+       LessonsAPI.delete(this.lessonId)
+          .then(response => {
+            this.$root.$emit("createAlertGood");
+            this.goTo('/courses/'+this.courseId+'/modules/'+this.moduleId);
+          })
+          .catch((e) => {
+            console.log(e);
+          })
+    },
   },
 };
 </script>

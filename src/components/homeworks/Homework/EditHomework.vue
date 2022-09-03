@@ -1,47 +1,55 @@
 <template>
   <div>
-    <a-form-model-item label="Название">
-      <a-input v-model="homework.name" />
-    </a-form-model-item>
-    <a-form-model-item label="Курс">
-      <a-input v-model="homework.course" />
-    </a-form-model-item>
-    <a-form-model-item label="Урок">
-      <a-input v-model="homework.lesson" />
-    </a-form-model-item>
     <a-form-model-item label="Студент">
-      <a-input v-model="homework.student" />
+      <div style="cursor: pointer">
+        <div @click="goTo('/students/'+homework.user.id)">{{ homework.user.lastname }} {{ homework.user.firstname }}</div>
+      </div>
+    </a-form-model-item>
+    <a-row type="flex" :gutter="24" class="bottom-buttons">
+      <a-col :span="24" :lg="8" :md="24">
+        <a-form-model-item label="Курс">
+          <div style="cursor: pointer" @click="goTo('/courses/' + homework.study.course_id)">{{ homework.study.course_name }}</div>
+        </a-form-model-item>
+      </a-col>
+      <a-col :span="24" :lg="8" :md="24">
+        <a-form-model-item label="Модуль">
+          <div style="cursor: pointer" @click="goTo('/courses/' + homework.study.course_id + '/modules/' + homework.study.module_id)">{{ homework.study.module_name }}</div>
+        </a-form-model-item>
+      </a-col>
+      <a-col :span="24" :lg="8" :md="24">
+        <a-form-model-item label="Урок">
+          <div style="cursor: pointer" @click="goTo('/courses/' + homework.study.course_id + '/modules/' + homework.study.module_id + '/lessons/' + homework.study.lesson_id)">{{ homework.study.lesson_name }}</div>
+        </a-form-model-item>
+      </a-col>
+    </a-row>
+
+
+
+
+
+    <a-form-model-item label="Ответ студента">
+      {{homework.text}}
     </a-form-model-item>
 
-    <a-form-model-item label="Дополнительные материалы">
-      <div class="table__head">
-        <div>
-          <p>Файл</p>
-        </div>
-        <div>
-          <p>1</p>
-        </div>
-        <div>
-          <p>2</p>
-        </div>
-      </div>
 
-      <input
-        type="file"
-        id="homework"
-        ref="homework"
-        multiple
-        v-on:change="handleFilesUpload()"
-      />
-      <p class="file-info">Формат PDF</p>
+    <a-form-model-item label="Файлы прикрепленные к Д/З">
+      <ul>
+        <li v-for="(file, index) in homework.homeworkfiles_set">
+          <a v-if="homework.homeworkfiles_set.length > 0"  :href="config.basicImageURL + file.file">Файл {{index + 1}}</a>
+        </li>
+      </ul>
+
+      <p v-if="homework.homeworkfiles_set.length === 0">К домашнему заданию файлов не прикреплено </p>
+
+
     </a-form-model-item>
 
     <a-row type="flex" :gutter="24" class="bottom-buttons">
       <a-col :span="24" :lg="12" :md="24">
-        <a-button class="button" type="primary" @click="">Принять</a-button>
+        <a-button class="button" type="primary" @click="changeStatusHomeWork('Complete')">Принять</a-button>
       </a-col>
       <a-col :span="24" :lg="12" :md="24">
-        <a-button class="button" type="danger" @click="">Отклонить</a-button>
+        <a-button class="button" type="danger" @click="changeStatusHomeWork('decline')">Отклонить</a-button>
       </a-col>
     </a-row>
   </div>
@@ -49,12 +57,14 @@
 
 <script>
 import HomeworkAPI from "../../../../api/HomeworkAPI";
+import config from "@/config";
 
 export default {
   props: ["homeworkId"],
   data() {
     return {
       homework: null,
+      config: config
     };
   },
 
@@ -64,7 +74,7 @@ export default {
 
   methods: {
     getHomework: function() {
-      HomeworkAPI.get_all()
+      HomeworkAPI.get(this.$route.params.homeworkId)
         .then((response) => {
           this.homework = response.data;
         })
@@ -72,6 +82,18 @@ export default {
           console.log(e);
         });
     },
+    changeStatusHomeWork(status){
+      HomeworkAPI.check_homework({
+        "homework": this.$route.params.homeworkId,
+        "homework_status": status
+      })
+          .then((response) => {
+            this.get();
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+    }
   },
 };
 </script>

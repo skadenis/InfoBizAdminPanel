@@ -8,6 +8,9 @@
         <p>Курс</p>
       </div>
       <div>
+        <p>Модуль</p>
+      </div>
+      <div>
         <p>Урок</p>
       </div>
       <div>
@@ -17,6 +20,7 @@
     <Homework
       v-for="(homework, hIndex) in homeworks"
       v-bind:data="homework"
+      :hIndex="hIndex"
       :key="hIndex"
     ></Homework>
   </div>
@@ -44,7 +48,7 @@ export default {
     getHomeworks: function() {
       HomeworkAPI.get_all()
         .then((response) => {
-          this.homeworks = response.data;
+          this.homeworks = response.data.homeworks;
         })
         .catch((e) => {
           console.log(e);

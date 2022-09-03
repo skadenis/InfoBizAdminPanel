@@ -293,7 +293,7 @@ export default {
         let Cookies = Cookie.get();
 
         await axios
-            .put("https://blogersbackend.gastrosoft.by/course/file/" + this.lessonId + "/", formData, {
+            .post("https://blogersbackend.gastrosoft.by/course/file/" + this.lessonId + "/", formData, {
               headers: {
                 Authorization: `Token ${Cookies.token}`,
                 "Content-Type": "multipart/form-data",

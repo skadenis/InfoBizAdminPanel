@@ -109,7 +109,6 @@ export default {
           console.log(e);
         });
 
-      console.log(axiosRes);
 
       if (axiosRes.status === 204) {
         this.$root.$emit("createAlertGood");

@@ -48,60 +48,7 @@
           <p class="file-info">Рекомендуемый размер</p>
         </a-form-model-item>
 
-        <a-form-model-item label="Тайминг">
-          <div class="table__head">
-            <div>
-              <p>Время</p>
-            </div>
-            <div>
-              <p>Описание</p>
-            </div>
-            <div>
-              <p></p>
-            </div>
-          </div>
-          <TimingRow
-              v-for="(timing, index) in lesson.timer_set"
-              :data="timing"
-              :key="index"
-          />
-          <br />
-          <a-button class="button" type="primary" @click="addTiming"
-          >Добавить тайминг</a-button
-          >
-          <p class="file-info">Рекомендуемый размер</p>
-        </a-form-model-item>
 
-        <a-form-model-item label="Дополнительные материалы">
-          <div class="table__head">
-            <div>
-              <p>Файл</p>
-            </div>
-            <div>
-              <p>2</p>
-            </div>
-            <div>
-              <p>3</p>
-            </div>
-          </div>
-          <FileRow
-              v-for="(timing, index) in lesson.lessonfiles_set"
-              :data="timing"
-              :index="index"
-              :key="index"
-          />
-          <br>
-
-
-          <input
-              type="file"
-              id="homework"
-              ref="homework"
-              multiple
-              v-on:change="handleFilesUpload()"
-          />
-          <p class="file-info">Формат PDF</p>
-        </a-form-model-item>
 
         <a-form-model-item>
           <a-row type="flex" :gutter="24" class="bottom-buttons">

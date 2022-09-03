@@ -10,19 +10,19 @@ class ModulesAPI extends BaseAPI {
   // }
 
   getModuleLesson(id) {
-    return this.axios.get("course/get_lessons/"+id+"/");
+    return this.axios.get("course/get_lessons/"+id+ "/?"+(new Date().getTime()));
   }
 
   edit(data) {
-    return this.axiosMultyPart.put("/course/module/", data);
+    return this.axiosMultyPart.put("/course/module"+ "/?"+(new Date().getTime()), data);
   }
 
   add(data) {
-    return this.axiosMultyPart.post("/course/module/", data);
+    return this.axiosMultyPart.post("/course/module"+ "/?"+(new Date().getTime()), data);
   }
 
   delete(id) {
-    return this.axios.delete("/course/module/" + id + "/");
+    return this.axios.delete("/course/module/" + id + "/?"+(new Date().getTime()));
   }
 
   changePerm(id, perm){

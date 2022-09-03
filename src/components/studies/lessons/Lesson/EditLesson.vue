@@ -40,6 +40,11 @@
               ref="background_image"
               v-on:change="handleBackgroundImageFileUpload()"
           />
+          <img
+              :src="config.basicImageURL + this.lesson.background_image"
+              alt=""
+              width="100"
+          />
           <p>Рекомендуемый размер картинки ширина: 656px, высота: 388px</p>
         </a-form-model-item>
 

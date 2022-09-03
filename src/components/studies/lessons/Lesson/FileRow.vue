@@ -7,7 +7,7 @@
       <div>
         <a :href="config.basicImageURL+data.file">Просмотерть файл</a>
       </div>
-      <div>
+      <div @click="deleteFile">
         Удалить файл
       </div>
     </div>
@@ -16,15 +16,27 @@
 
 <script>
 import config from "@/config";
+import LessonsAPI from "../../../../../api/LessonsAPI";
 
 export default {
   props: ["data","index"],
-  methods: {},
+  methods: {
+    deleteFile(){
+      LessonsAPI.deleteFile(this.data.id)
+          .then(response => {
+            this.$root.$emit("createAlertGood");
+            this.$root.$emit("renewData");
+          })
+          .catch((e) => {
+            console.log(e);
+          })
+    }
+  },
   data(){
     return{
       config
     }
-  }
+  },
 };
 </script>
 

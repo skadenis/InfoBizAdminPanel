@@ -12,16 +12,30 @@
         ></a-textarea>
       </div>
       <div>
-        <a-button class="button" type="danger">Удалить</a-button>
+        <a-button class="button" type="danger" @click="deleteTiming">Удалить</a-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import LessonsAPI from "../../../../../api/LessonsAPI";
+
 export default {
   props: ["data"],
-  methods: {},
+  methods: {
+    deleteTiming(){
+      LessonsAPI.deleteTiming(this.data.id)
+          .then(response => {
+            this.$root.$emit("createAlertGood");
+            this.$root.$emit("renewData");
+          })
+          .catch((e) => {
+            console.log(e);
+          })
+    }
+  },
+
 };
 </script>
 

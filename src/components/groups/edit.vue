@@ -21,7 +21,7 @@
 
         <a-form-model-item label="Учатники группы">
           <ul>
-            <li v-for="(student, index) in group.users" @click="goTo('/students/'+student.id)" style="cursor: pointer">{{student.firstname}} {{student.lastname}}</li>
+            <li v-for="(student, index) in group.users" @click="openChatMemberPage(student)" style="cursor: pointer">{{student.firstname}} {{student.lastname}}</li>
           </ul>
         </a-form-model-item>
 
@@ -103,6 +103,14 @@ export default {
           .catch((e) => {
             console.log(e);
           });
+    },
+    openChatMemberPage(student){
+      switch (student.role){
+        case "ST":
+          this.goTo('/students/'+student.id)
+          break;
+
+      }
     }
   }
 }

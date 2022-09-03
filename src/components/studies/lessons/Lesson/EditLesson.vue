@@ -170,7 +170,9 @@ export default {
       uploadPercentage: 0,
     };
   },
-
+  created() {
+    this.$root.$on('renewData', this.getLesson);
+  },
   mounted() {
     this.getLesson();
   },
@@ -287,6 +289,7 @@ export default {
             console.log(e);
           })
     },
+
   },
 };
 </script>

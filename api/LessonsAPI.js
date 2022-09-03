@@ -17,6 +17,13 @@ class LessonsAPI extends BaseAPI {
   delete(id) {
     return this.axios.delete("/course/lesson/"+id+"/");
   }
+
+  deleteFile(id){
+    return this.axios.delete("/course/file_del/"+id+"/");
+  }
+  deleteTiming(id){
+    return this.axios.delete("/course/timer_del/"+id+"/");
+  }
 }
 
 export default new LessonsAPI();

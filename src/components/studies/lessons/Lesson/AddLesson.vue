@@ -105,7 +105,7 @@ export default {
       this.files.files = this.$refs.homework.files;
     },
     handleBackgroundImageFileUpload(){
-      this.files.background_image = this.$refs.background_image.files;
+      this.files.background_image = this.$refs.background_image.files[0];
     },
     async add() {
 

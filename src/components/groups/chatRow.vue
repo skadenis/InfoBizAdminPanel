@@ -1,17 +1,17 @@
 <template>
-  <div @click="goTo('/groups/'+data.chat_id)">
-    <div class="timing" @click="">
+  <div @click="goTo('/groups/' + data.chat_id)">
+    <div class="timing">
       <div>
-        {{index+1}}
+        <p>{{ index + 1 }}</p>
       </div>
       <div>
-        {{ data.group_name }}
+        <p>{{ data.group_name }}</p>
       </div>
       <div>
-        {{ data.chat_name }}
+        <p>{{ data.chat_name }}</p>
       </div>
       <div>
-        {{ data.users_count }}
+        <p>{{ data.users_count }}</p>
       </div>
     </div>
   </div>
@@ -21,13 +21,12 @@
 import config from "@/config";
 
 export default {
-  props: ["data","index"],
-  methods: {
-  },
-  data(){
-    return{
-      config
-    }
+  props: ["data", "index"],
+  methods: {},
+  data() {
+    return {
+      config,
+    };
   },
 };
 </script>
@@ -37,18 +36,29 @@ export default {
   display: flex;
   cursor: pointer;
   box-sizing: border-box;
-
   border: 1px solid rgb(221, 221, 221);
   margin: -1px 0;
 
-  div {
-    width: 33.3333%;
-    border-right: 1px solid rgb(221, 221, 221);
+  &:hover {
+    background-color: rgb(223, 239, 255);
   }
 
-  &-input {
-    border: none;
-    height: 100%;
+  &:hover p {
+    color: #000;
+  }
+
+  div {
+    width: calc(100% / 4);
+    border-right: 1px solid rgb(221, 221, 221);
+
+    &:last-child {
+      border-right: none;
+    }
+
+    p {
+      padding: 10px;
+      font-size: 14px;
+    }
   }
 }
 

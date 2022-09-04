@@ -84,21 +84,4 @@ export default {
   font-weight: 600;
   font-size: 0.8em;
 }
-
-.table__inputs {
-  border: 1px solid rgb(221, 221, 221);
-
-  input {
-    height: 34px;
-    width: 20%;
-    border-right: 1px solid rgb(221, 221, 221);
-    padding-left: 10px;
-    &:last-child {
-      border-right: none;
-    }
-    &:focus {
-      outline: none;
-    }
-  }
-}
 </style>

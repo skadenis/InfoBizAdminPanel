@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <button class="add__courses-btn" @click="goTo('/groups/add')">
+      <button class="add__groups-btn" @click="goTo('/groups/add')">
         Добавить группу
       </button>
     </div>
@@ -20,39 +20,43 @@
       </div>
     </div>
 
-    <chatRow v-for="(group, index) in groups" :index="index" :key="index" :data="group" />
-
+    <chatRow
+      v-for="(group, index) in groups"
+      :index="index"
+      :key="index"
+      :data="group"
+    />
   </div>
 </template>
 
 <script>
-import chatRow from "@/components/groups/chatRow"
+import chatRow from "@/components/groups/chatRow";
 import GroupsAPI from "../../../api/GroupsAPI";
 
 export default {
-  data(){
+  data() {
     return {
-      groups: []
-    }
+      groups: [],
+    };
   },
   components: {
-    chatRow
+    chatRow,
   },
   mounted() {
     this.getGroups();
   },
   methods: {
-    getGroups(){
+    getGroups() {
       GroupsAPI.get_all()
-          .then((response) => {
-            this.groups = response.data.chats;
-          })
-          .catch((e) => {
-            console.log(e);
-          });
-    }
-  }
-}
+        .then((response) => {
+          this.groups = response.data.chats;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -61,7 +65,7 @@ export default {
   background-color: rgb(221, 221, 221);
 
   div {
-    width: 33.333333%;
+    width: calc(100% / 4);
     border-right: 1px solid #fff;
 
     &:last-child {
@@ -76,7 +80,7 @@ export default {
     text-align: center;
   }
 }
-.add__courses-btn {
+.add__groups-btn {
   width: 20%;
   min-width: 105px;
   margin: 20px 0;

@@ -17,10 +17,10 @@
         </a-form-model-item>
         <a-form-model-item label="Основная картинка">
           <input
-              type="file"
-              id="file"
-              ref="file"
-              v-on:change="handleImageUpload()"
+            type="file"
+            id="file"
+            ref="file"
+            v-on:change="handleImageUpload()"
           />
           <p class="file-info">
             Рекомендуемый размер картинки ширина: 656px, высота: 388px
@@ -29,26 +29,26 @@
 
         <a-form-model-item label="Картинка для обложки урока">
           <input
-              type="file"
-              id="background_image"
-              ref="background_image"
-              v-on:change="handleBackgroundImageFileUpload()"
+            type="file"
+            id="background_image"
+            ref="background_image"
+            v-on:change="handleBackgroundImageFileUpload()"
           />
-          <p>Рекомендуемый размер картинки ширина: 656px, высота: 388px</p>
+          <p class="file-info">
+            Рекомендуемый размер картинки ширина: 656px, высота: 388px
+          </p>
         </a-form-model-item>
 
         <a-form-model-item label="Видео">
           <input
-              type="file"
-              id="video"
-              ref="video"
-              v-on:change="handleVideoUpload()"
+            type="file"
+            id="video"
+            ref="video"
+            v-on:change="handleVideoUpload()"
           />
 
           <p class="file-info">Рекомендуемый размер</p>
         </a-form-model-item>
-
-
 
         <a-form-model-item>
           <a-row type="flex" :gutter="24" class="bottom-buttons">
@@ -65,34 +65,33 @@
 </template>
 
 <script>
-
 import LessonsAPI from "../../../../../api/LessonsAPI";
-import TimingRow from "./TimingRow"
-import FileRow from "./FileRow"
+import TimingRow from "./TimingRow";
+import FileRow from "./FileRow";
 
 export default {
-  props: ['courseId', 'moduleId'],
-  components:{
+  props: ["courseId", "moduleId"],
+  components: {
     TimingRow,
-    FileRow
+    FileRow,
   },
-  data(){
-    return{
+  data() {
+    return {
       lesson: {
         name: "",
         description: "",
         question: "",
         timer_set: [],
-        lessonfiles_set: []
+        lessonfiles_set: [],
       },
 
-      files:{
+      files: {
         image: null,
         video: null,
         files: [],
-        background_image: null
-      }
-    }
+        background_image: null,
+      },
+    };
   },
   methods: {
     handleImageUpload() {
@@ -104,11 +103,10 @@ export default {
     handleFilesUpload() {
       this.files.files = this.$refs.homework.files;
     },
-    handleBackgroundImageFileUpload(){
+    handleBackgroundImageFileUpload() {
       this.files.background_image = this.$refs.background_image.files[0];
     },
     async add() {
-
       let formData = new FormData();
 
       formData.append("name", this.lesson.name);
@@ -118,7 +116,6 @@ export default {
       formData.append("question", this.lesson.question);
       formData.append("short_desc", this.lesson.short_desc);
 
-
       if (this.files.image !== null) {
         formData.append("image", this.files.image);
       }
@@ -127,7 +124,7 @@ export default {
         formData.append("background_image", this.files.background_image);
       }
 
-      if(this.files.video !== null){
+      if (this.files.video !== null) {
         formData.append("video", this.files.video);
       }
 
@@ -145,30 +142,34 @@ export default {
 
       let resultAxios = {};
 
-
       await LessonsAPI.add(formData)
-          .then(response => {
-            resultAxios = response
-          })
-          .catch((e) => {
-            console.log(e);
-          })
+        .then((response) => {
+          resultAxios = response;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
 
-
-      if(resultAxios.status === 200){
+      if (resultAxios.status === 200) {
         this.$root.$emit("createAlertGood");
-        this.goTo('/courses/'+this.courseId+'/modules/'+this.moduleId+'/lessons/'+resultAxios.data.id);
+        this.goTo(
+          "/courses/" +
+            this.courseId +
+            "/modules/" +
+            this.moduleId +
+            "/lessons/" +
+            resultAxios.data.id
+        );
       }
-
     },
-    addTiming(){
+    addTiming() {
       this.lesson.timer_set.push({
         time: "00:00:00",
-        text: ""
+        text: "",
       });
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -203,7 +204,7 @@ export default {
   height: 34px;
 
   div {
-    width: calc(100%/3);
+    width: calc(100% / 3);
     border-right: 1px solid #fff;
 
     &:first-child {

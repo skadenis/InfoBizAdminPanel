@@ -2,7 +2,7 @@
   <div>
     <div class="homework" @click="open_homework(data.id)">
       <div>
-        <p>{{ hIndex+1 }}</p>
+        <p>{{ hIndex + 1 }}</p>
       </div>
       <div>
         <p>{{ data.status | HomeworkStatus }}</p>
@@ -26,7 +26,7 @@
 <script>
 export default {
   name: "homework",
-  props: ["data","hIndex"],
+  props: ["data", "hIndex"],
   methods: {
     goTo: function(data) {
       this.$router.push(data);

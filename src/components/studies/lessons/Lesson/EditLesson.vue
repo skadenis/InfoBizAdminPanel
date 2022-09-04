@@ -35,17 +35,19 @@
 
         <a-form-model-item label="Картинка для обложки урока">
           <input
-              type="file"
-              id="background_image"
-              ref="background_image"
-              v-on:change="handleBackgroundImageFileUpload()"
+            type="file"
+            id="background_image"
+            ref="background_image"
+            v-on:change="handleBackgroundImageFileUpload()"
           />
           <img
-              :src="config.basicImageURL + this.lesson.background_image"
-              alt=""
-              width="100"
+            :src="config.basicImageURL + this.lesson.background_image"
+            alt=""
+            width="100"
           />
-          <p>Рекомендуемый размер картинки ширина: 656px, высота: 388px</p>
+          <p class="file-info">
+            Рекомендуемый размер картинки ширина: 656px, высота: 388px
+          </p>
         </a-form-model-item>
 
         <a-form-model-item label="Видео">
@@ -163,21 +165,21 @@ export default {
         question: null,
         timer_set: [],
         lessonfiles_set: [],
-        short_desc: ""
+        short_desc: "",
       },
 
       files: {
         image: null,
         video: null,
         files: [],
-        background_image: null
+        background_image: null,
       },
       config: config,
       uploadPercentage: 0,
     };
   },
   created() {
-    this.$root.$on('renewData', this.getLesson);
+    this.$root.$on("renewData", this.getLesson);
   },
   mounted() {
     this.getLesson();
@@ -202,14 +204,14 @@ export default {
         text: "",
       });
     },
-    getLesson: function () {
+    getLesson: function() {
       LessonsAPI.get(this.lessonId)
-          .then((response) => {
-            this.lesson = response.data;
-          })
-          .catch((e) => {
-            console.log(e);
-          });
+        .then((response) => {
+          this.lesson = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
     async edit() {
       this.uploadPercentage = 0;
@@ -226,7 +228,6 @@ export default {
       formData.append("question", this.lesson.question);
       formData.append("short_desc", this.lesson.short_desc);
 
-
       if (this.files.image !== null) {
         formData.append("image", this.files.image);
       }
@@ -239,31 +240,29 @@ export default {
         formData.append("video", this.files.video);
       }
 
-
-
       let resultAxios = false;
       let Cookies = Cookie.get();
 
       await axios
-          .put("https://blogersbackend.gastrosoft.by/course/lesson/", formData, {
-            headers: {
-              Authorization: `Token ${Cookies.token}`,
-              "Content-Type": "multipart/form-data",
-            },
-            onUploadProgress: function (progressEvent) {
-              this.uploadPercentage = parseInt(
-                  Math.round((progressEvent.loaded / progressEvent.total) * 500)
-              );
-            }.bind(this),
-          })
-          .then(function () {
-            resultAxios = true;
-            console.log("SUCCESS!!");
-          })
-          .catch(function (e) {
-            console.log(e)
-            console.log("FAILURE!!");
-          });
+        .put("https://blogersbackend.gastrosoft.by/course/lesson/", formData, {
+          headers: {
+            Authorization: `Token ${Cookies.token}`,
+            "Content-Type": "multipart/form-data",
+          },
+          onUploadProgress: function(progressEvent) {
+            this.uploadPercentage = parseInt(
+              Math.round((progressEvent.loaded / progressEvent.total) * 500)
+            );
+          }.bind(this),
+        })
+        .then(function() {
+          resultAxios = true;
+          console.log("SUCCESS!!");
+        })
+        .catch(function(e) {
+          console.log(e);
+          console.log("FAILURE!!");
+        });
 
       if (resultAxios === true) {
         this.$root.$emit("createAlertGood");
@@ -279,16 +278,15 @@ export default {
     },
     deleteLesson() {
       LessonsAPI.delete(this.lessonId)
-          .then(response => {
-            this.$root.$emit("createAlertGood");
-            this.goTo('/courses/' + this.courseId + '/modules/' + this.moduleId);
-          })
-          .catch((e) => {
-            console.log(e);
-          })
+        .then((response) => {
+          this.$root.$emit("createAlertGood");
+          this.goTo("/courses/" + this.courseId + "/modules/" + this.moduleId);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
     async addFiles() {
-
       if (this.files.files.length > 0) {
         let formData = new FormData();
 
@@ -298,24 +296,30 @@ export default {
         let Cookies = Cookie.get();
 
         await axios
-            .post("https://blogersbackend.gastrosoft.by/course/file/" + this.lessonId + "/", formData, {
+          .post(
+            "https://blogersbackend.gastrosoft.by/course/file/" +
+              this.lessonId +
+              "/",
+            formData,
+            {
               headers: {
                 Authorization: `Token ${Cookies.token}`,
                 "Content-Type": "multipart/form-data",
               },
-              onUploadProgress: function (progressEvent) {
+              onUploadProgress: function(progressEvent) {
                 this.uploadPercentage = parseInt(
-                    Math.round((progressEvent.loaded / progressEvent.total) * 500)
+                  Math.round((progressEvent.loaded / progressEvent.total) * 500)
                 );
               }.bind(this),
-            })
-            .then(function () {
-              this.$root.$emit("createAlertGood");
-              console.log("SUCCESS!!");
-            })
-            .catch(function () {
-              console.log("FAILURE!!");
-            });
+            }
+          )
+          .then(function() {
+            this.$root.$emit("createAlertGood");
+            console.log("SUCCESS!!");
+          })
+          .catch(function() {
+            console.log("FAILURE!!");
+          });
       } else {
         this.uploadPercentage = 500;
       }
@@ -326,36 +330,40 @@ export default {
 
         this.lesson.timer_set.forEach((timer) => {
           console.log(timer.id);
-          if(timer.id === null){
+          if (timer.id === null) {
             formData.append("timer", timer.time + " " + timer.text);
-
           }
         });
         let Cookies = Cookie.get();
 
         await axios
-            .post("https://blogersbackend.gastrosoft.by/course/timer/" + this.lessonId + "/", formData, {
+          .post(
+            "https://blogersbackend.gastrosoft.by/course/timer/" +
+              this.lessonId +
+              "/",
+            formData,
+            {
               headers: {
                 Authorization: `Token ${Cookies.token}`,
                 "Content-Type": "multipart/form-data",
               },
-              onUploadProgress: function (progressEvent) {
+              onUploadProgress: function(progressEvent) {
                 this.uploadPercentage = parseInt(
-                    Math.round((progressEvent.loaded / progressEvent.total) * 500)
+                  Math.round((progressEvent.loaded / progressEvent.total) * 500)
                 );
               }.bind(this),
-            })
-            .then(function () {
-              this.$root.$emit("createAlertGood");
-              console.log("SUCCESS!!");
-            })
-            .catch(function () {
-              console.log("FAILURE!!");
-            });
+            }
+          )
+          .then(function() {
+            this.$root.$emit("createAlertGood");
+            console.log("SUCCESS!!");
+          })
+          .catch(function() {
+            console.log("FAILURE!!");
+          });
       }
-
     },
-  }
+  },
 };
 </script>
 

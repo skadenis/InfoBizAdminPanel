@@ -1,34 +1,38 @@
 <template>
   <div>
+    <button class="add__courses-btn" @click="goTo('/calendar/add')">
+      Добавить событие
+    </button>
     <div class="table__head">
       <div>
         <p>Название</p>
       </div>
       <div>
-        <p>Курс</p>
+        <p>Дата</p>
       </div>
       <div>
-        <p>Урок</p>
+        <p>Время</p>
       </div>
       <div>
-        <p>Студент</p>
+        <p>Для кого</p>
       </div>
     </div>
-    <Homework
+    <CalendarRow
         v-for="(calendar, hIndex) in calendars"
         v-bind:data="calendar"
         :key="hIndex"
-    ></Homework>
+        :hIndex="hIndex"
+    ></CalendarRow>
   </div>
 </template>
 
 <script>
-import Homework from "../homeworks/Homework/Homework.vue";
+import CalendarRow from "../calendar/calendarRow";
 import CalendarAPI from "../../../api/CalendarAPI";
 
 export default {
   components: {
-    Homework,
+    CalendarRow,
   },
   data() {
     return {

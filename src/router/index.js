@@ -38,6 +38,8 @@ import Students from "../views/students/Students.vue";
 import EditStudent from "../views/students/Student/EditStudent.vue";
 
 import Calendar from "../views/calendar/Calendar.vue";
+import CalendarEdit from "../views/calendar/CalendarEdit.vue";
+import CalendarAdd from "../views/calendar/CalendarAdd.vue";
 
 import Config from "@/config";
 
@@ -146,6 +148,24 @@ let routes = [
     meta: {
       layoutClass: "Calendar",
       name: "Календарь",
+    },
+  },
+  {
+    path: "/calendar/add",
+    name: "CalendarAdd",
+    component: CalendarAdd,
+    meta: {
+      layoutClass: "CalendarAdd",
+      name: "Добавить событие",
+    },
+  },
+  {
+    path: "/calendar/:id",
+    name: "CalendarEdit",
+    component: CalendarEdit,
+    meta: {
+      layoutClass: "CalendarEdit",
+      name: "Редактировать событие",
     },
   },
   {

@@ -2,7 +2,7 @@ import BaseAPI from "./BaseAPI";
 
 class HomeworkAPI extends BaseAPI {
   get(id) {
-    return this.axios.get("/course/target_homework" + id + "/?"+(new Date().getTime()));
+    return this.axios.get("/course/target_homework/" + id + "/?"+(new Date().getTime()));
   }
 
   get_all() {

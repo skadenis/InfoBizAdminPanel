@@ -73,7 +73,7 @@ export default {
     };
   },
 
-  mounted() {
+  created() {
     this.getHomework();
   },
 
@@ -89,7 +89,7 @@ export default {
     },
     changeStatusHomeWork(status){
       HomeworkAPI.check_homework({
-        "homework": this.$route.params.homeworkId,
+        "homework": Number(this.$route.params.homeworkId),
         "homework_status": status
       })
           .then((response) => {

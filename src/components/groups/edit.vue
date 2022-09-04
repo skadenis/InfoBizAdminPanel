@@ -69,9 +69,13 @@ export default {
             });
     },
     edit(){
-      GroupsAPI.edit()
+      GroupsAPI.edit({
+        name: this.group.chat_name,
+        group_name: this.group.group_name
+      }, this.$route.params.id)
           .then((response) => {
-            this.group = response.data;
+            this.group.chat_name = response.data.name;
+            this.group.group_name = response.data.group_name;
           })
           .catch((e) => {
             console.log(e);

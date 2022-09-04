@@ -9,17 +9,18 @@ class GroupsAPI extends BaseAPI {
         return this.axios.get("/chat/" + id + "/?"+(new Date().getTime()));
     }
 
-    edit(data) {
-        return this.axios.post("/calendar/edit"+ "/?"+(new Date().getTime()), data);
+    edit(data, id) {
+        return this.axios.put("/chat/"+ id +"/?"+(new Date().getTime()), data);
     }
 
     add(data) {
         return this.axios.post("/chat"+ "/?"+(new Date().getTime()), data);
     }
 
-    delete(data) {
-        return this.axios.post("/chat"+ "/?"+(new Date().getTime()), data);
+    delete(id) {
+        return this.axios.delete("/chat/"+id+ "/?"+(new Date().getTime()), data);
     }
+
     addToGroup(chat, user) {
         return this.axios.post("/chat/user"+ "/?"+(new Date().getTime()), {
             "chat" : chat,

@@ -28,9 +28,6 @@ export default {
   name: "homework",
   props: ["data", "hIndex"],
   methods: {
-    goTo: function(data) {
-      this.$router.push(data);
-    },
     open_homework: function(id) {
       this.goTo("/homeworks/" + id);
     },
@@ -43,8 +40,6 @@ export default {
   display: flex;
   cursor: pointer;
   box-sizing: border-box;
-  border: 1px solid rgb(221, 221, 221);
-  margin: -1px 0;
 
   &:hover {
     background-color: rgb(223, 239, 255);
@@ -53,13 +48,15 @@ export default {
   &:hover p {
     color: #000;
   }
-
   div {
-    width: calc(100% / 3);
+    width: calc(100% / 6);
+    box-sizing: border-box;
+    border-bottom: 1px solid rgb(221, 221, 221);
     border-right: 1px solid rgb(221, 221, 221);
 
-    &:last-child {
-      border-right: none;
+    overflow: scroll;
+    &:first-child {
+      border-left: 1px solid rgb(221, 221, 221);
     }
 
     p {

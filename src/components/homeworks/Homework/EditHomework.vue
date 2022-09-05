@@ -1,60 +1,116 @@
 <template>
   <div>
     <a-form-model-item label="Статус">
-      <div v-if="homework.status === 'In_progress'">На проверке</div>
-      <div v-if="homework.status === 'Complete'">Принято</div>
-      <div v-if="homework.status === 'Failed'">Отклонено</div>
+      <p
+        v-if="homework.status === 'In_progress'"
+        style="color:rgb(24, 144, 255)"
+      >
+        На проверке
+      </p>
+      <p v-if="homework.status === 'Complete'" style="color:rgb(26, 164, 74)">
+        Принято
+      </p>
+      <p v-if="homework.status === 'Failed'" style="color:rgb(251, 81, 89)">
+        Отклонено
+      </p>
     </a-form-model-item>
     <a-form-model-item label="Студент">
       <div style="cursor: pointer">
-        <div @click="goTo('/students/'+homework.user.id)">{{ homework.user.lastname }} {{ homework.user.firstname }}</div>
+        <div @click="goTo('/students/' + homework.user.id)">
+          {{ homework.user.lastname }} {{ homework.user.firstname }}
+        </div>
       </div>
     </a-form-model-item>
-    <a-row type="flex" :gutter="24" class="bottom-buttons">
+    <a-row type="flex" :gutter="24" class="buttons__block">
       <a-col :span="24" :lg="8" :md="24">
         <a-form-model-item label="Курс">
-          <div style="cursor: pointer" @click="goTo('/courses/' + homework.study.course_id)">{{ homework.study.course_name }}</div>
+          <div
+            style="cursor: pointer"
+            @click="goTo('/courses/' + homework.study.course_id)"
+          >
+            {{ homework.study.course_name }}
+          </div>
         </a-form-model-item>
       </a-col>
       <a-col :span="24" :lg="8" :md="24">
         <a-form-model-item label="Модуль">
-          <div style="cursor: pointer" @click="goTo('/courses/' + homework.study.course_id + '/modules/' + homework.study.module_id)">{{ homework.study.module_name }}</div>
+          <div
+            style="cursor: pointer"
+            @click="
+              goTo(
+                '/courses/' +
+                  homework.study.course_id +
+                  '/modules/' +
+                  homework.study.module_id
+              )
+            "
+          >
+            {{ homework.study.module_name }}
+          </div>
         </a-form-model-item>
       </a-col>
       <a-col :span="24" :lg="8" :md="24">
         <a-form-model-item label="Урок">
-          <div style="cursor: pointer" @click="goTo('/courses/' + homework.study.course_id + '/modules/' + homework.study.module_id + '/lessons/' + homework.study.lesson_id)">{{ homework.study.lesson_name }}</div>
+          <div
+            style="cursor: pointer"
+            @click="
+              goTo(
+                '/courses/' +
+                  homework.study.course_id +
+                  '/modules/' +
+                  homework.study.module_id +
+                  '/lessons/' +
+                  homework.study.lesson_id
+              )
+            "
+          >
+            {{ homework.study.lesson_name }}
+          </div>
         </a-form-model-item>
       </a-col>
     </a-row>
 
-
-
-
-
     <a-form-model-item label="Ответ студента">
-      {{homework.text}}
+      {{ homework.text }}
     </a-form-model-item>
-
 
     <a-form-model-item label="Файлы прикрепленные к Д/З">
       <ul>
-        <li v-for="(file, index) in homework.homeworkfiles_set">
-          <a v-if="homework.homeworkfiles_set.length > 0"  :href="config.basicImageURL + file.file">Файл {{index + 1}}</a>
+        <li v-for="(file, index) in homework.homeworkfiles_set" :key="index">
+          <a
+            v-if="homework.homeworkfiles_set.length > 0"
+            :href="config.basicImageURL + file.file"
+            >Файл {{ index + 1 }}</a
+          >
         </li>
       </ul>
 
-      <p v-if="homework.homeworkfiles_set.length === 0">К домашнему заданию файлов не прикреплено </p>
-
-
+      <p v-if="homework.homeworkfiles_set.length === 0">
+        К домашнему заданию файлов не прикреплено
+      </p>
     </a-form-model-item>
 
-    <a-row type="flex" :gutter="24" class="bottom-buttons" v-if="homework.status === 'In_progress'">
+    <a-row
+      type="flex"
+      :gutter="24"
+      class="bottom-buttons"
+      v-if="homework.status === 'In_progress'"
+    >
       <a-col :span="24" :lg="12" :md="24">
-        <a-button class="button" type="primary" @click="changeStatusHomeWork('Complete')">Принять</a-button>
+        <a-button
+          class="button"
+          type="primary"
+          @click="changeStatusHomeWork('Complete')"
+          >Принять</a-button
+        >
       </a-col>
       <a-col :span="24" :lg="12" :md="24">
-        <a-button class="button" type="danger" @click="changeStatusHomeWork('Failed')">Отклонить</a-button>
+        <a-button
+          class="button"
+          type="danger"
+          @click="changeStatusHomeWork('Failed')"
+          >Отклонить</a-button
+        >
       </a-col>
     </a-row>
   </div>
@@ -69,7 +125,7 @@ export default {
   data() {
     return {
       homework: null,
-      config: config
+      config: config,
     };
   },
 
@@ -87,18 +143,18 @@ export default {
           console.log(e);
         });
     },
-    changeStatusHomeWork(status){
+    changeStatusHomeWork(status) {
       HomeworkAPI.check_homework({
-        "homework": Number(this.$route.params.homeworkId),
-        "homework_status": status
+        homework: Number(this.$route.params.homeworkId),
+        homework_status: status,
       })
-          .then((response) => {
-            this.getHomework();
-          })
-          .catch((e) => {
-            console.log(e);
-          });
-    }
+        .then((response) => {
+          this.getHomework();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
   },
 };
 </script>
@@ -121,20 +177,6 @@ export default {
   font-weight: 700;
   color: black;
   margin-bottom: 15px;
-}
-
-.bottom-buttons {
-  width: 100%;
-  margin-bottom: 20px;
-
-  .button {
-    width: 100%;
-    color: #fff;
-  }
-}
-
-.file-info {
-  font-size: 0.8em;
 }
 
 .table__head {

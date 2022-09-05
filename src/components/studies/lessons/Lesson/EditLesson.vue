@@ -2,7 +2,16 @@
   <div>
     <a-row>
       <a-col>
-        Статус загрузки {{ uploadPercentage }} из 1000
+        <a-form-model-item label="Статус загрузки">
+          <div class="progress-bar">
+            <div
+              class="progress"
+              :style="'width:' + uploadPercentage / 10 + '%'"
+            ></div>
+          </div>
+          <p class="progress-status">{{ uploadPercentage }} из 1000</p>
+        </a-form-model-item>
+
         <a-form-model-item label="Название">
           <a-input v-model="lesson.name" />
         </a-form-model-item>
@@ -57,54 +66,40 @@
             ref="video"
             v-on:change="handleVideoUpload()"
           />
-          <br />
 
           <video
             autoplay="autoplay"
             controls="controls"
             :src="config.basicVideoURL + this.lesson.video"
-            width="400"
-            height="300"
+            width="200"
+            height="auto"
           ></video>
-
           <p class="file-info">Рекомендуемый размер</p>
         </a-form-model-item>
 
         <a-form-model-item label="Тайминг">
-          <div class="table__head">
-            <div>
-              <p>Время</p>
-            </div>
-            <div>
-              <p>Описание</p>
-            </div>
-            <div>
-              <p></p>
-            </div>
+          <div class="table">
+            <p>Время</p>
+            <p>Описание</p>
+            <p>Удалить тайминг</p>
           </div>
+
           <TimingRow
             v-for="(timing, index) in lesson.timer_set"
             :data="timing"
             :key="index"
           />
-          <br />
-          <a-button class="button" type="primary" @click="addTiming"
+          <a-button class="add-btn timing-btn" type="primary" @click="addTiming"
             >Добавить тайминг</a-button
           >
           <p class="file-info">Рекомендуемый размер</p>
         </a-form-model-item>
 
         <a-form-model-item label="Дополнительные материалы">
-          <div class="table__head">
-            <div>
-              <p>Файл</p>
-            </div>
-            <div>
-              <p>2</p>
-            </div>
-            <div>
-              <p>3</p>
-            </div>
+          <div class="table">
+            <p>№</p>
+            <p>Превью</p>
+            <p>Удалить файл</p>
           </div>
           <FileRow
             v-for="(timing, index) in lesson.lessonfiles_set"
@@ -112,9 +107,9 @@
             :index="index"
             :key="index"
           />
-          <br />
 
           <input
+            class="file-input"
             type="file"
             id="homework"
             ref="homework"
@@ -125,7 +120,7 @@
         </a-form-model-item>
 
         <a-form-model-item>
-          <a-row type="flex" :gutter="24" class="bottom-buttons">
+          <a-row type="flex" :gutter="24" class="buttons__block">
             <a-col :span="24" :lg="12" :md="24">
               <a-button class="button" type="primary" @click="edit"
                 >Сохранить</a-button
@@ -368,50 +363,24 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.lesson-info {
-  margin: 10px 0;
-
-  .name {
-    margin-bottom: 20px;
-    color: black;
-    font-weight: 600;
-    font-size: 1.2em;
-  }
-}
-
-.bottom-buttons {
+.table {
+  display: flex;
   width: 100%;
 
-  .button {
-    width: 100%;
-    color: #fff;
-  }
-}
+  p {
+    box-sizing: border-box;
 
-.table__inputs {
-  border: 1px solid rgb(221, 221, 221);
+    font-weight: 600;
+    color: #000;
 
-  input {
-    height: 34px;
-    width: 20%;
-    border-right: 1px solid rgb(221, 221, 221);
-    padding-left: 10px;
-    &:last-child {
-      border-right: none;
-    }
-    &:focus {
-      outline: none;
-    }
-  }
-}
+    border-right: 1px solid #eee;
+    white-space: nowrap;
 
-.table__head {
-  display: flex;
-  background-color: rgb(221, 221, 221);
-  height: 34px;
+    text-align: center;
 
-  div {
-    border-right: 1px solid #fff;
+    background: #ddd;
+    padding: 10px 0;
+    line-height: 14px;
 
     &:first-child {
       width: 20%;
@@ -423,20 +392,34 @@ export default {
 
     &:last-child {
       width: 20%;
-      border-right: none;
     }
-  }
-
-  p {
-    padding: 10px;
-    line-height: 14px;
-    font-weight: 600;
-    color: #000;
-    text-align: center;
   }
 }
 
-.file-info {
-  font-size: 0.8em;
+.timing-btn {
+  margin-top: 20px;
+}
+
+.file-input {
+  margin-top: 20px;
+}
+
+.progress-bar {
+  border-radius: 5px;
+  height: 15px;
+
+  box-shadow: -3px 4px 11px -1px rgba(0, 0, 0, 0.22) inset;
+
+  .progress {
+    border-radius: 5px;
+    background-color: #1890ff;
+    box-shadow: 1px 0px 1px 0px rgba(0, 0, 0, 0.2);
+    height: 100%;
+  }
+}
+
+.progress-status {
+  line-height: 24px;
+  font-size: 0.8rem;
 }
 </style>

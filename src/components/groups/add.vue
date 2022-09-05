@@ -9,8 +9,13 @@
         <a-form-model-item label="Название чата">
           <a-input v-model="group.name" readonly="true" />
         </a-form-model-item>
+
         <a-form-model-item>
-          <a-row type="flex" :gutter="24" class="bottom-buttons">
+          <a-row
+            type="flex"
+            :gutter="24"
+            class="buttons__block add__groups-btn"
+          >
             <a-col :span="24" :lg="24" :md="24">
               <a-button class="button" type="primary" @click="add"
                 >Добавить</a-button
@@ -52,12 +57,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.bottom-buttons {
-  width: 100%;
-  margin-top: 10px;
-
-  .button {
-    width: 100%;
-  }
+.add__groups-btn {
+  margin-top: 20px;
 }
 </style>

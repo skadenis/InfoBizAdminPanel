@@ -9,7 +9,11 @@
           <a-textarea rows="4" v-model="module.description" />
         </a-form-model-item>
         <a-form-model-item label="Статус модуля">
-          <a-textarea rows="4" v-model="module.perm" @change="changeModulePerm"/>
+          <a-textarea
+            rows="4"
+            v-model="module.perm"
+            @change="changeModulePerm"
+          />
         </a-form-model-item>
         <a-form-model-item label="Основная картинка">
           <input
@@ -25,7 +29,7 @@
           </p>
         </a-form-model-item>
         <a-form-model-item>
-          <a-row type="flex" :gutter="24" class="bottom-buttons">
+          <a-row type="flex" :gutter="24" class="buttons__block">
             <a-col :span="24" :lg="12" :md="24">
               <a-button class="button" type="primary" @click="edit"
                 >Сохранить</a-button
@@ -38,14 +42,15 @@
             </a-col>
           </a-row>
         </a-form-model-item>
+        <a-form-model-item label="Вложенные уроки:">
+          <Lessons
+            v-bind:courseId="courseId"
+            v-bind:moduleId="moduleId"
+            v-bind:data="module"
+          ></Lessons>
+        </a-form-model-item>
       </a-col>
     </a-row>
-    <p class="lessons-inc">Вложенные уроки:</p>
-    <Lessons
-      v-bind:courseId="courseId"
-      v-bind:moduleId="moduleId"
-      v-bind:data="module"
-    ></Lessons>
   </div>
 </template>
 
@@ -64,7 +69,7 @@ export default {
       module: {
         name: null,
         description: null,
-        perm: false
+        perm: false,
       },
       file: undefined,
       config: config,
@@ -85,9 +90,7 @@ export default {
           console.log(e);
         });
     },
-    changeModulePerm(){
-
-    },
+    changeModulePerm() {},
     async edit() {
       let formData = new FormData();
       formData.append("course", this.courseId);
@@ -134,33 +137,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.module-info {
-  margin: 10px 0;
-
-  .name {
-    margin-bottom: 20px;
-    color: black;
-    font-weight: 600;
-    font-size: 1.2em;
-  }
-}
-
-.bottom-buttons {
-  width: 100%;
+.name {
   margin-bottom: 20px;
-
-  .button {
-    width: 100%;
-    color: #fff;
-  }
-}
-.lessons-inc {
-  color: #000;
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-
-.file-info {
-  font-size: 0.8em;
+  color: black;
+  font-weight: 600;
+  font-size: 1.2em;
 }
 </style>

@@ -11,25 +11,29 @@
       <a-input v-model="student.email" readonly="true" />
     </a-form-model-item>
 
-    <br /><br />
-    <p class="course-inc">Курсы студента:</p>
+    <a-form-model-item label="Курсы студента:">
+      <div>
+        Какая то таблица
+      </div>
+    </a-form-model-item>
 
     <div>
-      Какая то таблица
-    </div>
+      <a-form-model-item label="Добавить студента к курсу">
+        <a-select style="width: 100%" v-model="addForm">
+          <a-select-option
+            v-for="(course, index) in courses"
+            :value="course.id"
+            :key="index"
+          >
+            {{ course.name }}
+          </a-select-option>
+        </a-select>
+      </a-form-model-item>
 
-    <div>
-      <br /><br />
-      <p class="course-inc">Добавить студента к курсу</p>
-      <a-select style="width: 100%" v-model="addForm">
-        <a-select-option v-for="(course, index) in courses" :value="course.id" :key="index">
-          {{ course.name }}
-        </a-select-option>
-      </a-select>
-
-
-
-      <a-button class="button" type="primary" @click="addSudentToCourse"
+      <a-button
+        class="add-btn groups-btn"
+        type="primary"
+        @click="addSudentToCourse"
         >Добавить в группу</a-button
       >
     </div>
@@ -87,26 +91,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.student-info {
+.groups-btn {
   margin-top: 20px;
-  span {
-    color: black;
-    font-weight: 600;
-    font-size: 1.2em;
-  }
-
-  .name {
-    margin-right: 10px;
-  }
-}
-
-.course-inc {
-  font-weight: 700;
-  color: black;
-  margin-bottom: 15px;
-}
-
-.button {
-  margin-top: 15px;
 }
 </style>

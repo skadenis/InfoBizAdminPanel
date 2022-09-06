@@ -29,7 +29,7 @@
           <a-input type="datetime-local" v-model="module.is_in_progress" />
         </a-form-model-item>
         <a-form-model-item>
-          <a-row type="flex" :gutter="24" class="bottom-buttons">
+          <a-row type="flex" :gutter="24" class="buttons__block">
             <a-col :span="24" :lg="24" :md="24">
               <a-button class="button" type="primary" @click="add"
                 >Добавить модуль</a-button
@@ -93,16 +93,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-.bottom-buttons {
-  width: 100%;
-
-  .button {
-    width: 100%;
-  }
-}
-
-.file-info {
-  font-size: 0.8em;
-}
-</style>
+<style scoped lang="scss"></style>

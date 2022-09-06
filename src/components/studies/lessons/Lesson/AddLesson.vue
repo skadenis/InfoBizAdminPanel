@@ -51,7 +51,7 @@
         </a-form-model-item>
 
         <a-form-model-item>
-          <a-row type="flex" :gutter="24" class="bottom-buttons">
+          <a-row type="flex" :gutter="24" class="buttons__block">
             <a-col :span="24" :lg="24" :md="24">
               <a-button class="button" type="primary" @click="add"
                 >Добавить урок</a-button
@@ -172,64 +172,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-.bottom-buttons {
-  width: 100%;
-
-  .button {
-    width: 100%;
-  }
-}
-
-.table__inputs {
-  border: 1px solid rgb(221, 221, 221);
-
-  input {
-    height: 34px;
-    width: 20%;
-    border-right: 1px solid rgb(221, 221, 221);
-    padding-left: 10px;
-    &:last-child {
-      border-right: none;
-    }
-    &:focus {
-      outline: none;
-    }
-  }
-}
-
-.table__head {
-  display: flex;
-  background-color: rgb(221, 221, 221);
-  height: 34px;
-
-  div {
-    width: calc(100% / 3);
-    border-right: 1px solid #fff;
-
-    &:first-child {
-      width: 20%;
-    }
-
-    &:nth-child(2) {
-      width: 60%;
-    }
-
-    &:last-child {
-      width: 20%;
-      border-right: none;
-    }
-  }
-
-  p {
-    padding: 10px;
-    line-height: 14px;
-    font-weight: 600;
-    color: #000;
-    text-align: center;
-  }
-}
-.file-info {
-  font-size: 0.8em;
-}
-</style>
+<style scoped lang="scss"></style>

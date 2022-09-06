@@ -7,7 +7,7 @@
       v-bind:courseId="courseId"
       :key="lIndex"
     ></Lesson>
-    <button class="add__lessons-btn" @click="add_lesson()">
+    <button class="add-btn" @click="add_lesson()">
       Добавить урок
     </button>
   </div>
@@ -41,9 +41,7 @@ export default {
           console.log(e);
         });
     },
-    goTo: function(data) {
-      this.$router.push(data);
-    },
+
     add_lesson: function() {
       this.goTo(
         "/courses/" +
@@ -57,15 +55,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-.add__lessons-btn {
-  width: 20%;
-  min-width: 105px;
-  background-color: #1890ff;
-  color: #fff;
-  padding: 16px;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.8em;
-}
-</style>
+<style scoped lang="scss"></style>

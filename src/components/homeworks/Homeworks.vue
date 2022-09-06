@@ -1,24 +1,12 @@
 <template>
   <div>
-    <div class="table__head">
-      <div>
-        <p>Название</p>
-      </div>
-      <div>
-        <p>Статус</p>
-      </div>
-      <div>
-        <p>Курс</p>
-      </div>
-      <div>
-        <p>Модуль</p>
-      </div>
-      <div>
-        <p>Урок</p>
-      </div>
-      <div>
-        <p>Студент</p>
-      </div>
+    <div class="table">
+      <p>Название</p>
+      <p>Статус</p>
+      <p>Курс</p>
+      <p>Модуль</p>
+      <p>Урок</p>
+      <p>Студент</p>
     </div>
     <Homework
       v-for="(homework, hIndex) in homeworks"
@@ -62,24 +50,26 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.table__head {
+.table {
   display: flex;
-  background-color: rgb(221, 221, 221);
-
-  div {
-    width: 25%;
-    border-right: 1px solid #fff;
-
-    &:last-child {
-      border-right: none;
-    }
-  }
+  width: 100%;
+  margin-top: 20px;
 
   p {
-    padding: 10px;
+    box-sizing: border-box;
+
     font-weight: 600;
     color: #000;
+
+    border-right: 1px solid #eee;
+    white-space: nowrap;
+
     text-align: center;
+
+    background: #ddd;
+    padding: 10px 0;
+    line-height: 14px;
+    width: calc(100% / 6);
   }
 }
 </style>

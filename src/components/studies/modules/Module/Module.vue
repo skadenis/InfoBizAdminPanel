@@ -1,27 +1,34 @@
 <template>
   <div class="module">
     <div class="module-item" @click="open_module(courseId, data.id)">
+      <img
+        class="module-img"
+        :src="config.basicImageURL + data.image"
+        alt="module-img"
+        height="80"
+      />
       <div>
         <p class="module-name">{{ data.name }}</p>
       </div>
       <div>
-        <p>{{ data.description }}</p>
-      </div>
-      <div>
-        <p>{{ data.icon_src }}</p>
+        <p class="module-desc">{{ data.description }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import config from "../../../../config";
+
 export default {
   name: "module",
   props: ["data", "courseId"],
+  data() {
+    return {
+      config,
+    };
+  },
   methods: {
-    goTo: function(data) {
-      this.$router.push(data);
-    },
     open_module: function(courseId, id) {
       this.goTo("/courses/" + courseId + "/modules/" + id);
     },
@@ -39,6 +46,7 @@ export default {
     border: 1px solid rgb(221, 221, 221);
     border-radius: 10px;
     min-height: 100px;
+    padding: 10px;
 
     &:hover {
       background-color: rgb(223, 239, 255);
@@ -48,16 +56,21 @@ export default {
       color: #000;
     }
 
-    div {
-      p {
-        padding: 10px;
-      }
+    .module-img {
+      display: block;
+      border-radius: 10px;
+      border: 1px solid rgb(221, 221, 221);
     }
 
     .module-name {
       color: #000;
       font-size: 1.2em;
       font-weight: 600;
+      margin-left: 20px;
+    }
+
+    .module-desc {
+      margin-left: 20px;
     }
   }
 }

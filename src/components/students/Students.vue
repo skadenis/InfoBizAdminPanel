@@ -1,15 +1,9 @@
 <template>
   <div>
-    <div class="table__head">
-      <div>
-        <p>Имя</p>
-      </div>
-      <div>
-        <p>Фамилия</p>
-      </div>
-      <div>
-        <p>Курс</p>
-      </div>
+    <div class="table">
+      <p>Имя</p>
+      <p>Фамилия</p>
+      <p>Email</p>
     </div>
     <Student
       v-for="(student, sIndex) in students"
@@ -52,36 +46,25 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.table__head {
+.table {
   display: flex;
-  background-color: rgb(221, 221, 221);
-
-  div {
-    width: calc(100% / 3);
-    border-right: 1px solid #fff;
-
-    &:last-child {
-      border-right: none;
-    }
-  }
+  width: 100%;
 
   p {
-    padding: 10px;
+    box-sizing: border-box;
+
     font-weight: 600;
     color: #000;
-    text-align: center;
-  }
-}
 
-.add__students-btn {
-  width: 20%;
-  min-width: 105px;
-  margin: 20px 0;
-  background-color: #1890ff;
-  color: #fff;
-  padding: 16px;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.8em;
+    border-right: 1px solid #eee;
+    white-space: nowrap;
+
+    text-align: center;
+
+    background: #ddd;
+    padding: 10px 0;
+    line-height: 14px;
+    width: calc(100% / 3);
+  }
 }
 </style>

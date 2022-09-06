@@ -21,7 +21,7 @@
     </a-form-model-item>
 
     <a-form-model-item>
-      <a-row type="flex" :gutter="24" class="bottom-buttons">
+      <a-row type="flex" :gutter="24" class="buttons-block">
         <a-col :span="24" :lg="24" :md="24">
           <a-button class="button" type="primary" @click="add"
             >Добавить</a-button
@@ -77,12 +77,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-.bottom-buttons {
-  width: 100%;
-
-  .button {
-    width: 100%;
-  }
-}
-</style>
+<style lang="scss"></style>

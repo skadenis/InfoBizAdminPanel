@@ -5,7 +5,7 @@
       v-bind:data="course"
       :key="cIndex"
     ></Course>
-    <button class="add__courses-btn" @click="add_course()">
+    <button class="add-btn" @click="add_course()">
       Добавить курс
     </button>
   </div>
@@ -45,16 +45,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-.add__courses-btn {
-  width: 20%;
-  min-width: 105px;
-  margin: 20px 0;
-  background-color: #1890ff;
-  color: #fff;
-  padding: 16px;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.8em;
-}
-</style>
+<style scoped lang="scss"></style>

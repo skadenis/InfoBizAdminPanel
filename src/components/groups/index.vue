@@ -1,25 +1,16 @@
 <template>
   <div>
     <div>
-      <button class="add__groups-btn" @click="goTo('/groups/add')">
+      <button class="add-btn" @click="goTo('/groups/add')">
         Добавить группу
       </button>
     </div>
-    <div class="table__head">
-      <div>
-        <p>№</p>
-      </div>
-      <div>
-        <p>Название группы</p>
-      </div>
-      <div>
-        <p>Название чата</p>
-      </div>
-      <div>
-        <p>Кол-во участников</p>
-      </div>
+    <div class="table">
+      <p>№</p>
+      <p>Название группы</p>
+      <p>Название чата</p>
+      <p>Кол-во участников</p>
     </div>
-
     <chatRow
       v-for="(group, index) in groups"
       :index="index"
@@ -60,35 +51,26 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.table__head {
+.table {
   display: flex;
-  background-color: rgb(221, 221, 221);
-
-  div {
-    width: calc(100% / 4);
-    border-right: 1px solid #fff;
-
-    &:last-child {
-      border-right: none;
-    }
-  }
+  width: 100%;
+  margin-top: 20px;
 
   p {
-    padding: 10px;
+    box-sizing: border-box;
+
     font-weight: 600;
     color: #000;
+
+    border-right: 1px solid #eee;
+    white-space: nowrap;
+
     text-align: center;
+
+    background: #ddd;
+    padding: 10px 0;
+    line-height: 14px;
+    width: 25%;
   }
-}
-.add__groups-btn {
-  width: 20%;
-  min-width: 105px;
-  margin: 20px 0;
-  background-color: #1890ff;
-  color: #fff;
-  padding: 16px;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.8em;
 }
 </style>

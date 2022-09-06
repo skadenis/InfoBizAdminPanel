@@ -1,5 +1,5 @@
 <template>
-  <div class="edit__course">
+  <div>
     <a-row>
       <a-col>
         <a-form-model-item label="Название">
@@ -21,7 +21,7 @@
           </p>
         </a-form-model-item>
         <a-form-model-item>
-          <a-row type="flex" :gutter="24" class="bottom-buttons">
+          <a-row type="flex" :gutter="24" class="buttons__block">
             <a-col :span="24" :lg="12" :md="24">
               <a-button class="button" type="primary" @click="edit"
                 >Сохранить</a-button
@@ -34,10 +34,11 @@
             </a-col>
           </a-row>
         </a-form-model-item>
+        <a-form-model-item label="Вложенные модули:">
+          <Modules :courseId="courseId" :data="modules"></Modules>
+        </a-form-model-item>
       </a-col>
     </a-row>
-    <p class="modules-inc">Вложенные модули:</p>
-    <Modules :courseId="courseId" :data="modules"></Modules>
   </div>
 </template>
 
@@ -109,7 +110,6 @@ export default {
           console.log(e);
         });
 
-
       if (axiosRes.status === 204) {
         this.$root.$emit("createAlertGood");
         this.goTo("/courses/");
@@ -122,32 +122,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-.edit__course {
-  .name {
-    margin-bottom: 20px;
-    color: black;
-    font-weight: 600;
-    font-size: 1.2em;
-  }
-}
-
-.file-info {
-  font-size: 0.8em;
-}
-
-.bottom-buttons {
-  width: 100%;
-  margin-bottom: 20px;
-
-  .button {
-    width: 100%;
-    color: #fff;
-  }
-}
-
-.modules-inc {
-  color: #000;
-  font-weight: 700;
-}
-</style>
+<style scoped lang="scss"></style>

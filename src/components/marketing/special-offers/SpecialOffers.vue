@@ -6,6 +6,7 @@
           v-for="(offer, index) in offers"
           class="special_offer__block"
           @click="open_special_offer(offer.id)"
+          :key="index"
         >
           <img :src="config.basicImageURL + offer.image" alt="" />
           <p class="offer-header">{{ offer.header }}</p>

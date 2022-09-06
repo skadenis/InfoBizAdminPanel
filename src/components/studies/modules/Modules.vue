@@ -6,7 +6,7 @@
       v-bind:courseId="courseId"
       :key="mIndex"
     ></Module>
-    <button class="add__modules-btn" @click="add_module()">
+    <button class="add-btn" @click="add_module()">
       Добавить модуль
     </button>
   </div>
@@ -40,9 +40,6 @@ export default {
           console.log(e);
         });
     },
-    goTo: function(data) {
-      this.$router.push(data);
-    },
     add_module: function() {
       this.goTo("/courses/" + this.courseId + "/modules/add");
     },
@@ -50,15 +47,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-.add__modules-btn {
-  width: 20%;
-  min-width: 105px;
-  background-color: #1890ff;
-  color: #fff;
-  padding: 16px;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.8em;
-}
-</style>
+<style scoped lang="scss"></style>

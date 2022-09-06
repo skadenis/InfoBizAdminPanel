@@ -9,7 +9,8 @@
       </div>
       <div>
         <a-button class="del-button" @click="deleteFile"
-          ><i class="pi pi-trash"></i
+          >
+<!--          <i class="pi pi-trash"></i-->
         ></a-button>
       </div>
     </div>
@@ -19,7 +20,7 @@
 <script>
 import config from "@/config";
 import LessonsAPI from "../../../../../api/LessonsAPI";
-import "primeicons/primeicons.css";
+// import "primeicons/primeicons.css";
 
 export default {
   props: ["data", "index"],

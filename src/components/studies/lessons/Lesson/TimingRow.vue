@@ -9,8 +9,8 @@
       ></a-textarea>
     </div>
     <div>
-      <a-button class="del-button" @click="deleteTiming"
-        ><i class="pi pi-trash"></i
+      <a-button class="del-button" @click="deleteTiming">
+<!--        <i class="pi pi-trash"></i-->
       ></a-button>
     </div>
   </div>
@@ -18,7 +18,7 @@
 
 <script>
 import LessonsAPI from "../../../../../api/LessonsAPI";
-import "primeicons/primeicons.css";
+// import "primeicons/primeicons.css";
 
 export default {
   props: ["data"],

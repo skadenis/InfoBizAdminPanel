@@ -8,6 +8,9 @@
         <a-form-model-item label="Описание">
           <a-textarea rows="4" v-model="course.description" />
         </a-form-model-item>
+        <a-form-model-item label="Курс общедоступный?">
+          <a-switch />
+        </a-form-model-item>
         <a-form-model-item label="Основная картинка">
           <input
             type="file"

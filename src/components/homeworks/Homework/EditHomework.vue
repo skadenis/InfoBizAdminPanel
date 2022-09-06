@@ -50,7 +50,7 @@
     </a-form-model-item>
 
     <a-form-model-item label="Коментарий к домашнему заданию">
-      <a-textarea rows="4" v-model="comment" />
+      <a-textarea rows="4" v-model=" homework.review" />
     </a-form-model-item>
 
 
@@ -74,7 +74,6 @@ export default {
   data() {
     return {
       homework: null,
-      comment: "",
       config: config
     };
   },
@@ -96,6 +95,7 @@ export default {
     changeStatusHomeWork(status){
       HomeworkAPI.check_homework({
         "homework": Number(this.$route.params.homeworkId),
+        "review": this.homework.review,
         "homework_status": status
       })
           .then((response) => {

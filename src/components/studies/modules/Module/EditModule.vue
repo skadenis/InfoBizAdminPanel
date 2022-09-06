@@ -93,9 +93,7 @@ export default {
           console.log(e);
         });
     },
-    changeModulePerm(){
 
-    },
     async edit() {
 
 

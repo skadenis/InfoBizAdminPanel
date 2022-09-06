@@ -59,16 +59,17 @@ export default {
   },
   methods: {
     async add() {
-      if(this.module.is_in_progress){
-        this.module.is_in_progress = this.module.is_in_progress.replace('T', " ");
-      }
 
       let formData = new FormData();
+
+      if(this.module.is_in_progress){
+        formData.append("open_time", new Date(this.module.open_time).toISOString() );
+      }
+
 
       formData.append("name", this.module.name);
       formData.append("course", this.courseId);
       formData.append("description", this.module.description);
-      formData.append("is_in_progress", this.module.is_in_progress);
       formData.append("education", this.module.education);
 
       if (this.file) {

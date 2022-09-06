@@ -68,11 +68,9 @@ export default {
       file: null,
     };
   },
-
   mounted() {
     this.getCourse();
   },
-
   methods: {
     getCourse: function() {
       CoursesAPI.get(this.courseId)

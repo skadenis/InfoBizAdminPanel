@@ -81,7 +81,6 @@ export default {
   mounted() {
     this.getModule();
   },
-
   methods: {
     getModule: function() {
       ModulesAPI.get(this.moduleId)
@@ -93,17 +92,14 @@ export default {
           console.log(e);
         });
     },
-
     async edit() {
-
-
       let formData = new FormData();
       formData.append("course", this.courseId);
       formData.append("module", this.moduleId);
       formData.append("name", this.module.name);
       formData.append("education", this.module.education);
       if(this.module.open_time !== ""){
-        formData.append("open_time", this.module.open_time + "Z");
+        formData.append("open_time", new Date(this.module.open_time).toISOString() );
       }else {
         formData.append("open_time", null);
       }

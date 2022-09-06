@@ -3,11 +3,11 @@
     <a-row>
       <a-col>
         <a-form-model-item label="Название группы">
-          <a-input v-model="group.group_name" readonly="true" />
+          <a-input v-model="group.group_name"/>
         </a-form-model-item>
 
         <a-form-model-item label="Название чата">
-          <a-input v-model="group.name" readonly="true" />
+          <a-input v-model="group.name"/>
         </a-form-model-item>
         <a-form-model-item>
           <a-row type="flex" :gutter="24" class="bottom-buttons">

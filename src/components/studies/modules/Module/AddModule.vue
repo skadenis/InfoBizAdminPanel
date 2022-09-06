@@ -8,6 +8,9 @@
         <a-form-model-item label="Описание">
           <a-textarea rows="4" v-model="module.description" />
         </a-form-model-item>
+        <a-form-model-item label="Модуль доступен?">
+          <a-switch rows="4" v-model="module.perm"/>
+        </a-form-model-item>
         <a-form-model-item label="Основная картинка">
           <input
             type="file"
@@ -18,6 +21,12 @@
           <p class="file-info">
             Рекомендуемый размер картинки ширина: 656px, высота: 388px
           </p>
+        </a-form-model-item>
+        <a-form-model-item label="Модуль учитывается в рассчете прогресса:">
+          <a-switch v-model="module.education" />
+        </a-form-model-item>
+        <a-form-model-item label="Модуль доступен с:">
+          <a-input type="datetime-local" v-model="module.is_in_progress" />
         </a-form-model-item>
         <a-form-model-item>
           <a-row type="flex" :gutter="24" class="bottom-buttons">
@@ -43,17 +52,24 @@ export default {
       module: {
         name: null,
         description: null,
+        is_in_progress: null
       },
       file: null,
     };
   },
   methods: {
     async add() {
+      if(this.module.is_in_progress){
+        this.module.is_in_progress = this.module.is_in_progress.replace('T', " ");
+      }
+
       let formData = new FormData();
 
       formData.append("name", this.module.name);
       formData.append("course", this.courseId);
       formData.append("description", this.module.description);
+      formData.append("is_in_progress", this.module.is_in_progress);
+      formData.append("education", this.module.education);
 
       if (this.file) {
         formData.append("image", this.file);

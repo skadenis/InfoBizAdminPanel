@@ -49,6 +49,11 @@
 
     </a-form-model-item>
 
+    <a-form-model-item label="Коментарий к домашнему заданию">
+      <a-textarea rows="4" v-model="comment" />
+    </a-form-model-item>
+
+
     <a-row type="flex" :gutter="24" class="bottom-buttons" v-if="homework.status === 'In_progress'">
       <a-col :span="24" :lg="12" :md="24">
         <a-button class="button" type="primary" @click="changeStatusHomeWork('Complete')">Принять</a-button>
@@ -69,6 +74,7 @@ export default {
   data() {
     return {
       homework: null,
+      comment: "",
       config: config
     };
   },

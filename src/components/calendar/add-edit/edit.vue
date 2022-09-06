@@ -106,7 +106,21 @@ export default {
           });
     },
     async edit() {
-      await CalendarAPI.edit(this.event)
+
+      let data = this.event;
+
+      if(!this.show.groups){
+        delete data.group;
+      }
+
+      if(!this.show.courses){
+        delete data.course;
+      }
+
+      data.calendar = data.id;
+      delete data.id;
+
+      await CalendarAPI.edit(data)
           .then((response) => {
             this.$root.$emit("createAlertGood");
             this.event = response.data;
@@ -135,7 +149,8 @@ export default {
             }
 
             if(response.data.course === null){
-              this.show.course = false
+              console.log(123);
+              this.show.courses = false
             }
           })
           .catch((e) => {

@@ -18,7 +18,6 @@ class CalendarAPI extends BaseAPI {
   }
 
   delete(id) {
-    console.log(123);
     return this.axios.delete("/course/calendar/"+id+"/");
   }
 }

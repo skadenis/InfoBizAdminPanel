@@ -102,15 +102,17 @@ export default {
     },
     async add() {
 
+      let data = this.event;
+
       if(!this.show.groups){
-        this.event.group = null
+        delete data.group;
       }
 
       if(!this.show.courses){
-        this.event.course = null
+        delete data.course;
       }
 
-      await CalendarAPI.add(this.event)
+      await CalendarAPI.add(data)
           .then((response) => {
             this.$root.$emit("createAlertGood");
             this.goTo('/calendar/'+response.data.id);

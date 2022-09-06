@@ -8,8 +8,8 @@
         <a-form-model-item label="Описание">
           <a-textarea rows="4" v-model="module.description" />
         </a-form-model-item>
-        <a-form-model-item label="Статус модуля">
-          <a-textarea rows="4" v-model="module.perm" @change="changeModulePerm"/>
+        <a-form-model-item label="Модуль доступен?">
+          <a-switch rows="4" v-model="module.perm"/>
         </a-form-model-item>
         <a-form-model-item label="Основная картинка">
           <input
@@ -23,6 +23,12 @@
           <p class="file-info">
             Рекомендуемый размер картинки ширина: 656px, высота: 388px
           </p>
+        </a-form-model-item>
+        <a-form-model-item label="Модуль учитывается в рассчете прогресса:">
+          <a-switch v-model="module.education" />
+        </a-form-model-item>
+        <a-form-model-item label="Модуль доступен с:">
+          <a-input type="datetime-local" v-model="module.open_time" />
         </a-form-model-item>
         <a-form-model-item>
           <a-row type="flex" :gutter="24" class="bottom-buttons">
@@ -64,7 +70,8 @@ export default {
       module: {
         name: null,
         description: null,
-        perm: false
+        perm: false,
+        education: false
       },
       file: undefined,
       config: config,
@@ -80,6 +87,7 @@ export default {
       ModulesAPI.get(this.moduleId)
         .then((response) => {
           this.module = response.data;
+          this.module.open_time = this.module.open_time.replace('Z',"");
         })
         .catch((e) => {
           console.log(e);
@@ -89,10 +97,19 @@ export default {
 
     },
     async edit() {
+
+
       let formData = new FormData();
       formData.append("course", this.courseId);
       formData.append("module", this.moduleId);
       formData.append("name", this.module.name);
+      formData.append("education", this.module.education);
+      if(this.module.open_time !== ""){
+        formData.append("open_time", this.module.open_time + "Z");
+      }else {
+        formData.append("open_time", null);
+      }
+
       formData.append("perm", this.module.perm);
       formData.append("description", this.module.description);
 
@@ -102,9 +119,8 @@ export default {
 
       await ModulesAPI.edit(formData)
         .then((response) => {
-          this.module = response.data;
           this.$root.$emit("createAlertGood");
-          this.file = null;
+          this.getModule();
         })
         .catch((e) => {
           console.log(e);

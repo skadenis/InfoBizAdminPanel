@@ -9,7 +9,7 @@
           <a-textarea rows="4" v-model="course.description" />
         </a-form-model-item>
         <a-form-model-item label="Курс общедоступный?">
-          <a-switch />
+          <a-switch v-model="course.status"/>
 
         </a-form-model-item>
         <a-form-model-item label="Основная картинка">
@@ -49,6 +49,7 @@ export default {
         name: null,
         description: null,
         image: null,
+        status: false
       },
       file: null,
     };
@@ -58,6 +59,7 @@ export default {
       let formData = new FormData();
 
       formData.append("name", this.course.name);
+      formData.append("status", this.course.status);
       formData.append("description", this.course.description);
       if (this.file) {
         formData.append("image", this.file);

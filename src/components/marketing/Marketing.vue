@@ -1,12 +1,12 @@
 <template>
   <div>
     <a-menu>
-      <!-- <a-menu-item class="menu__item">
+      <a-menu-item class="menu__item">
         <router-link to="/marketing/push">
           <p class="label">Push - уведомления</p>
           <span class="sublabel">Пуш - важнейший инструмент маркетинга.</span>
         </router-link>
-      </a-menu-item> -->
+      </a-menu-item> 
 
       <a-menu-item class="menu__item">
         <router-link to="/marketing/offers">

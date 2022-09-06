@@ -9,7 +9,7 @@
           <a-textarea rows="4" v-model="course.description" />
         </a-form-model-item>
         <a-form-model-item label="Курс общедоступный?">
-          <a-switch />
+          <a-switch v-model="course.status" />
         </a-form-model-item>
         <a-form-model-item label="Основная картинка">
           <input
@@ -61,6 +61,7 @@ export default {
       course: {
         name: null,
         description: null,
+        status: false
       },
       config: config,
       modules: [],
@@ -87,6 +88,7 @@ export default {
       let formData = new FormData();
       formData.append("course_id", this.courseId);
       formData.append("name", this.course.name);
+      formData.append("status", this.course.status);
       formData.append("description", this.course.description);
 
       if (this.file) {

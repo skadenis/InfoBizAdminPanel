@@ -26,7 +26,7 @@
           <a-switch v-model="module.education" />
         </a-form-model-item>
         <a-form-model-item label="Модуль доступен с:">
-          <a-input type="datetime-local" v-model="module.is_in_progress" />
+          <a-input type="datetime-local" v-model="module.open_time" />
         </a-form-model-item>
         <a-form-model-item>
           <a-row type="flex" :gutter="24" class="buttons__block">
@@ -52,7 +52,8 @@ export default {
       module: {
         name: null,
         description: null,
-        is_in_progress: null
+        is_in_progress: null,
+        open_time: null
       },
       file: null,
     };
@@ -63,10 +64,11 @@ export default {
       let formData = new FormData();
 
       if(this.module.is_in_progress){
-        formData.append("open_time", new Date(this.module.open_time).toISOString() );
+        let date = new Date(this.module.open_time).toISOString();
+        formData.append("open_time", date );
       }
 
-
+      formData.append("perm", this.module.perm);
       formData.append("name", this.module.name);
       formData.append("course", this.courseId);
       formData.append("description", this.module.description);

@@ -25,16 +25,10 @@
         </a-form-model-item>
 
         <a-form-model-item label="Учатники группы">
-          <div class="table__head">
-            <div>
-              <p>Имя</p>
-            </div>
-            <div>
-              <p>Фамилия</p>
-            </div>
-            <div>
-              <p>Email</p>
-            </div>
+          <div class="table">
+            <p>Имя</p>
+            <p>Фамилия</p>
+            <p>Email</p>
           </div>
           <div
             v-for="(student, index) in group.users"
@@ -160,28 +154,6 @@ export default {
   margin-top: 15px;
 }
 
-.table__head {
-  display: flex;
-  align-items: center;
-  height: 34px;
-  background-color: rgb(221, 221, 221);
-
-  div {
-    width: calc(100% / 3);
-    border-right: 1px solid #fff;
-
-    &:last-child {
-      border-right: none;
-    }
-  }
-
-  p {
-    font-weight: 600;
-    color: #000;
-    text-align: center;
-  }
-}
-
 .student {
   height: 34px;
   align-items: center;
@@ -211,6 +183,28 @@ export default {
       padding-left: 10px;
       line-height: 32px;
     }
+  }
+}
+
+.table {
+  display: flex;
+  width: 100%;
+
+  p {
+    box-sizing: border-box;
+
+    font-weight: 600;
+    color: #000;
+
+    border-right: 1px solid #eee;
+    white-space: nowrap;
+
+    text-align: center;
+
+    background: #ddd;
+    padding: 10px 0;
+    line-height: 14px;
+    width: calc(100% / 3);
   }
 }
 </style>

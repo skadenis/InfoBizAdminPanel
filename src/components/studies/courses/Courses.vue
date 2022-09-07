@@ -1,5 +1,8 @@
 <template>
   <div>
+    <button class="add-btn" @click="add_course()">
+      Добавить курс
+    </button>
     <draggable v-model="courses" draggable=".course" style="width: 100%">
       <Course
         v-for="(course, cIndex) in courses"
@@ -7,9 +10,6 @@
         :key="cIndex"
       ></Course>
     </draggable>
-    <button class="add-btn" @click="add_course()">
-      Добавить курс
-    </button>
   </div>
 </template>
 
@@ -22,7 +22,7 @@ import LessonsAPI from "../../../../api/LessonsAPI";
 export default {
   components: {
     Course,
-    draggable
+    draggable,
   },
   data() {
     return {
@@ -33,12 +33,14 @@ export default {
     courses: {
       handler(newMenu, oldMenu) {
         this.courses = newMenu;
-        (this.courses).forEach(function (course, catKey) {
-          this.editCoursePos(course.id, catKey);
-        }.bind(this));
-      }
+        this.courses.forEach(
+          function(course, catKey) {
+            this.editCoursePos(course.id, catKey);
+          }.bind(this)
+        );
+      },
     },
-    deep: true
+    deep: true,
   },
   created: function() {
     this.getCourses();
@@ -58,7 +60,6 @@ export default {
       this.goTo("/courses/add");
     },
     editCoursePos(id, index) {
-
       let formData = new FormData();
       formData.append("course_id", id);
       formData.append("index", index);

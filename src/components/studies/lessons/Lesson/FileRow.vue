@@ -8,10 +8,10 @@
         <a :href="config.basicImageURL + data.file">Просмотерть файл</a>
       </div>
       <div>
-        <a-button class="del-button" @click="deleteFile"
-          >
-<!--          <i class="pi pi-trash"></i-->
-        ></a-button>
+        <a-button class="del-button" @click="deleteFile">
+          <!-- <i class="pi pi-trash"></i> -->
+          Удалить
+        </a-button>
       </div>
     </div>
   </div>

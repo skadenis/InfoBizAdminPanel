@@ -18,7 +18,7 @@ class GroupsAPI extends BaseAPI {
     }
 
     delete(id) {
-        return this.axios.delete("/chat/"+id+ "/?"+(new Date().getTime()), data);
+        return this.axios.delete("/chat/"+id+ "/?"+(new Date().getTime()));
     }
 
     addToGroup(chat, user) {

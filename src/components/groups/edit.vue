@@ -129,7 +129,7 @@ export default {
     deleteGroup() {
       GroupsAPI.delete(this.$route.params.id)
         .then((response) => {
-          this.group = response.data;
+          this.goTo('/groups/');
         })
         .catch((e) => {
           console.log(e);

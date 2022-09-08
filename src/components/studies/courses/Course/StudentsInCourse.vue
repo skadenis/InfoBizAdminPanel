@@ -11,11 +11,15 @@
       <div>
         <p>Email</p>
       </div>
+      <div>
+        <p></p>
+      </div>
     </div>
     <StudentRow
       v-for="(student, index) in students"
       :data="student"
       :key="index"
+      :course-id="courseId"
     />
   </div>
 </template>
@@ -39,7 +43,9 @@ export default {
 
   mounted() {
     this.getStudents();
+    this.$root.$on('reloadData', this.getStudents)
   },
+
 
   methods: {
     getStudents() {

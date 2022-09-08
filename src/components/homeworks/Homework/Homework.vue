@@ -52,9 +52,9 @@ export default {
     width: calc(100% / 6);
     box-sizing: border-box;
     border-bottom: 1px solid rgb(221, 221, 221);
+    overflow: hidden;
     border-right: 1px solid rgb(221, 221, 221);
 
-    overflow: scroll;
     &:first-child {
       border-left: 1px solid rgb(221, 221, 221);
     }

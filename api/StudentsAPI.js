@@ -31,6 +31,10 @@ class StudentsAPI extends BaseAPI {
       user_id: stID
     });
   }
+
+  unsubscribe_course(data){
+    return this.axios.delete("/course/unsubscribe_course" + "/?"+(new Date().getTime()), { data: data });
+  }
 }
 
 export default new StudentsAPI();

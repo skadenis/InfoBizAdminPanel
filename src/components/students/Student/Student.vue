@@ -1,32 +1,56 @@
 <template>
   <div>
-    <div class="student" @click="open_student(data.id)">
-      <div>
+    <div class="student">
+      <div @click="open_student(data.id)">
         <p>{{ data.firstname }}</p>
       </div>
-      <div>
+      <div @click="open_student(data.id)">
         <p>{{ data.lastname }}</p>
       </div>
-      <div>
+      <div @click="open_student(data.id)">
         <p>{{ data.email }}</p>
+      </div>
+      <div>
+        <p>
+          <a class="delete_student" @click="delete_student(data.id)">Удалить</a>
+        </p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import StudentsAPI from '../../../../api/StudentsAPI';
+
 export default {
   name: "student",
-  props: ["data"],
+  props: ["data", "CourseId"],
   methods: {
     open_student: function(id) {
       this.goTo("/students/" + id);
+    },
+    delete_student: function(id) {
+      StudentsAPI.unsubscribe_course({
+        course: this.CourseId,
+        user: id
+      })
+          .then((response) => {
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      this.$root.$emit('reloadData');
     },
   },
 };
 </script>
 
 <style scoped lang="scss">
+.delete_student{
+  padding: 3px 10px;
+  background: red;
+  color: #fff;
+}
 .student {
   display: flex;
   cursor: pointer;

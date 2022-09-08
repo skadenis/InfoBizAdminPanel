@@ -86,7 +86,13 @@ export default {
       ModulesAPI.get(this.moduleId)
         .then((response) => {
           this.module = response.data;
-          this.module.open_time = this.module.open_time.replace('Z',"");
+
+          let dt = new Date(this.module.open_time);
+          console.log(dt);
+          console.log(new Date().getTimezoneOffset())
+          dt.setHours(dt.getHours() - (new Date().getTimezoneOffset())/60);
+
+          this.module.open_time = dt.toISOString().replace('Z',"");
         })
         .catch((e) => {
           console.log(e);

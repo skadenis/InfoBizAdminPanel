@@ -1,19 +1,11 @@
 <template>
   <div>
     <p class="students-inc">Студенты курса:</p>
-    <div class="table__head">
-      <div>
-        <p>Фамилия</p>
-      </div>
-      <div>
-        <p>Имя</p>
-      </div>
-      <div>
-        <p>Email</p>
-      </div>
-      <div>
-        <p></p>
-      </div>
+    <div class="table">
+      <p>Имя</p>
+      <p>Фамилия</p>
+      <p>Email</p>
+      <p></p>
     </div>
     <StudentRow
       v-for="(student, index) in students"
@@ -68,24 +60,25 @@ export default {
   margin-top: 20px;
   margin-bottom: 20px;
 }
-.table__head {
+.table {
   display: flex;
-  background-color: rgb(221, 221, 221);
-
-  div {
-    width: calc(100% / 3);
-    border-right: 1px solid #fff;
-
-    &:last-child {
-      border-right: none;
-    }
-  }
+  width: 100%;
 
   p {
-    padding: 10px;
+    box-sizing: border-box;
+
     font-weight: 600;
     color: #000;
+
+    border-right: 1px solid #eee;
+    white-space: nowrap;
+
     text-align: center;
+
+    background: #ddd;
+    padding: 10px 0;
+    line-height: 14px;
+    width: calc(100% / 3);
   }
 }
 </style>

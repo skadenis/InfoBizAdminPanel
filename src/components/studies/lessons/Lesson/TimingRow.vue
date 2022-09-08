@@ -10,8 +10,9 @@
     </div>
     <div>
       <a-button class="del-button" @click="deleteTiming">
-<!--        <i class="pi pi-trash"></i-->
-      ></a-button>
+        <!-- <i class="pi pi-trash"></i> -->
+        Удалить
+      </a-button>
     </div>
   </div>
 </template>

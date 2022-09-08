@@ -1,5 +1,8 @@
 <template>
   <div>
+    <button class="add-btn" @click="add_module()">
+      Добавить модуль
+    </button>
     <draggable v-model="modules" draggable=".module" style="width: 100%">
       <Module
         v-for="(module, mIndex) in modules"
@@ -8,9 +11,6 @@
         :key="mIndex"
       ></Module>
     </draggable>
-    <button class="add-btn" @click="add_module()">
-      Добавить модуль
-    </button>
   </div>
 </template>
 
@@ -38,12 +38,14 @@ export default {
     modules: {
       handler(newMenu, oldMenu) {
         this.modules = newMenu;
-        (this.modules).forEach(function (module, catKey) {
-          this.editModule(module.id, catKey);
-        }.bind(this));
-      }
+        this.modules.forEach(
+          function(module, catKey) {
+            this.editModule(module.id, catKey);
+          }.bind(this)
+        );
+      },
     },
-    deep: true
+    deep: true,
   },
 
   methods: {
@@ -60,7 +62,6 @@ export default {
       this.goTo("/courses/" + this.courseId + "/modules/add");
     },
     editModule(id, index) {
-
       let formData = new FormData();
       formData.append("course", this.courseId);
       formData.append("module", id);
@@ -70,7 +71,6 @@ export default {
         console.log(e);
       });
     },
-
   },
 };
 </script>

@@ -61,7 +61,7 @@ export default {
       course: {
         name: null,
         description: null,
-        status: false
+        status: false,
       },
       config: config,
       modules: [],

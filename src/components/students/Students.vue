@@ -9,6 +9,7 @@
       v-for="(student, sIndex) in students"
       v-bind:data="student"
       :key="sIndex"
+      :show-delete="false"
     ></Student>
   </div>
 </template>

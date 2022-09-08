@@ -10,7 +10,7 @@
       <div @click="open_student(data.id)">
         <p>{{ data.email }}</p>
       </div>
-      <div>
+      <div v-if="showDelete">
         <p>
           <a class="delete_student" @click="delete_student(data.id)">Удалить</a>
         </p>
@@ -24,7 +24,7 @@ import StudentsAPI from '../../../../api/StudentsAPI';
 
 export default {
   name: "student",
-  props: ["data", "CourseId"],
+  props: ["data", "CourseId", "showDelete"],
   methods: {
     open_student: function(id) {
       this.goTo("/students/" + id);

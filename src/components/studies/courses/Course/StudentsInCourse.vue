@@ -12,6 +12,7 @@
       :data="student"
       :key="index"
       :course-id="courseId"
+      :show-delete="true"
     />
   </div>
 </template>

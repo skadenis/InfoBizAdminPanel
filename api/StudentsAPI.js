@@ -35,6 +35,10 @@ class StudentsAPI extends BaseAPI {
   unsubscribe_course(data){
     return this.axios.delete("/course/unsubscribe_course" + "/?"+(new Date().getTime()), { data: data });
   }
+
+  unsubscribe_group(data){
+    return this.axios.delete("/chat/user" + "/?"+(new Date().getTime()), { data: data });
+  }
 }
 
 export default new StudentsAPI();

@@ -32,19 +32,21 @@
           </div>
           <div
             v-for="(student, index) in group.users"
-            @click="openChatMemberPage(student)"
+
             style="cursor: pointer"
             :key="index"
             class="student"
           >
-            <div>
+            <div @click="openChatMemberPage(student)">
               <p>{{ student.firstname }}</p>
             </div>
-            <div>
+            <div @click="openChatMemberPage(student)">
               <p>{{ student.lastname }}</p>
             </div>
             <div>
-              <p></p>
+              <p>
+                <a class="delete_student" @click="delete_student(student.id)">Удалить</a>
+              </p>
             </div>
           </div>
         </a-form-model-item>
@@ -94,6 +96,19 @@ export default {
         .catch((e) => {
           console.log(e);
         });
+    },
+    delete_student: function(id) {
+      StudentsAPI.unsubscribe_group({
+        chat: this.$route.params.id,
+        user: id
+      })
+          .then((response) => {
+            this.get();
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+      this.$root.$emit('reloadData');
     },
     edit() {
       GroupsAPI.edit(

@@ -12,7 +12,7 @@
       </div>
       <div v-if="showDelete">
         <p>
-          <a class="delete_student" @click="delete_student(data.id)">Удалить</a>
+          <a class="del-button" @click="delete_student(data.id)">Удалить</a>
         </p>
       </div>
     </div>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import StudentsAPI from '../../../../api/StudentsAPI';
+import StudentsAPI from "../../../../api/StudentsAPI";
 
 export default {
   name: "student",
@@ -32,24 +32,25 @@ export default {
     delete_student: function(id) {
       StudentsAPI.unsubscribe_course({
         course: this.CourseId,
-        user: id
+        user: id,
       })
-          .then((response) => {
-          })
-          .catch((e) => {
-            console.log(e);
-          });
-      this.$root.$emit('reloadData');
+        .then((response) => {})
+        .catch((e) => {
+          console.log(e);
+        });
+      this.$root.$emit("reloadData");
     },
   },
 };
 </script>
 
 <style scoped lang="scss">
-.delete_student{
-  padding: 3px 10px;
-  background: red;
-  color: #fff;
+.del-button {
+  color: rgba(0, 0, 0, 0.65);
+  &:hover,
+  &:focus {
+    color: rgb(253, 79, 84);
+  }
 }
 .student {
   display: flex;

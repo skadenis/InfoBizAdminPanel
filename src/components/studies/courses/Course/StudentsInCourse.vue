@@ -5,7 +5,7 @@
       <p>Имя</p>
       <p>Фамилия</p>
       <p>Email</p>
-      <p></p>
+      <p>Удалить</p>
     </div>
     <StudentRow
       v-for="(student, index) in students"
@@ -36,9 +36,8 @@ export default {
 
   mounted() {
     this.getStudents();
-    this.$root.$on('reloadData', this.getStudents)
+    this.$root.$on("reloadData", this.getStudents);
   },
-
 
   methods: {
     getStudents() {

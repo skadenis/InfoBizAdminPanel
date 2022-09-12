@@ -3,19 +3,19 @@
     <a-row>
       <a-col>
         <a-form-model-item label="Название группы">
-          <a-input v-model="group.group_name"/>
+          <a-input v-model="group.group_name" />
         </a-form-model-item>
 
         <a-form-model-item label="Название чата">
-          <a-input v-model="group.name"/>
+          <a-input v-model="group.name" />
         </a-form-model-item>
 
         <a-form-model-item label="Использовать встроенный месенджер">
           <a-switch v-model="group.flag" />
         </a-form-model-item>
 
-        <a-form-model-item label="Ссылка на чат">
-          <a-input v-model="group.link" v-if="!group.flag"/>
+        <a-form-model-item v-if="!group.flag" label="Ссылка на чат">
+          <a-input v-model="group.link" />
         </a-form-model-item>
 
         <a-form-model-item>

@@ -14,10 +14,9 @@
           <a-switch v-model="group.flag" />
         </a-form-model-item>
 
-        <a-form-model-item label="Ссылка на чат">
-          <a-input v-model="group.link" v-if="!group.flag"/>
+        <a-form-model-item v-if="!group.flag" label="Ссылка на чат">
+          <a-input v-model="group.link" />
         </a-form-model-item>
-
 
         <a-form-model-item>
           <a-row type="flex" :gutter="24" class="buttons__block">
@@ -92,6 +91,8 @@ export default {
       group: null,
       students: [],
       studentAddToGroupId: null,
+      flag: false,
+      link: null,
     };
   },
   mounted() {

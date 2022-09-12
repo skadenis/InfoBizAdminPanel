@@ -1,11 +1,11 @@
 <template>
   <div>
     <div v-if="status.status === 200" class="result_good">
-      {{status.text}}
+      {{ status.text }}
     </div>
 
     <div v-if="status.status === 400" class="result_error">
-      {{status.text}}
+      {{ status.text }}
     </div>
 
     <a-form-model-item label="Заголовок">
@@ -16,67 +16,63 @@
       <a-textarea v-model="push.text" />
     </a-form-model-item>
 
-    <a-form-model-item>
-      <a-row type="flex" :gutter="24" class="buttons__block">
-        <a-col :span="24" :lg="12" :md="24">
-          <a-button class="button" type="primary" @click="sendPush"
-          >Отправить push</a-button
-          >
-        </a-col>
-      </a-row>
-    </a-form-model-item>
+    <button class="add-btn" @click="sendPush">
+      Отправить Push
+    </button>
   </div>
 </template>
 
 <script>
-import PushNotificationsAPI from '../../../../api/PushNotificationsAPI'
+import PushNotificationsAPI from "../../../../api/PushNotificationsAPI";
 export default {
-  data(){
+  data() {
     return {
       push: {
         header: "",
-        text: ""
+        text: "",
       },
       status: {
         status: null,
-        text: null
-      }
-    }
+        text: null,
+      },
+    };
   },
   methods: {
-    sendPush: function (){
+    sendPush: function() {
       PushNotificationsAPI.sendPush({
-        "title": this.push.header,
-        "message": this.push.text,
+        title: this.push.header,
+        message: this.push.text,
       })
-          .then((response) => {
-            this.push = {
-              header: "",
-              text: ""
-            };
-            this.status.status = 200;
-            this.status.text = "Пуш уведомление успешно отправлено";
-          })
-          .catch((e) => {
-            this.status.status = 400;
-            this.status.text = 'Ошибка: '+ e;
-            console.log(e);
-          });
-    }
-  }
-}
+        .then((response) => {
+          this.push = {
+            header: "",
+            text: "",
+          };
+          this.status.status = 200;
+          this.status.text = "Пуш уведомление успешно отправлено";
+        })
+        .catch((e) => {
+          this.status.status = 400;
+          this.status.text = "Ошибка: " + e;
+          console.log(e);
+        });
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
-.result_error{
+.add-btn {
+  margin-top: 20px;
+}
+.result_error {
   background: #ea8087;
   color: #000000;
   font-weight: bold;
   padding: 10px 15px;
-
 }
 
-.result_good{
+.result_good {
   background: #97ea80;
   color: #000000;
   font-weight: bold;

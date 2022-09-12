@@ -38,11 +38,10 @@
           <div class="table">
             <p>Имя</p>
             <p>Фамилия</p>
-            <p>Email</p>
+            <p>Удалить</p>
           </div>
           <div
             v-for="(student, index) in group.users"
-
             style="cursor: pointer"
             :key="index"
             class="student"
@@ -55,7 +54,9 @@
             </div>
             <div>
               <p>
-                <a class="delete_student" @click="delete_student(student.id)">Удалить</a>
+                <a class="del-button" @click="delete_student(student.id)">
+                  Удалить
+                </a>
               </p>
             </div>
           </div>
@@ -73,7 +74,7 @@
           </a-select>
         </a-form-model-item>
 
-        <a-button class="button" type="primary" @click="addToGroup"
+        <a-button class="add-btn" type="primary" @click="addToGroup"
           >Добавить в группу</a-button
         >
       </a-col>
@@ -110,15 +111,15 @@ export default {
     delete_student: function(id) {
       StudentsAPI.unsubscribe_group({
         chat: this.$route.params.id,
-        user: id
+        user: id,
       })
-          .then((response) => {
-            this.get();
-          })
-          .catch((e) => {
-            console.log(e);
-          });
-      this.$root.$emit('reloadData');
+        .then((response) => {
+          this.get();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+      this.$root.$emit("reloadData");
     },
     edit() {
       GroupsAPI.edit(
@@ -139,7 +140,7 @@ export default {
     deleteGroup() {
       GroupsAPI.delete(this.$route.params.id)
         .then((response) => {
-          this.goTo('/groups/');
+          this.goTo("/groups/");
         })
         .catch((e) => {
           console.log(e);
@@ -175,8 +176,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.button {
-  margin-top: 15px;
+.add-btn {
+  margin-top: 20px;
 }
 
 .student {
@@ -230,6 +231,14 @@ export default {
     padding: 10px 0;
     line-height: 14px;
     width: calc(100% / 3);
+  }
+}
+
+.del-button {
+  color: rgba(0, 0, 0, 0.65);
+  &:hover,
+  &:focus {
+    color: rgb(253, 79, 84);
   }
 }
 </style>

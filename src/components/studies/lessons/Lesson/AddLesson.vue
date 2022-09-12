@@ -13,7 +13,11 @@
           <a-textarea rows="4" v-model="lesson.text" />
         </a-form-model-item>
         <a-form-model-item label="Задание">
-          <a-textarea rows="4" v-model="lesson.question" />
+          <vue-editor :editorOptions="{
+          modules: {
+            imageDrop: false
+          }
+        }"  v-model="lesson.question" ></vue-editor>
         </a-form-model-item>
         <a-form-model-item label="Основная картинка">
           <input
@@ -68,12 +72,14 @@
 import LessonsAPI from "../../../../../api/LessonsAPI";
 import TimingRow from "./TimingRow";
 import FileRow from "./FileRow";
+import {VueEditor} from "vue2-editor";
 
 export default {
   props: ["courseId", "moduleId"],
   components: {
     TimingRow,
     FileRow,
+    VueEditor
   },
   data() {
     return {

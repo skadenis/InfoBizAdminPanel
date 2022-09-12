@@ -10,6 +10,14 @@
           <a-input v-model="group.name"/>
         </a-form-model-item>
 
+        <a-form-model-item label="Использовать встроенный месенджер">
+          <a-input v-model="group.flag" />
+        </a-form-model-item>
+
+        <a-form-model-item label="Ссылка на чат">
+          <a-input v-model="group.link" v-if="!group.flag"/>
+        </a-form-model-item>
+
         <a-form-model-item>
           <a-row
             type="flex"

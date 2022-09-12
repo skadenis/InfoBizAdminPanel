@@ -9,6 +9,16 @@
         <a-form-model-item label="Название чата">
           <a-input v-model="group.chat_name" />
         </a-form-model-item>
+
+        <a-form-model-item label="Использовать встроенный месенджер">
+          <a-input v-model="group.flag" />
+        </a-form-model-item>
+
+        <a-form-model-item label="Ссылка на чат">
+          <a-input v-model="group.link" v-if="!group.flag"/>
+        </a-form-model-item>
+
+
         <a-form-model-item>
           <a-row type="flex" :gutter="24" class="buttons__block">
             <a-col :span="24" :lg="12" :md="24">

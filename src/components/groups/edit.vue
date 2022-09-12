@@ -11,7 +11,7 @@
         </a-form-model-item>
 
         <a-form-model-item label="Использовать встроенный месенджер">
-          <a-input v-model="group.flag" />
+          <a-switch v-model="group.flag" />
         </a-form-model-item>
 
         <a-form-model-item label="Ссылка на чат">

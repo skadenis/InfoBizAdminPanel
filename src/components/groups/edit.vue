@@ -11,11 +11,11 @@
         </a-form-model-item>
 
         <a-form-model-item label="Использовать встроенный месенджер">
-          <a-switch v-model="group.flag" />
+          <a-switch v-model="group.chat_flag" />
         </a-form-model-item>
 
         <a-form-model-item label="Ссылка на чат">
-          <a-input v-model="group.link" v-if="!group.flag"/>
+          <a-input v-model="group.chat_link" v-show="!group.chat_flag"/>
         </a-form-model-item>
 
 
@@ -122,10 +122,13 @@ export default {
       this.$root.$emit("reloadData");
     },
     edit() {
+
       GroupsAPI.edit(
         {
           name: this.group.chat_name,
           group_name: this.group.group_name,
+          flag: this.group.chat_flag,
+          link: this.group.chat_link
         },
         this.$route.params.id
       )

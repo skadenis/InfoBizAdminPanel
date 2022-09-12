@@ -23,7 +23,11 @@
           <a-textarea rows="4" v-model="lesson.text" />
         </a-form-model-item>
         <a-form-model-item label="Задание">
-          <a-textarea rows="4" v-model="lesson.question" />
+          <vue-editor :editorOptions="{
+          modules: {
+            imageDrop: false
+          }
+        }"  v-model="lesson.question" ></vue-editor>
         </a-form-model-item>
         <a-form-model-item label="Основная картинка">
           <input
@@ -145,12 +149,15 @@ import TimingRow from "@/components/studies/lessons/Lesson/TimingRow";
 import FileRow from "@/components/studies/lessons/Lesson/FileRow";
 import axios from "axios";
 import Cookie from "js-cookie";
+import { VueEditor } from "vue2-editor";
+
 
 export default {
   props: ["courseId", "moduleId", "lessonId"],
   components: {
     TimingRow,
     FileRow,
+    VueEditor
   },
   data() {
     return {

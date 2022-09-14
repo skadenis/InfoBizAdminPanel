@@ -82,7 +82,8 @@
     </a-form-model-item>
 
     <a-form-model-item label="Коментарий к домашнему заданию">
-      <a-textarea rows="4" v-model="homework.review" />
+      <a-textarea v-if="homework.status === 'In_progress'" rows="4" v-model="homework.review" />
+      <p v-for="(review, key) in homework.review" v-if="homework.status !== 'In_progress'">{{review.review}}</p>
     </a-form-model-item>
 
     <a-row

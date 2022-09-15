@@ -45,7 +45,7 @@
     </a-form-model-item>
 
     <a-form-model-item label="Переодичность повторений" v-if="!event.non_cycle">
-      <a-select style="width: 100%" v-model="event.group">
+      <a-select style="width: 100%" v-model="event.period">
         <a-select-option v-for="(period, index) in cycle_period" :value="period.alias" :key="index">
           {{period.text}}
         </a-select-option>

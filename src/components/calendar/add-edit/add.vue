@@ -40,6 +40,18 @@
       </a-select>
     </a-form-model-item>
 
+    <a-form-model-item label="Событие не имеет постоянных повторений">
+      <a-switch v-model="event.non_cycle" />
+    </a-form-model-item>
+
+    <a-form-model-item label="Переодичность повторений" v-if="!event.non_cycle">
+      <a-select style="width: 100%" v-model="event.group">
+        <a-select-option v-for="(period, index) in cycle_period" :value="period.alias" :key="index">
+          {{period.text}}
+        </a-select-option>
+      </a-select>
+    </a-form-model-item>
+
 
 
     <a-form-model-item>
@@ -66,14 +78,16 @@ export default {
         header: null,
         description: "",
         course: null,
-        group: null
+        group: null,
+        non_cycle: true
       },
       show: {
         courses: false,
         groups: false
       },
       courses: [],
-      groups: []
+      groups: [],
+      cycle_period: [{text: "Каждый день", alias: "daily"}, {text: "Каждую неделю", alias: "weekly"}, {text: "Каждый месяц", alias: "monthly"}]
     };
   },
   created() {

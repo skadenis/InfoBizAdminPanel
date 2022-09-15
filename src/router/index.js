@@ -33,6 +33,8 @@ import SpecialOfferAdd from "../views/marketing/special-offers/SpecialOfferAdd.v
 import SpecialOfferEdit from "../views/marketing/special-offers/SpecialOfferEdit.vue"
 
 import Users from "../views/users/Users.vue";
+import AddUser from "../views/users/AddUser.vue";
+import EditUser from "../views/users/EditUser.vue";
 
 import Students from "../views/students/Students.vue";
 import EditStudent from "../views/students/Student/EditStudent.vue";
@@ -103,6 +105,33 @@ let routes = [
     meta: {
       layoutClass: "home",
       name: "Главная",
+    },
+  },
+  {
+    path: "/users",
+    name: "Users",
+    component: Users,
+    meta: {
+      layoutClass: "users",
+      name: "Пользователи",
+    },
+  },
+  {
+    path: "/users/add",
+    name: "AddUser",
+    component: AddUser,
+    meta: {
+      layoutClass: "AddUser",
+      name: "Добавить пользователья",
+    },
+  },
+  {
+    path: "/users/:id",
+    name: "EditUser",
+    component: EditUser,
+    meta: {
+      layoutClass: "EditUser",
+      name: "Редактировать пользователя",
     },
   },
   {

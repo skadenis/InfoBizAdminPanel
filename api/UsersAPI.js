@@ -1,6 +1,10 @@
 import BaseAPI from "./BaseAPI";
 
 class UsersAPI extends BaseAPI {
+  get_all() {
+    return this.axios.get("/auth/users/get_users" + "/?"+(new Date().getTime()));
+  }
+
   get(id) {
     return this.axios.get("/users/" + id + "/?"+(new Date().getTime()));
   }

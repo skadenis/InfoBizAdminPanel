@@ -50,6 +50,7 @@ export default {
 
   methods: {
     getLessons: function() {
+
       ModulesAPI.getModuleLesson(this.moduleId)
         .then((response) => {
           this.lessons = response.data;

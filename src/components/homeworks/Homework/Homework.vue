@@ -19,6 +19,9 @@
       <div>
         <p>{{ data.user.lastname }} {{ data.user.firstname }}</p>
       </div>
+      <div>
+        <p>{{ data.time }}</p>
+      </div>
     </div>
   </div>
 </template>

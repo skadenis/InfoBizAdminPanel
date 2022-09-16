@@ -20,7 +20,7 @@
             </a-select>
           </a-form-model-item>
         </a-col>
-        <a-col :span="24" :lg="6" :md="6">
+        <a-col :span="24" :lg="6" :md="6" v-if="filter.course !== null">
           <a-form-model-item label="Модуль" >
               <a-select style="width: 100%" v-model="filter.module">
                 <a-select-option  v-for="(course_module, index2) in course_modules" :value="course_module.id" :key="index2">
@@ -29,7 +29,7 @@
               </a-select>
           </a-form-model-item>
         </a-col>
-        <a-col :span="24" :lg="6" :md="6">
+        <a-col :span="24" :lg="6" :md="6" v-if="filter.module !== null">
           <a-form-model-item label="Урок" >
               <a-select style="width: 100%" v-model="filter.lesson">
                 <a-select-option  v-for="(lesson, index) in lessons" :key="index">{{lesson.name}}</a-select-option>

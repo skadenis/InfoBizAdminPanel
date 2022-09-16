@@ -14,7 +14,7 @@ class UsersAPI extends BaseAPI {
   }
 
   add(data) {
-    return this.axios.post("/users/add" + "/?"+(new Date().getTime()), data);
+    return this.axios.post("/auth/users/add_superuser" + "/?"+(new Date().getTime()), data);
   }
 
   delete(data) {

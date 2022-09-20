@@ -2,16 +2,21 @@
   <div>
     <div>
       <a-row type="flex" :gutter="24" class="bottom-buttons">
-        <a-col :span="24" :lg="6" :md="6">
+        <a-col :span="24" :lg="5" :md="5">
           <a-form-model-item label="Статус Д/З">
             <a-select style="width: 100%" v-model="filter.status">
-              <a-select-option value="1">Принято</a-select-option>
-              <a-select-option value="2">На проверке</a-select-option>
-              <a-select-option value="3">Отклонено</a-select-option>
+              <a-select-option value="Complete">Принято</a-select-option>
+              <a-select-option value="In_progress">На проверке</a-select-option>
+              <a-select-option value="Failed">Отклонено</a-select-option>
             </a-select>
           </a-form-model-item>
         </a-col>
-        <a-col :span="24" :lg="6" :md="6">
+        <a-col :span="24" :lg="4" :md="4">
+          <a-form-model-item label="Email студента">
+            <a-input v-model="filter.email"/>
+          </a-form-model-item>
+        </a-col>
+        <a-col :span="24" :lg="5" :md="5">
           <a-form-model-item label="Курс">
             <a-select style="width: 100%" v-model="filter.course">
               <a-select-option v-for="(course, index) in courses" :value="course.id" :key="index">
@@ -20,7 +25,7 @@
             </a-select>
           </a-form-model-item>
         </a-col>
-        <a-col :span="24" :lg="6" :md="6" v-if="filter.course !== null">
+        <a-col :span="24" :lg="5" :md="5" v-if="filter.course !== null">
           <a-form-model-item label="Модуль" >
               <a-select style="width: 100%" v-model="filter.module">
                 <a-select-option  v-for="(course_module, index2) in course_modules" :value="course_module.id" :key="index2">
@@ -29,7 +34,7 @@
               </a-select>
           </a-form-model-item>
         </a-col>
-        <a-col :span="24" :lg="6" :md="6" v-if="filter.module !== null">
+        <a-col :span="24" :lg="5" :md="5" v-if="filter.module !== null">
           <a-form-model-item label="Урок" >
               <a-select style="width: 100%" v-model="filter.lesson">
                 <a-select-option  v-for="(lesson, index) in lessons" :value="lesson.id" :key="index">{{lesson.name}}</a-select-option>
@@ -87,7 +92,15 @@ export default {
     'filter.lesson'(newValue) {
       this.filter.lesson = newValue;
       this.updateHomeWork();
-    }
+    },
+    'filter.email'(newValue) {
+      this.filter.email = newValue;
+      this.updateHomeWork();
+    },
+    'filter.status'(newValue) {
+      this.filter.status = newValue;
+      this.updateHomeWork();
+    },
   },
   data() {
     return {
@@ -104,14 +117,14 @@ export default {
     };
   },
 
-  mounted() {
-    this.getCourses();
-    this.getHomeworks();
+  async created() {
+    await this.getCourses();
+    await this.getHomeworks();
   },
 
   methods: {
     updateHomeworkCourse(){
-      HomeworkAPI.get_all_filter_course()
+      HomeworkAPI.get_all_filter_course(this.filter)
           .then((response) => {
             this.homeworks = response.data.homeworks;
           })
@@ -120,7 +133,7 @@ export default {
           });
     },
     updateHomeworkLessonMoudleCourse(){
-      HomeworkAPI.get_all_filter_course_module_lesson(this.filter.lesson)
+      HomeworkAPI.get_all_filter_course_module_lesson(this.filter)
           .then((response) => {
             this.homeworks = response.data.homeworks;
           })
@@ -129,7 +142,7 @@ export default {
           });
     },
     updateHomeworkModuleCourse(){
-      HomeworkAPI.get_all_filter_course_module(this.filter.module)
+      HomeworkAPI.get_all_filter_course_module(this.filter)
           .then((response) => {
             this.homeworks = response.data.homeworks;
           })
@@ -181,7 +194,7 @@ export default {
           });
     },
     getHomeworks: function() {
-      HomeworkAPI.get_all()
+      HomeworkAPI.get_all(this.filter)
         .then((response) => {
           this.homeworks = response.data.homeworks;
         })

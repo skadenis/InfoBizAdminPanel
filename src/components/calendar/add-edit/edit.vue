@@ -12,7 +12,7 @@
       <a-input type="date" v-model="event.date" />
     </a-form-model-item>
 
-    <a-form-model-item label="Дата">
+    <a-form-model-item label="Время">
       <a-input type="time" v-model="event.time" />
     </a-form-model-item>
 
@@ -103,7 +103,6 @@ export default {
       GroupsAPI.get_all()
           .then((response) => {
             this.groups = response.data.chats;
-
           })
           .catch((e) => {
             console.log(e);

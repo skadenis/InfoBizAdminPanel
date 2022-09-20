@@ -26,11 +26,11 @@ class HomeworkAPI extends BaseAPI {
   get_all_filter_course(){
     return this.axios.get("/course/get_all_homework"+ "/?"+(new Date().getTime()));
   }
-  get_all_filter_course_module_lesson(moduleID){
-    return this.axios.get("/course/homework_by_module/"+moduleID+ "/?"+(new Date().getTime()));
+  get_all_filter_course_module_lesson(lessonID){
+    return this.axios.get("/course/homework_by_lesson/"+lessonID+ "/?"+(new Date().getTime()));
   }
-  get_all_filter_course_module(lessonID){
-    return this.axios.get("course/homework_by_lesson/"+lessonID+ "/?"+(new Date().getTime()));
+  get_all_filter_course_module(moduleID){
+    return this.axios.get("course/homework_by_module/"+moduleID+ "/?"+(new Date().getTime()));
   }
 }
 

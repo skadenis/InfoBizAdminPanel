@@ -32,7 +32,7 @@
         <a-col :span="24" :lg="6" :md="6" v-if="filter.module !== null">
           <a-form-model-item label="Урок" >
               <a-select style="width: 100%" v-model="filter.lesson">
-                <a-select-option  v-for="(lesson, index) in lessons" :key="index">{{lesson.name}}</a-select-option>
+                <a-select-option  v-for="(lesson, index) in lessons" :value="lesson.id" :key="index">{{lesson.name}}</a-select-option>
               </a-select>
           </a-form-model-item>
         </a-col>
@@ -138,9 +138,9 @@ export default {
           });
     },
     updateHomeWork(){
-      if(this.filter.course){
-        if (this.filter.module){
-          if (this.filter.lesson){
+      if(this.filter.course != null){
+        if (this.filter.module != null){
+          if (this.filter.lesson != null){
             this.updateHomeworkLessonMoudleCourse();
           }else {
             this.updateHomeworkModuleCourse();

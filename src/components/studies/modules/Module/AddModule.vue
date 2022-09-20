@@ -53,7 +53,9 @@ export default {
         name: null,
         description: null,
         is_in_progress: null,
-        open_time: null
+        open_time: null,
+        perm: false,
+        education: false
       },
       file: null,
     };
@@ -80,10 +82,14 @@ export default {
 
       await ModulesAPI.add(formData)
         .then((response) => {
-          this.$root.$emit("createAlertGood");
-          this.goTo(
-            "/courses/" + this.courseId + "/modules/" + response.data.id
-          );
+          if(response.status === 200){
+            this.$root.$emit("createAlertGood");
+            this.goTo(
+                "/courses/" + this.courseId + "/modules/" + response.data.id
+            );
+          }else {
+            this.$root.$emit("createAlertError");
+          }
         })
         .catch((e) => {
           console.log(e);

@@ -73,11 +73,15 @@ export default {
     async 'filter.course'(newValue) {
       await this.getModules(newValue);
       this.filter.course = newValue;
+      this.filter.module = null;
+      this.filter.lesson = null;
+
       this.updateHomeWork();
     },
     async 'filter.module'(newValue) {
       this.getLessons(newValue);
       this.filter.module = newValue;
+      this.filter.lesson = null;
       this.updateHomeWork();
     },
     'filter.lesson'(newValue) {

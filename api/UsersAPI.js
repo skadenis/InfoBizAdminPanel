@@ -5,8 +5,12 @@ class UsersAPI extends BaseAPI {
     return this.axios.get("/auth/users/get_users" + "/?"+(new Date().getTime()));
   }
 
+  checkEmail(email){
+    return this.axios.get("/auth/users/check_email" + "/?email="+email+'&'+(new Date().getTime()));
+  }
+
   get(id) {
-    return this.axios.get("/users/" + id + "/?"+(new Date().getTime()));
+    return this.axios.get("/auth/users/" + id + "/?"+(new Date().getTime()));
   }
 
   edit(data) {

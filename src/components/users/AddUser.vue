@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="status.error">
+    <div class="error" v-if="status.error">
       {{ status.text }}
     </div>
     <a-form-model-item label="Фамилия">
@@ -9,8 +9,9 @@
     <a-form-model-item label="Имя">
       <a-input v-model="user.firstname" />
     </a-form-model-item>
+    <div class="error" v-if="email_exists">Данный email не доступен для регистрации. Пожалуйста введите другой.</div>
     <a-form-model-item label="Email">
-      <a-input v-model="user.email" />
+      <a-input v-model="user.email" @blur="checkEmailAvailable" />
     </a-form-model-item>
     <a-form-model-item label="Пароль">
       <a-input v-model="user.password" type="password" />
@@ -44,6 +45,7 @@ export default {
         error: false,
         text: ''
       },
+      email_exists: false,
       user: {
         firstname: null,
         lastname: null,
@@ -55,6 +57,15 @@ export default {
   },
 
   methods: {
+    checkEmailAvailable: function () {
+      UsersAPI.checkEmail(this.user.email)
+          .then((response) => {
+            this.email_exists = response.data['exists'];
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+    },
     add: function(){
       if(this.user.password === this.user.copy_password && (this.user.password).length > 9){
         this.status.error = false;
@@ -63,7 +74,12 @@ export default {
         data.group = 'US';
         UsersAPI.add(data)
             .then((response) => {
-              this.$router.push('/users/'+response.data.id);
+              if (response.data.id !== undefined){
+                this.$router.push('/users/'+response.data.id);
+              }else {
+                this.status.error = true;
+                this.status.text = 'Ошибка создания пользователя проверьте корректность введенных данных'
+              }
             })
             .catch((e) => {
               console.log(e);
@@ -79,5 +95,11 @@ export default {
 </script>
 
 <style scoped>
-
+.error{
+  margin: 15px 0;
+  padding: 20px;
+  background: #fdd6d6;
+  color: red;
+  font-weight: bold;
+}
 </style>

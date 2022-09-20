@@ -23,6 +23,15 @@ class HomeworkAPI extends BaseAPI {
   check_homework(data) {
     return this.axios.put("/course/check_homework"+ "/?"+(new Date().getTime()), data);
   }
+  get_all_filter_course(){
+    return this.axios.get("/course/get_all_homework"+ "/?"+(new Date().getTime()));
+  }
+  get_all_filter_course_module_lesson(moduleID){
+    return this.axios.get("/course/homework_by_module/"+moduleID+ "/?"+(new Date().getTime()));
+  }
+  get_all_filter_course_module(lessonID){
+    return this.axios.get("course/homework_by_lesson/"+lessonID+ "/?"+(new Date().getTime()));
+  }
 }
 
 export default new HomeworkAPI();

@@ -73,13 +73,16 @@ export default {
     async 'filter.course'(newValue) {
       await this.getModules(newValue);
       this.filter.course = newValue;
+      this.updateHomeWork();
     },
     async 'filter.module'(newValue) {
       this.getLessons(newValue);
       this.filter.module = newValue;
+      this.updateHomeWork();
     },
     'filter.lesson'(newValue) {
-
+      this.filter.lesson = newValue;
+      this.updateHomeWork();
     }
   },
   data() {
@@ -103,6 +106,48 @@ export default {
   },
 
   methods: {
+    updateHomeworkCourse(){
+      HomeworkAPI.get_all_filter_course()
+          .then((response) => {
+            this.homeworks = response.data.homeworks;
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+    },
+    updateHomeworkLessonMoudleCourse(){
+      HomeworkAPI.get_all_filter_course_module_lesson(this.filter.lesson)
+          .then((response) => {
+            this.homeworks = response.data.homeworks;
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+    },
+    updateHomeworkModuleCourse(){
+      HomeworkAPI.get_all_filter_course_module(this.filter.module)
+          .then((response) => {
+            this.homeworks = response.data.homeworks;
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+    },
+    updateHomeWork(){
+      if(this.filter.course){
+        if (this.filter.module){
+          if (this.filter.lesson){
+            this.updateHomeworkLessonMoudleCourse();
+          }else {
+            this.updateHomeworkModuleCourse();
+          }
+        }else {
+          this.updateHomeworkCourse();
+        }
+      }else {
+        this.getHomeworks();
+      }
+    },
     getLessons(id) {
       ModulesAPI.getModuleLesson(id)
           .then((response) => {

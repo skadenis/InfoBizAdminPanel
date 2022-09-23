@@ -33,17 +33,18 @@
           </a-row>
         </a-form-model-item>
 
-        <a-form-model-item label="Учатники группы">
+        <a-form-model-item label="Преподаватели группы">
           <div class="table">
             <p>Имя</p>
             <p>Фамилия</p>
             <p>Удалить</p>
           </div>
           <div
-            v-for="(student, index) in group.users"
-            style="cursor: pointer"
-            :key="index"
-            class="student"
+              v-for="(student, index) in group.users"
+              style="cursor: pointer"
+              :key="index"
+              class="student"
+              v-if="student.role === 'US'"
           >
             <div @click="openChatMemberPage(student)">
               <p>{{ student.firstname }}</p>
@@ -62,6 +63,35 @@
         </a-form-model-item>
 
         <a-form-model-item label="Учатники группы">
+          <div class="table">
+            <p>Имя</p>
+            <p>Фамилия</p>
+            <p>Удалить</p>
+          </div>
+          <div
+            v-for="(student, index) in group.users"
+            style="cursor: pointer"
+            :key="index"
+            class="student"
+            v-if="student.role === 'ST'"
+          >
+            <div @click="openChatMemberPage(student)">
+              <p>{{ student.firstname }}</p>
+            </div>
+            <div @click="openChatMemberPage(student)">
+              <p>{{ student.lastname }}</p>
+            </div>
+            <div>
+              <p>
+                <a class="del-button" @click="delete_student(student.id)">
+                  Удалить
+                </a>
+              </p>
+            </div>
+          </div>
+        </a-form-model-item>
+
+        <a-form-model-item label="Добавление студента в группу">
           <a-select style="width: 100%" v-model="studentAddToGroupId">
             <a-select-option
               v-for="(student, index) in students"

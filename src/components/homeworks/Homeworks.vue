@@ -5,6 +5,7 @@
         <a-col :span="24" :lg="5" :md="5">
           <a-form-model-item label="Статус Д/З">
             <a-select style="width: 100%" v-model="filter.status">
+              <a-select-option :value="null">Все</a-select-option>
               <a-select-option value="Complete">Принято</a-select-option>
               <a-select-option value="In_progress">На проверке</a-select-option>
               <a-select-option value="Failed">Отклонено</a-select-option>

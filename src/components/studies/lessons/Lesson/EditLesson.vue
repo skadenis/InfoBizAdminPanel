@@ -72,9 +72,10 @@
           />
 
           <video
+              v-if="lesson.video !== null"
             autoplay="autoplay"
             controls="controls"
-            :src="config.basicVideoURL + this.lesson.video"
+            :src="config.basicVideoURL + lesson.video"
             width="200"
             height="auto"
           ></video>
@@ -82,7 +83,7 @@
         </a-form-model-item>
 
         <a-form-model-item label="Тайминг">
-          <div class="table">
+          <div class="table" v-if="lesson.timer_set.length > 0">
             <p>Время</p>
             <p>Описание</p>
             <p>Удалить тайминг</p>
@@ -100,7 +101,7 @@
         </a-form-model-item>
 
         <a-form-model-item label="Дополнительные материалы">
-          <div class="table">
+          <div class="table" v-if="lesson.lessonfiles_set.length > 0">
             <p>№</p>
             <p>Превью</p>
             <p>Удалить файл</p>
@@ -137,6 +138,39 @@
             </a-col>
           </a-row>
         </a-form-model-item>
+
+
+        <a-form-model-item label="Тестирование">
+          <div class="add_block" v-if="test.length === 0" @click="addTest()">Добавить тестирование</div>
+          <div class="test_block" v-for="(test, testIndex) in test" :key="testIndex">
+            <a-form-model-item label="Название">
+              <a-input v-model="test.name" />
+            </a-form-model-item>
+            <div class="question_wrapper" v-for="(question, questionIndex) in test.questions" :key="questionIndex">
+              <div class="question_text">
+                <a-form-model-item label="Вопрос">
+                  <a-textarea v-model="question.name" />
+                </a-form-model-item>
+              </div>
+              <div class="question_answers_variants_wrapper">
+                <div class="question_answers_variant_block" v-for="(variant, variantIndex) in question.variants">
+                  <a-form-model-item label="Ответ">
+                    <a-textarea v-model="variant.name" />
+                  </a-form-model-item>
+                </div>
+                <div class="question_answers_variant_block add_block" @click="addAnswerVariant(testIndex, questionIndex)">
+                  Добавить вариант ответа
+                </div>
+              </div>
+            </div>
+            <div class="question_wrapper add_block" @click="addQuestion(testIndex)">
+              Добавить вопрос
+            </div>
+          </div>
+
+        </a-form-model-item>
+
+
       </a-col>
     </a-row>
   </div>
@@ -177,6 +211,7 @@ export default {
         background_image: null,
       },
       config: config,
+      test: [],
       uploadPercentage: 0,
     };
   },
@@ -185,8 +220,40 @@ export default {
   },
   mounted() {
     this.getLesson();
+    this.getTestInfo();
   },
   methods: {
+    addTest(){
+      this.test.push({name: '', description: '', questions: []})
+    },
+    getTestInfo(){
+      // this.test = [{
+      //   name: '123',
+      //   description: '',
+      //   questions: [
+      //     {
+      //       name: '123 123',
+      //       variants: [
+      //         { name: 'lorem ipsum sit amet' },
+      //         { name: 'amet lorem ipsum sit' },
+      //       ]
+      //     },
+      //     {
+      //       name: '321 321',
+      //       variants: [
+      //         { name: 'lorem ipsum sit amet' },
+      //         { name: 'amet lorem ipsum sit' },
+      //       ]
+      //     }
+      //   ]
+      // }];
+    },
+    addAnswerVariant(testIndex, questionIndex){
+      this.test[testIndex].questions[questionIndex].variants.push({name: ''})
+    },
+    addQuestion(testIndex){
+      this.test[testIndex].questions.push({name: '', variants: []})
+    },
     handleImageUpload() {
       this.files.image = this.$refs.file.files[0];
     },
@@ -428,5 +495,51 @@ export default {
 .progress-status {
   line-height: 24px;
   font-size: 0.8rem;
+}
+.test_block{
+  padding: 20px;
+  background: #fafafa;
+  border: 1px dashed #ccc;
+  & .question_wrapper{
+    padding: 5px 20px;
+    margin: 20px 0;
+    display: flex;
+    border: 1px dashed #ccc;
+    flex-direction: column;
+    & .question_text{
+      font-weight: bold;
+    }
+    & .question_answers_variants_wrapper{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      & .question_answers_variant_block{
+        border: 1px dashed #ccc;
+        margin: 5px 10px;
+        padding: 5px 10px;
+        font-weight: bold;
+        & span{
+          line-height: 2;
+        }
+        &:nth-child(2n + 1){
+          margin: 5px 10px 5px 0;
+        }
+        &:nth-child(2n){
+          margin: 5px 0 5px 10px;
+        }
+      }
+    }
+  }
+}
+.add_block{
+  padding: 0!important;
+  margin: 0;
+  text-align: center;
+  font-size: 85%;
+  font-weight: bold;
+  background-color: #1890ff;
+  border: 0!important;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 1px 0px 1px 0px rgba(0, 0, 0, 0.2);
 }
 </style>

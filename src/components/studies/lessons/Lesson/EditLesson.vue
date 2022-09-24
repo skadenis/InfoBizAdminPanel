@@ -146,16 +146,16 @@
             <a-form-model-item label="Название">
               <a-input v-model="test.name" />
             </a-form-model-item>
-            <div class="question_wrapper" v-for="(question, questionIndex) in test.questions" :key="questionIndex">
+            <div class="question_wrapper" v-for="(question, questionIndex) in test.question_set" :key="questionIndex">
               <div class="question_text">
                 <a-form-model-item label="Вопрос">
                   <a-textarea v-model="question.name" />
                 </a-form-model-item>
               </div>
               <div class="question_answers_variants_wrapper">
-                <div class="question_answers_variant_block" v-for="(variant, variantIndex) in question.variants">
+                <div class="question_answers_variant_block" v-for="(variant, variantIndex) in question.option_set">
                   <a-form-model-item label="Ответ">
-                    <a-textarea v-model="variant.name" />
+                    <a-textarea v-model="variant.text" />
                   </a-form-model-item>
                 </div>
                 <div class="question_answers_variant_block add_block" @click="addAnswerVariant(testIndex, questionIndex)">
@@ -203,7 +203,7 @@ export default {
         lessonfiles_set: [],
         short_desc: "",
       },
-
+      watcher_status: false,
       files: {
         image: null,
         video: null,
@@ -215,44 +215,91 @@ export default {
       uploadPercentage: 0,
     };
   },
+  watch: {
+    test: {
+      handler(newValue) {
+        if(this.watcher_status){
+          (newValue).forEach(function (test){
+            this.updateTest(test);
+          }.bind(this));
+
+          this.watcher_status = false;
+          this.getTestInfo();
+        }
+
+      },
+      deep: true
+    }
+  },
   created() {
     this.$root.$on("renewData", this.getLesson);
   },
   mounted() {
     this.getLesson();
-    this.getTestInfo();
   },
   methods: {
+    async updateTest(test){
+      alert('updateTest');
+      let question_set = test.question_set;
+      if(test.id === undefined){
+        // Еще не создан
+      }else{
+        // Уже создан
+      }
+
+      await question_set.forEach(async function (question){
+        await this.updateTestQuestion(question)
+      }.bind(this));
+    },
+    async updateTestQuestion(question){
+      alert('updateTestQuestion');
+      let option_set = question.option_set;
+      if(question.id === undefined){
+        // Еще не создан
+      }else{
+        // Уже создан
+      }
+
+      await option_set.forEach(async function (option){
+        await this.updateTestQuestionOption(option)
+      }.bind(this))
+    },
+    async updateTestQuestionOption(option){
+      alert('updateTestQuestionOption');
+      if(option.id === undefined){
+        // Еще не создан
+      }else{
+        // Уже создан
+      }
+    },
     addTest(){
-      this.test.push({name: '', description: '', questions: []})
+      this.test.push({name: '', description: '', question_set: []});
     },
     getTestInfo(){
-      // this.test = [{
-      //   name: '123',
-      //   description: '',
-      //   questions: [
-      //     {
-      //       name: '123 123',
-      //       variants: [
-      //         { name: 'lorem ipsum sit amet' },
-      //         { name: 'amet lorem ipsum sit' },
-      //       ]
-      //     },
-      //     {
-      //       name: '321 321',
-      //       variants: [
-      //         { name: 'lorem ipsum sit amet' },
-      //         { name: 'amet lorem ipsum sit' },
-      //       ]
-      //     }
-      //   ]
-      // }];
+      alert('getTestInfo');
+      LessonsAPI.get_test_info(this.lessonId)
+          .then((response) => {
+            this.test = response.data.tests;
+          })
+          .catch((e) => {
+            console.log(e);
+          })
+          .finally(() => {
+            this.watcher_status = true;
+          })
     },
     addAnswerVariant(testIndex, questionIndex){
-      this.test[testIndex].questions[questionIndex].variants.push({name: ''})
+      this.test[testIndex].question_set[questionIndex].option_set.push({text: '', is_correct: false})
     },
     addQuestion(testIndex){
-      this.test[testIndex].questions.push({name: '', variants: []})
+        console.log(this.test);
+      this.test[testIndex].question_set.push(
+          {
+            name: '',
+            index: ((this.test[testIndex].question_set.length) + 1),
+            option_set: []
+          }
+      )
     },
     handleImageUpload() {
       this.files.image = this.$refs.file.files[0];
@@ -281,6 +328,7 @@ export default {
         .catch((e) => {
           console.log(e);
         });
+      this.getTestInfo();
     },
     async edit() {
       this.uploadPercentage = 0;

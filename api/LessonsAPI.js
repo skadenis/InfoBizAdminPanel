@@ -4,6 +4,9 @@ class LessonsAPI extends BaseAPI {
   get(id) {
     return this.axios.get("/course/lesson/" + id + "/?"+(new Date().getTime()));
   }
+  get_test_info(id) {
+    return this.axios.get("/course/tests/" + id + "/?"+(new Date().getTime()));
+  }
   edit(data) {
     return this.axiosMultyPart.put("/course/lesson"+ "/?"+(new Date().getTime()), data);
   }

@@ -156,6 +156,10 @@
                 <div class="question_answers_variant_block" v-for="(variant, variantIndex) in question.option_set">
                   <a-form-model-item label="Ответ">
                     <a-textarea v-model="variant.text" />
+                    <a-select v-model="variant.is_correct">
+                      <a-select-option :value="true">Правильный</a-select-option>
+                      <a-select-option :value="false">Неправильный</a-select-option>
+                    </a-select>
                   </a-form-model-item>
                 </div>
                 <div class="question_answers_variant_block add_block" @click="addAnswerVariant(testIndex, questionIndex)">
@@ -184,6 +188,7 @@ import FileRow from "@/components/studies/lessons/Lesson/FileRow";
 import axios from "axios";
 import Cookie from "js-cookie";
 import { VueEditor } from "vue2-editor";
+import {debounce} from "@/helpers/debounce";
 
 
 export default {
@@ -219,14 +224,9 @@ export default {
     test: {
       handler(newValue) {
         if(this.watcher_status){
-          (newValue).forEach(function (test){
-            this.updateTest(test);
-          }.bind(this));
-
+          this.debounceEditTest();
           this.watcher_status = false;
-          this.getTestInfo();
         }
-
       },
       deep: true
     }
@@ -238,45 +238,92 @@ export default {
     this.getLesson();
   },
   methods: {
+    debounceEditTest: debounce(function () {
+      (this.test).forEach(function (test){
+        this.updateTest(test);
+      }.bind(this));
+      this.watcher_status = true;
+    }, 2000),
     async updateTest(test){
-      alert('updateTest');
+      console.log('updateTest')
       let question_set = test.question_set;
+      let test_id = test.id;
+
       if(test.id === undefined){
-        // Еще не создан
+        await LessonsAPI.addTest(test, this.lessonId)
+            .then((response) => {
+              console.log(response);
+              test_id = response.data.id;
+              test.id = test_id;
+            })
+            .catch((e) => {
+              console.log(e);
+            })
       }else{
-        // Уже создан
+        await LessonsAPI.editTest(test, this.lessonId)
+            .then((response) => {
+              console.log('edit test SUCSESS')
+            })
+            .catch((e) => {
+              console.log(e);
+            })
       }
 
+
+
       await question_set.forEach(async function (question){
-        await this.updateTestQuestion(question)
+        await this.updateTestQuestion(question, test_id)
       }.bind(this));
     },
-    async updateTestQuestion(question){
-      alert('updateTestQuestion');
+    async updateTestQuestion(question, test_id){
       let option_set = question.option_set;
+      let question_id = question.id;
       if(question.id === undefined){
-        // Еще не создан
+        await LessonsAPI.addQuestion(question, test_id)
+            .then((response) => {
+              question_id = response.data.id;
+              question.id = question_id;
+            })
+            .catch((e) => {
+              console.log(e);
+            })
       }else{
-        // Уже создан
+        await LessonsAPI.editQuestion(question, test_id)
+            .then((response) => {
+              console.log('edit test SUCSESS')
+            })
+            .catch((e) => {
+              console.log(e);
+            })
       }
 
       await option_set.forEach(async function (option){
-        await this.updateTestQuestionOption(option)
+        await this.updateTestQuestionOption(option, question_id)
       }.bind(this))
     },
-    async updateTestQuestionOption(option){
-      alert('updateTestQuestionOption');
+    async updateTestQuestionOption(option, question_id){
       if(option.id === undefined){
-        // Еще не создан
+        await LessonsAPI.addOption(option, question_id)
+            .then((response) => {
+              option.id = response.data.id;
+            })
+            .catch((e) => {
+              console.log(e);
+            })
       }else{
-        // Уже создан
+        await LessonsAPI.editOption(option, question_id)
+            .then((response) => {
+              console.log('edit test SUCSESS')
+            })
+            .catch((e) => {
+              console.log(e);
+            })
       }
     },
     addTest(){
-      this.test.push({name: '', description: '', question_set: []});
+      this.test.push({name: ' ', description: ' ', question_set: []});
     },
     getTestInfo(){
-      alert('getTestInfo');
       LessonsAPI.get_test_info(this.lessonId)
           .then((response) => {
             this.test = response.data.tests;
@@ -446,7 +493,6 @@ export default {
         let formData = new FormData();
 
         this.lesson.timer_set.forEach((timer) => {
-          console.log(timer.id);
           if (timer.id === null) {
             formData.append("timer", timer.time + " " + timer.text);
           }

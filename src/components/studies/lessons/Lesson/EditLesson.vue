@@ -150,14 +150,14 @@
             <div class="question_wrapper" v-for="(question, questionIndex) in test.question_set" :key="questionIndex">
               <div class="deleteBlock"  @click="deleteTestQuestion(testIndex,questionIndex)"></div>
               <div class="question_text">
-                <a-form-model-item label="Вопрос">
+                <a-form-model-item :label="'Вопрос ' + (questionIndex + 1) ">
                   <a-textarea v-model="question.name" />
                 </a-form-model-item>
               </div>
               <div class="question_answers_variants_wrapper">
                 <div class="question_answers_variant_block" v-for="(variant, variantIndex) in question.option_set">
                   <div class="deleteBlock" @click="deleteTestOption(testIndex,questionIndex,variantIndex)"></div>
-                  <a-form-model-item label="Ответ">
+                  <a-form-model-item :label="'Ответ ' + (variantIndex + 1) ">
                     <a-textarea v-model="variant.text" />
                     <a-select v-model="variant.is_correct">
                       <a-select-option :value="true">Правильный</a-select-option>

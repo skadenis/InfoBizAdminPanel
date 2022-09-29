@@ -8,8 +8,8 @@
         <a-form-model-item label="Описание">
           <a-textarea rows="4" v-model="module.description" />
         </a-form-model-item>
-        <a-form-model-item label="Модуль доступен?">
-          <a-switch rows="4" v-model="module.perm"/>
+        <a-form-model-item label="Модуль общедоступный">
+          <a-switch rows="4" v-model="!module.education"/>
         </a-form-model-item>
         <a-form-model-item label="Основная картинка">
           <input
@@ -25,7 +25,7 @@
           </p>
         </a-form-model-item>
         <a-form-model-item label="Модуль учитывается в рассчете прогресса:">
-          <a-switch v-model="module.education" />
+          <a-switch v-model="module.is_in_progress" />
         </a-form-model-item>
         <a-form-model-item label="Модуль доступен с:">
           <a-input type="datetime-local" v-model="module.open_time" />
@@ -71,6 +71,7 @@ export default {
         name: null,
         description: null,
         perm: false,
+        is_in_progress: false,
         education: false
       },
       file: undefined,
@@ -110,7 +111,7 @@ export default {
         formData.append("open_time", null);
       }
 
-      formData.append("perm", this.module.perm);
+      formData.append("is_in_progress", this.module.is_in_progress);
       formData.append("description", this.module.description);
 
       if (this.file) {

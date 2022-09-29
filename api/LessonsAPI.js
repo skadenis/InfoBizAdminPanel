@@ -66,6 +66,15 @@ class LessonsAPI extends BaseAPI {
   deleteTiming(id){
     return this.axios.delete("/course/timer_del/"+id + "/?"+(new Date().getTime()));
   }
+  deleteTestOption(data){
+    return this.axios.delete("/option/"+ data.id + "?"+(new Date().getTime()));
+  }
+  deleteTestQuestion(data){
+    return this.axios.delete("/question/"+ data.id + "?"+(new Date().getTime()));
+  }
+  deleteTest(data){
+    return this.axios.delete("/test/"+ data.id + "?"+(new Date().getTime()));
+  }
 }
 
 export default new LessonsAPI();

@@ -143,10 +143,12 @@
         <a-form-model-item label="Тестирование">
           <div class="add_block" v-if="test.length === 0" @click="addTest()">Добавить тестирование</div>
           <div class="test_block" v-for="(test, testIndex) in test" :key="testIndex">
+            <div class="deleteBlock"  @click="deleteTest(testIndex)"></div>
             <a-form-model-item label="Название">
               <a-input v-model="test.name" />
             </a-form-model-item>
             <div class="question_wrapper" v-for="(question, questionIndex) in test.question_set" :key="questionIndex">
+              <div class="deleteBlock"  @click="deleteTestQuestion(testIndex,questionIndex)"></div>
               <div class="question_text">
                 <a-form-model-item label="Вопрос">
                   <a-textarea v-model="question.name" />
@@ -154,6 +156,7 @@
               </div>
               <div class="question_answers_variants_wrapper">
                 <div class="question_answers_variant_block" v-for="(variant, variantIndex) in question.option_set">
+                  <div class="deleteBlock" @click="deleteTestOption(testIndex,questionIndex,variantIndex)"></div>
                   <a-form-model-item label="Ответ">
                     <a-textarea v-model="variant.text" />
                     <a-select v-model="variant.is_correct">
@@ -171,10 +174,7 @@
               Добавить вопрос
             </div>
           </div>
-
         </a-form-model-item>
-
-
       </a-col>
     </a-row>
   </div>
@@ -244,6 +244,33 @@ export default {
       }.bind(this));
       this.watcher_status = true;
     }, 2000),
+    deleteTest(test_index) {
+      LessonsAPI.deleteTest({id: this.test[test_index].id})
+          .then((response) => {
+            delete this.test.splice(test_index, 1);
+          })
+          .catch((e) => {
+            console.log(e);
+          })
+    },
+    deleteTestQuestion(test_index, question_index) {
+      LessonsAPI.deleteTestQuestion({id: this.test[test_index].question_set[question_index].id})
+          .then((response) => {
+            delete this.test[test_index].question_set.splice(question_index, 1);
+          })
+          .catch((e) => {
+            console.log(e);
+          })
+    },
+    deleteTestOption(test_index, question_index, option_index) {
+      LessonsAPI.deleteTestOption({id: this.test[test_index].question_set[question_index].option_set[option_index].id})
+          .then((response) => {
+            this.test[test_index].question_set[question_index].option_set.splice(option_index, 1);
+          })
+          .catch((e) => {
+            console.log(e);
+          })
+    },
     async updateTest(test){
       console.log('updateTest')
       let question_set = test.question_set;
@@ -531,6 +558,19 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.deleteBlock{
+  cursor: pointer!important;
+  background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+  user-select: none;
+  width: 15px;
+  height: 15px;
+  flex: none;
+  background-position-x: right;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 99999;
+}
 .table {
   display: flex;
   width: 100%;
@@ -594,19 +634,25 @@ export default {
   padding: 20px;
   background: #fafafa;
   border: 1px dashed #ccc;
+  position: relative;
   & .question_wrapper{
     padding: 5px 20px;
     margin: 20px 0;
     display: flex;
     border: 1px dashed #ccc;
     flex-direction: column;
+    position: relative;
+
     & .question_text{
       font-weight: bold;
     }
     & .question_answers_variants_wrapper{
       display: grid;
       grid-template-columns: 1fr 1fr;
+      position: relative;
+
       & .question_answers_variant_block{
+        position: relative;
         border: 1px dashed #ccc;
         margin: 5px 10px;
         padding: 5px 10px;

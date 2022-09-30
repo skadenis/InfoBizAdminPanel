@@ -8,8 +8,8 @@
         <a-form-model-item label="Описание">
           <a-textarea rows="4" v-model="module.description" />
         </a-form-model-item>
-        <a-form-model-item label="Модуль общедоступный">
-          <a-switch rows="4" v-model="!module.education"/>
+        <a-form-model-item label="Модуль не общедоступный">
+          <a-switch rows="4" v-model="module.education"/>
         </a-form-model-item>
         <a-form-model-item label="Основная картинка">
           <input

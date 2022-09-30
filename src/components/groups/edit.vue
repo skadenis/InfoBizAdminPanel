@@ -135,7 +135,12 @@ import UsersAPI from "../../../api/UsersAPI";
 export default {
   data() {
     return {
-      group: null,
+      group: {
+        flag: false,
+        link: null,
+        chat_name: null,
+        group_name: null
+      },
       students: [],
       studentAddToGroupId: null,
       flag: false,
@@ -162,7 +167,11 @@ export default {
     async get() {
       GroupsAPI.get(this.$route.params.id)
         .then((response) => {
-          this.group = response.data;
+          this.group.flag = response.data.chat_flag;
+          this.group.link = response.data.chat_link;
+          this.group.chat_name = response.data.chat_name;
+          this.group.group_name = response.data.group_name;
+          this.group.users = response.data.users;
         })
         .catch((e) => {
           console.log(e);
@@ -192,8 +201,8 @@ export default {
         this.$route.params.id
       )
         .then((response) => {
-          this.group.chat_name = response.data.name;
-          this.group.group_name = response.data.group_name;
+          this.$root.$emit("createAlertGood");
+          this.get();
         })
         .catch((e) => {
           console.log(e);
@@ -221,6 +230,7 @@ export default {
       GroupsAPI.addToGroup(this.$route.params.id, this.adminAddToGroupId)
           .then((response) => {
             this.get();
+            this.$root.$emit("createAlertGood");
           })
           .catch((e) => {
             console.log(e);
@@ -230,6 +240,7 @@ export default {
       GroupsAPI.addToGroup(this.$route.params.id, this.studentAddToGroupId)
         .then((response) => {
           this.get();
+          this.$root.$emit("createAlertGood");
         })
         .catch((e) => {
           console.log(e);

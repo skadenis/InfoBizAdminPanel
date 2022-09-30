@@ -11,14 +11,16 @@ class LessonsAPI extends BaseAPI {
     return this.axios.post("/test" + "/?"+(new Date().getTime()), {
       lesson: lesson_id,
       name: data.name,
-      description: data.description
+      description: data.description,
+      is_exam: data.is_exam,
     });
   }
   editTest(data, lesson_id) {
     return this.axios.put("/test/"+ data.id + "?"+(new Date().getTime()), {
       lesson: lesson_id,
       name: data.name,
-      description: data.description
+      description: data.description,
+      is_exam: data.is_exam,
     });
   }
   addQuestion(data, test_id) {

@@ -147,6 +147,13 @@
             <a-form-model-item label="Название">
               <a-input v-model="test.name" />
             </a-form-model-item>
+            <a-form-model-item label="Есть возможность проходить повторно?">
+              <a-select v-model="test.is_exam" >
+                <a-select-option :value="false">Да</a-select-option>
+                <a-select-option :value="true">Нет</a-select-option>
+              </a-select>
+            </a-form-model-item>
+
             <div class="question_wrapper" v-for="(question, questionIndex) in test.question_set" :key="questionIndex">
               <div class="deleteBlock"  @click="deleteTestQuestion(testIndex,questionIndex)"></div>
               <div class="question_text">

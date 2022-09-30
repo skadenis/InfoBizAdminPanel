@@ -62,6 +62,22 @@
           </div>
         </a-form-model-item>
 
+        <a-form-model-item label="Добавление преподавателя в группу">
+          <a-select style="width: 100%" v-model="adminAddToGroupId">
+            <a-select-option
+                v-for="(student, index) in admins"
+                :value="student.id"
+                :key="index"
+            >
+              {{ student.firstname }} {{ student.lastname }}
+            </a-select-option>
+          </a-select>
+        </a-form-model-item>
+
+        <a-button class="add-btn" type="primary" @click="addToGroupAdmin"
+        >Добавить в группу</a-button
+        >
+
         <a-form-model-item label="Учатники группы">
           <div class="table">
             <p>Имя</p>
@@ -114,6 +130,7 @@
 <script>
 import GroupsAPI from "../../../api/GroupsAPI";
 import StudentsAPI from "../../../api/StudentsAPI";
+import UsersAPI from "../../../api/UsersAPI";
 
 export default {
   data() {
@@ -123,13 +140,25 @@ export default {
       studentAddToGroupId: null,
       flag: false,
       link: null,
+      admins: [],
+      adminAddToGroupId: null,
     };
   },
   mounted() {
     this.get();
     this.getStudents();
+    this.getAdmins();
   },
   methods: {
+    getAdmins(){
+      UsersAPI.get_all()
+          .then((response) => {
+            this.admins = response.data.users;
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+    },
     async get() {
       GroupsAPI.get(this.$route.params.id)
         .then((response) => {
@@ -185,6 +214,15 @@ export default {
         .catch((e) => {
           console.log(e);
         });
+    },
+    addToGroupAdmin() {
+      GroupsAPI.addToGroup(this.$route.params.id, this.adminAddToGroupId)
+          .then((response) => {
+            this.get();
+          })
+          .catch((e) => {
+            console.log(e);
+          });
     },
     addToGroup() {
       GroupsAPI.addToGroup(this.$route.params.id, this.studentAddToGroupId)

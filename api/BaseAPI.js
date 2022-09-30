@@ -7,7 +7,7 @@ export default class BaseApi {
 
     this.axios = axios.create({
       baseURL: "https://blogersbackend.gastrosoft.by",
-      headers: { Authorization: `Token ${Cookies.token}` },
+      headers: { Authorization: `Token ${Cookies.token}`, 'Cache-Control': 'no-cache' },
       // headers: {
         // Authorization: `Token 227e0cf17204b43171c5ae54abcb54e7a3bdb330`,
       // },
@@ -15,7 +15,7 @@ export default class BaseApi {
 
     this.axiosNoAUTH = axios.create({
       baseURL: "https://blogersbackend.gastrosoft.by",
-      headers: {},
+      headers: {'Cache-Control': 'no-cache'},
       // headers: {
       // Authorization: `Token 227e0cf17204b43171c5ae54abcb54e7a3bdb330`,
       // },

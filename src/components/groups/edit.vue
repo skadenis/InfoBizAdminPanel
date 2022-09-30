@@ -186,6 +186,8 @@ export default {
         {
           name: this.group.chat_name,
           group_name: this.group.group_name,
+          link: this.group.link,
+          flag: this.group.flag
         },
         this.$route.params.id
       )

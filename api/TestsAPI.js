@@ -4,6 +4,9 @@ class TestsAPI extends BaseAPI {
     get() {
         return this.axios.get("/course/results/?"+(new Date().getTime()));
     }
+    getById(id) {
+        return this.axios.get("/test_result/?result="+id+"&"+(new Date().getTime()));
+    }
     get_all_filter_course(){
         return this.axios.get("/course/results/?"+(new Date().getTime()));
     }

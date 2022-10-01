@@ -44,6 +44,8 @@ import CalendarEdit from "../views/calendar/CalendarEdit.vue";
 import CalendarAdd from "../views/calendar/CalendarAdd.vue";
 
 import Tests from "../views/tests/index";
+import EditTest from "../views/tests/EditTest";
+
 
 import Config from "@/config";
 
@@ -116,6 +118,15 @@ let routes = [
     meta: {
       layoutClass: "tests",
       name: "Тестирования",
+    },
+  },
+  {
+    path: "/tests/:id",
+    name: "EditTest",
+    component: EditTest,
+    meta: {
+      layoutClass: "EditTest",
+      name: "Результаты тестирования",
     },
   },
   {

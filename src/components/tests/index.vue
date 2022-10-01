@@ -37,22 +37,14 @@
 
     </div>
     <div class="table">
-      <p>Название</p>
-      <p>Статус</p>
+      <p>#</p>
       <p>Курс</p>
       <p>Модуль</p>
       <p>Урок</p>
       <p>Студент</p>
-      <p>Время</p>
+      <p>Результат</p>
     </div>
-    <div v-for="(test, testIndex) in tests" :key="testIndex">
-      <p>{{ test.id }}</p>
-      <p>{{ testIndex }}</p>
-      <p></p>
-      <p></p>
-      <p></p>
-      <p></p>
-    </div>
+    <TestsRow v-for="(test, testIndex) in tests" :key="testIndex" :test="test" :index="testIndex"/>
   </div>
 </template>
 
@@ -60,10 +52,14 @@
 import TestsAPI from "../../../api/TestsAPI";
 import CoursesAPI from "../../../api/CoursesAPI";
 import ModulesAPI from "../../../api/ModulesAPI";
+import TestsRow from "./TestsRow";
 
 
 
 export default {
+  components: {
+    TestsRow
+  },
   watch: {
     async 'filter.course'(newValue) {
       await this.getModules(newValue);
@@ -90,7 +86,7 @@ export default {
   },
   data() {
     return {
-      tests: null,
+      tests: [],
       courses: [],
       course_modules: [],
       lessons: [],
@@ -112,7 +108,7 @@ export default {
     updateTestsCourse(){
       TestsAPI.get_all_filter_course(this.filter)
           .then((response) => {
-            this.homeworks = response.data.homeworks;
+            this.tests = response.data.tests;
           })
           .catch((e) => {
             console.log(e);
@@ -121,7 +117,7 @@ export default {
     updateTestsLessonMoudleCourse(){
       TestsAPI.get_all_filter_course_module_lesson(this.filter)
           .then((response) => {
-            this.homeworks = response.data.homeworks;
+            this.tests = response.data.tests;
           })
           .catch((e) => {
             console.log(e);
@@ -130,7 +126,7 @@ export default {
     updateTestsModuleCourse(){
       TestsAPI.get_all_filter_course_module(this.filter)
           .then((response) => {
-            this.homeworks = response.data.homeworks;
+            this.tests = response.data.tests;
           })
           .catch((e) => {
             console.log(e);

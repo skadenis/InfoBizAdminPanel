@@ -139,7 +139,8 @@ export default {
         flag: false,
         link: null,
         chat_name: null,
-        group_name: null
+        group_name: null,
+        users: []
       },
       students: [],
       studentAddToGroupId: null,
@@ -167,11 +168,10 @@ export default {
     async get() {
       GroupsAPI.get(this.$route.params.id)
         .then((response) => {
+          this.group = response.data;
           this.group.flag = response.data.chat_flag;
           this.group.link = response.data.chat_link;
-          this.group.chat_name = response.data.chat_name;
-          this.group.group_name = response.data.group_name;
-          this.group.users = response.data.users;
+
         })
         .catch((e) => {
           console.log(e);
@@ -229,6 +229,7 @@ export default {
     addToGroupAdmin() {
       GroupsAPI.addToGroup(this.$route.params.id, this.adminAddToGroupId)
           .then((response) => {
+            console.log(response.data);
             this.get();
             this.$root.$emit("createAlertGood");
           })

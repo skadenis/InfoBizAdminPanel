@@ -97,6 +97,10 @@ export default {
   margin: 15px 0;
   background: #eeeeee;
   padding: 10px;
+  &>p>b{
+    font-weight: bold;
+
+  }
 }
 .answer{
   padding: 10px;

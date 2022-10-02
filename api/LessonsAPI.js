@@ -5,7 +5,7 @@ class LessonsAPI extends BaseAPI {
     return this.axios.get("/course/lesson/" + id + "/?"+(new Date().getTime()));
   }
   get_test_info(id) {
-    return this.axios.get("/course/tests/" + id + "/?"+(new Date().getTime()));
+    return this.axios.get("/course/get_tests/?lesson=" + id + "&"+(new Date().getTime()));
   }
   addTest(data, lesson_id) {
     return this.axios.post("/test" + "/?"+(new Date().getTime()), {

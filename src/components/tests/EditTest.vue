@@ -46,6 +46,8 @@
       </div>
     </div>
 
+    <a-button @click="deleteResult">Удалить результаты</a-button>
+
   </div>
 </template>
 
@@ -83,6 +85,15 @@ export default {
             this.module = response.data.module;
             this.lesson = response.data.lesson;
             this.answers = response.data.answers;
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+    },
+    deleteResult(){
+      TestsAPI.deleteResult({test: this.testID, user: this.user_info.id})
+          .then((response) => {
+            this.$router.push('/tests/');
           })
           .catch((e) => {
             console.log(e);

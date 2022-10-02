@@ -168,10 +168,9 @@ export default {
     async get() {
       GroupsAPI.get(this.$route.params.id)
         .then((response) => {
-          this.group = response.data;
           this.group.flag = response.data.chat_flag;
           this.group.link = response.data.chat_link;
-
+          this.group = response.data;
         })
         .catch((e) => {
           console.log(e);

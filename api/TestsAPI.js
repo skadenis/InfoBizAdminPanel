@@ -16,6 +16,9 @@ class TestsAPI extends BaseAPI {
     get_all_filter_course_module(){
         return this.axios.get("/course/results/?"+(new Date().getTime()));
     }
+    deleteResult(data){
+        return this.axios.delete("/test_result/?"+(new Date().getTime()), data);
+    }
 }
 
 export default new TestsAPI();

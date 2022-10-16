@@ -52,7 +52,7 @@ export default {
       module: {
         name: null,
         description: null,
-        is_in_progress: null,
+        is_in_progress: false,
         open_time: null,
         perm: false,
         education: false

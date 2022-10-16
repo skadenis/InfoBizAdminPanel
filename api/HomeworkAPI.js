@@ -31,7 +31,7 @@ class HomeworkAPI extends BaseAPI {
     return this.axios.get("/course/homework_by_lesson/"+filter.lesson+ "/?"+(new Date().getTime()) +"&"+ makeAdditionalParamsFilter(filter));
   }
   get_all_filter_course_module(filter){
-    return this.axios.get("course/homework_by_module/"+filter.module+ "/?"+(new Date().getTime()) +"&"+ makeAdditionalParamsFilter(filter));
+    return this.axios.get("/course/homework_by_module/"+filter.module+ "/?"+(new Date().getTime()) +"&"+ makeAdditionalParamsFilter(filter));
   }
 }
 
